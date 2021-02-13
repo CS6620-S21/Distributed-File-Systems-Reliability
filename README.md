@@ -26,4 +26,3 @@ A setup which can validate the reliability of any given Distributed File System
 Currently asked us to learn Ansible, Terraform and MooseFS
 
 
-
