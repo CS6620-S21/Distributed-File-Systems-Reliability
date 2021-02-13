@@ -1,5 +1,5 @@
 # Distributed-File-Systems-Reliability
-
+Try to familar github
 ## 1. Vision and Goals Of The Project:
 Vision: Distributed storage systems are a fundamental building block of any modern scaling computing infrastructure, such as in clouds, scientific computing, or next-generation data centers. This is ultimately where most of the data resides, so the reliability of distributed file systems in the face of failures is critical. However, unlike local file systems, which have many tools and frameworks for testing, there are (still) no standard frameworks for evaluating the reliability of distributed file systems and their unique failure modes, like node and network failures! This not only means that each system must implement their own tests, but also that it is difficult to compare the reliability of multiple distributed file systems or evaluate their reliability from a third party’s perspective.
 
