@@ -23,6 +23,6 @@ Performance testing specific to distributed filesystems.
 A setup which can validate the reliability of any given Distributed File System
 
 ## 6. Release Planning:
-Currently asked us to learn Ansible, Terraform and MooseFS
-
+Currently asked us to learn Ansible, Terraform and MooseFS.
+Will add front end using Django if having spare time.
 
