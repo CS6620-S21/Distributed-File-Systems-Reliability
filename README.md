@@ -24,6 +24,6 @@ A setup which can validate the reliability of any given Distributed File System
 
 ## 6. Release Planning:
 Currently asked us to learn Ansible, Terraform and MooseFS
-
+test
 
 
