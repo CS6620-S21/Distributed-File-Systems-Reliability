@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Distributed-File-Systems-Reliability.iml" filepath="$PROJECT_DIR$/Distributed-File-Systems-Reliability.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Distributed-File-Systems-Reliability.iml" filepath="$PROJECT_DIR$/.idea/Distributed-File-Systems-Reliability.iml" />
     </modules>
   </component>
 </project>
