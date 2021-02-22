@@ -22,6 +22,7 @@ filesystem can consider the approach taken and generalize and automate reliabili
 framework which will enable them to improve upon the reliability of their implementation. For example admins of LizardFS
 - Production engineers who want to assess the reliability of a the related distributed file Systems by following the
 methodologies adopted here.
+- Software developers and QA personnel working on developing file systems by utilizing the provided interfaces
 
 ## 3. Scope and Features Of The Project:
 - The overall framework that will set up and tear down VMs, run experiments, and simulate failures.
@@ -34,13 +35,19 @@ Stretch goals, if time allows, include:
     - Simulate network failures
     - Performance testing specific to distributed filesystems.
 
-
 ## 4. Solution Concept
+- Since their are many different types of distributed file system the idea here is to hide behind clean interfaces, and 
+thus testing different file systems would require developing different ansible playbooks which are an implementation of
+these interfaces.
+
  
 ## 5. Acceptance criteria
-A setup which can validate the reliability of any given Distributed File System
+- For now the primary acceptance criteria is to thoroughly test the MooseFS distributed file system and figuring out
+ what are the possible interfaces required such a setup.
+- In the later phases we will try to provide implementation of these interface for other file systems and thus provide 
+a guideline or a general approach to be taken to test any Distributed File System 
+
 
 ## 6. Release Planning:
-Currently asked us to learn Ansible, Terraform and MooseFS.
-Will add front end using Django if having spare time.
+- Currently asked us to learn Ansible, Terraform and MooseFS. Will add front end using Django if having spare time.
 
