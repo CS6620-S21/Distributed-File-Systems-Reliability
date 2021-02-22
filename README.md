@@ -42,6 +42,9 @@ interfaces, and thus testing different file systems would require developing dif
 of these interfaces.
  
 ## 5. Acceptance criteria
+- Teraform Scripts should be able to create VMs on demand in MOC.
+- Ansible playbooks should be able to setup the VMs through automation by installing & configuring different file systems.
+- Ansible playbooks should be able to test different file systems.
 - For now the primary acceptance criteria is to thoroughly test the MooseFS distributed file system and figuring out what 
 are the possible interfaces required such an assessment.
 - In the later phases we will try to provide implementation of these interface for other file systems and thus provide 
@@ -51,11 +54,11 @@ a guideline or a general approach to be taken to test any Distributed File Syste
 
 ### Sprint 1
 - Due for Week 1:
-    - Learning Ansible experiment on AWS
-    - Learning Terraform Experimenting on AWS
+    - Learning Ansible & Installing it on VMs(VirtualBox VMs)
+    - Learning Terraform & Experimenting on AWS VMs
     - Set up MooseFS on our local machine (with VirtualBox VMs)
 - Due for Week 2:
-    - Learning Ansible experiment on MOC
+    - Setting up Ansible Master Control node on MOC VM
     - Learning Terraform Experimenting on MOC
     - Set up MooseFS on MOC
 
