@@ -49,5 +49,18 @@ a guideline or a general approach to be taken to test any Distributed File Syste
 
 
 ## 6. Release Planning:
-- Currently asked us to learn Ansible, Terraform and MooseFS. Will add front end using Django if having spare time.
+- Due for Week 1:
+    - Learning Ansible experiment on AWS
+    - Learning Terraform Experimenting on AWS
+    - Install MooseFS on out local machine
+- Due for Week 2:
+    - Learning Ansible experiment on MOC
+    - Learning Terraform Experimenting on MOC
+    - Install MooseFS on out MOC
+
+
+The further releases of application are not fixed yet for a particular date and are dependent on evaluation results 
+from experiments being conducted for the project.
+
+
 
