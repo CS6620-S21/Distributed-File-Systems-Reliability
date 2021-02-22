@@ -22,7 +22,7 @@ filesystem can consider the approach taken and generalize and automate reliabili
 framework which will enable them to improve upon the reliability of their implementation. For example admins of LizardFS
 - Production engineers who want to assess the reliability of a the related distributed file Systems by following the
 methodologies adopted here.
-- Software developers and QA personnel working on developing file systems by utilizing the provided interfaces
+- Software developers and QA personnel working on developing file systems by utilizing the provided approach.s
 
 ## 3. Scope and Features Of The Project:
 - The overall framework that will set up and tear down VMs, run experiments, and simulate failures.
@@ -36,17 +36,16 @@ Stretch goals, if time allows, include:
     - Performance testing specific to distributed filesystems.
 
 ## 4. Solution Concept
-- Since their are many different types of distributed file system the idea here is to hide behind clean interfaces, and 
-thus testing different file systems would require developing different ansible playbooks which are an implementation of
-these interfaces.
+- Since their are many different types of distributed file system the idea here is to hide the steps taken behind clean 
+interfaces, and thus testing different file systems would require developing different ansible playbooks which are an 
+of these interfaces.
 
  
 ## 5. Acceptance criteria
-- For now the primary acceptance criteria is to thoroughly test the MooseFS distributed file system and figuring out
- what are the possible interfaces required such a setup.
+- For now the primary acceptance criteria is to thoroughly test the MooseFS distributed file system and figuring out what 
+are the possible interfaces required such an assessment.
 - In the later phases we will try to provide implementation of these interface for other file systems and thus provide 
 a guideline or a general approach to be taken to test any Distributed File System 
-
 
 ## 6. Release Planning:
 - Due for Week 1:
@@ -57,7 +56,6 @@ a guideline or a general approach to be taken to test any Distributed File Syste
     - Learning Ansible experiment on MOC
     - Learning Terraform Experimenting on MOC
     - Install MooseFS on out MOC
-
 
 The further releases of application are not fixed yet for a particular date and are dependent on evaluation results 
 from experiments being conducted for the project.
