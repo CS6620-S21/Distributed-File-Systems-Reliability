@@ -51,11 +51,11 @@ a guideline or a general approach to be taken to test any Distributed File Syste
 - Due for Week 1:
     - Learning Ansible experiment on AWS
     - Learning Terraform Experimenting on AWS
-    - Install MooseFS on out local machine
+    - Install MooseFS on our local machine (with VirtualBox VMs)
 - Due for Week 2:
     - Learning Ansible experiment on MOC
     - Learning Terraform Experimenting on MOC
-    - Install MooseFS on out MOC
+    - Install MooseFS on MOC
 
 The further releases of application are not fixed yet for a particular date and are dependent on evaluation results 
 from experiments being conducted for the project.
