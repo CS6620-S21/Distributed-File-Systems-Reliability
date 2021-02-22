@@ -18,8 +18,8 @@ for testing, run experiments, simulate node failures (e.g., terminating one or m
 unneeded VMs, and repeat.
 
 ## 3. Users/Personas Of The Project:
-- Admins and file system developers of projects or which are either forked or a variants of the MooseFS Distributed 
-filesystem can consider the approach taken and generalize and automate reliability tasks by implementing an automation 
+- Admins and file system developers of projects which are either forked or a variants of the MooseFS Distributed 
+filesystem, can consider the approach taken and generalize and automate reliability tasks by implementing an automation 
 framework which will enable them to improve upon the reliability of their implementation. For example admins of LizardFS.
 - Production engineers who want to assess the reliability of a the related distributed file Systems by following the
 methodologies adopted here.
@@ -45,8 +45,7 @@ of these interfaces.
 - Teraform Scripts should be able to create VMs on demand in MOC.
 - Ansible playbooks should be able to setup the VMs through automation by installing & configuring different file systems.
 - Ansible playbooks should be able to test different file systems.
-- For now the primary acceptance criteria is to thoroughly test the MooseFS distributed file system and figuring out what 
-are the possible interfaces required such an assessment.
+- Thoroughly testing the MooseFS distributed file system and figuring out what are the possible interfaces required such an assessment.
 - In the later phases we will try to provide implementation of these interface for other file systems and thus provide 
 a guideline or a general approach to be taken to test any Distributed File System.
 
