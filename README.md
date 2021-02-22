@@ -51,7 +51,7 @@ a guideline or a general approach to be taken to test any Distributed File Syste
 
 ## 6. Release Planning:
 
-### Sprint 1 (12 Feb 2021 to 26 Feb 2021)
+#### Sprint 1 (12 Feb 2021 to 26 Feb 2021)
 - Due for Week 1:
     - Learning Ansible & Installing it on VMs(VirtualBox VMs)
     - Learning Terraform & Experimenting on AWS VMs
