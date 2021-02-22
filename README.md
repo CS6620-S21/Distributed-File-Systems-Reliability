@@ -11,7 +11,7 @@ file systems or evaluate their reliability from a third party’s perspective.
 
 ## 2. Goals: 
 Design and implement a framework for basic failure testing of distributed file systems, which could be applied to 
-Ultimate goal of the project is to test different use cases for MooseFS filesystem and generalize them for few other 
+the ultimate goal of the project, which is to test different use cases for MooseFS filesystem and generalize them for few other 
 Filesystems. The overall testing framework would programmatically create and set up virtual machines (VMs) for Master 
 Server, Metaloggers, multiple Chunkservers(ideally 50-60), and Client Servers using Ansible Playbooks and Terraform Plans 
 for testing, run experiments, simulate node failures (e.g., terminating one or more VMs), verify the file system, destroy 
@@ -48,6 +48,8 @@ are the possible interfaces required such an assessment.
 a guideline or a general approach to be taken to test any Distributed File System.
 
 ## 6. Release Planning:
+
+### Sprint 1
 - Due for Week 1:
     - Learning Ansible experiment on AWS
     - Learning Terraform Experimenting on AWS
