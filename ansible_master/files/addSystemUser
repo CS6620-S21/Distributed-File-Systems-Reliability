@@ -1,0 +1,9 @@
+#!/bin/bash
+
+username=admin_user
+password=password1234!
+
+adduser $username
+echo $password | passwd --stdin $username
+
+usermod -aG wheel $username

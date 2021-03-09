@@ -1,0 +1,78 @@
+# This is the default ansible 'hosts' file.
+#
+# It should live in /etc/ansible/hosts
+#
+#   - Comments begin with the '#' character
+#   - Blank lines are ignored
+#   - Groups of hosts are delimited by [header] elements
+#   - You can enter hostnames or ip addresses
+#   - A hostname/ip can be a member of multiple groups
+
+[control]
+localhost
+
+[control:vars]
+ansible_conection =  local
+ansible_user      =  admin_user
+ansible_password  =  Password1234!
+ansible_python_interpreter=/usr/bin/python3
+
+
+[linux]
+
+
+[linux:vars]
+ansible_user=admin_user
+ansible_password=Password1234!
+#ansible_connection = ssh
+
+
+[linux:children]
+master
+chunkserver
+client
+metalogger
+
+[master:children]
+m1
+m2
+
+[metalogger:children]
+mt1
+
+[chunkserver:children]
+cs1
+cs2
+cs3
+
+[client:children]
+cl1
+cl2
+cl3
+
+[m1]
+master1
+
+[m2]
+master2
+
+[mt1]
+metalogger1
+
+[cs1]
+chunkserver1
+
+[cs2]
+chunkserver2
+
+[cs3]
+chunkserver3
+
+[cl1]
+client1
+
+[cl2]
+client2
+
+[cl3]
+client3

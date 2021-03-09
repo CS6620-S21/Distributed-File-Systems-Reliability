@@ -1,0 +1,47 @@
+---
+# Install MooseFS Master Server
+# Author: Sameer Sinha
+# Date: 03/08/2021
+# Version: 0.0.1
+#-----------------------------------------------------------------------------------------------------------------------------------
+# Description: This is a role for installing & Setting up MosseFS Master Server.
+#-----------------------------------------------------------------------------------------------------------------------------------
+
+- name: Define variables
+  set_fact:
+    ans_user: "{{ AnsibleUser }}"
+    ans_pass: "{{ AnsiblePass }}"
+    host_name: "{{ inventory_hostname }}"
+
+- name: Download RPM-GPG-KEY-MooseFS
+  get_url:
+    url: https://ppa.moosefs.com/RPM-GPG-KEY-MooseFS
+    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-MooseFS
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
+- name: Download MooseFS-3-el7.repo
+  get_url:
+    url: http://ppa.moosefs.com/MooseFS-3-el7.repo
+    dest: /etc/yum.repos.d/MooseFS.repo
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
+- name: Install moosefs-master package
+  yum:
+    name: moosefs-master
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
+- name: Start MooseFS Master Server
+  ansible.builtin.systemd:
+    name: moosefs-master
+    enabled: yes
+    state: started
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"

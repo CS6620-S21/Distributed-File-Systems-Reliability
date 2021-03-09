@@ -1,0 +1,12 @@
+#!/bin/bash
+
+curl "https://ppa.moosefs.com/RPM-GPG-KEY-MooseFS" > /etc/pki/rpm-gpg/RPM-GPG-KEY-MooseFS
+curl "http://ppa.moosefs.com/MooseFS-3-el7.repo" > /etc/yum.repos.d/MooseFS.repo
+yum install moosefs-master
+
+cd /etc/mfs 
+cp mfsmaster.cfg.sample mfsmaster.cfg 
+cp mfsexports.cfg.sample mfsexports.cfg
+
+systemctl enable moosefs-master
+systemctl start moosefs-master
