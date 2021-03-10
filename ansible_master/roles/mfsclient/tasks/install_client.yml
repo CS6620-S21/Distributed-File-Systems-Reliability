@@ -39,7 +39,7 @@
 
 - name: Create mfs directory for mounting
   ansible.builtin.file:
-    path: /mnt/mfs
+    path: ~/mfs
     state: directory
     mode: '0755'
   become: yes
