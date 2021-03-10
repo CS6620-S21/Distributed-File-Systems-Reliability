@@ -1,0 +1,19 @@
+---
+# Install MooseFS Master Server
+# Author: Xinyi Chen
+# Date: 03/09/2021
+# Version: 0.0.1
+#-----------------------------------------------------------------------------------------------------------------------------------
+# Description: This is a role for installing & Setting up MosseFS Metalogger.
+#-----------------------------------------------------------------------------------------------------------------------------------
+
+- name: Performing MooseFS installation
+  hosts: client
+  vars:
+    client_dir: /mnt/mfs
+  gather_facts: false
+  tasks:
+    - include_role:
+        name: mfsclient
+        tasks_from: install_client
+
