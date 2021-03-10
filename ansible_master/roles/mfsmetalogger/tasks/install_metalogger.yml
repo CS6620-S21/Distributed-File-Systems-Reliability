@@ -13,37 +13,37 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-# - name: Download RPM-GPG-KEY-MooseFS
-#   get_url:
-#     url: https://ppa.moosefs.com/RPM-GPG-KEY-MooseFS
-#     dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-MooseFS
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Download RPM-GPG-KEY-MooseFS
+  get_url:
+    url: https://ppa.moosefs.com/RPM-GPG-KEY-MooseFS
+    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-MooseFS
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Download MooseFS-3-el7.repo
-#   get_url:
-#     url: http://ppa.moosefs.com/MooseFS-3-el7.repo
-#     dest: /etc/yum.repos.d/MooseFS.repo
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Download MooseFS-3-el7.repo
+  get_url:
+    url: http://ppa.moosefs.com/MooseFS-3-el7.repo
+    dest: /etc/yum.repos.d/MooseFS.repo
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Install moosefs-metalogger package
-#   yum:
-#     name: moosefs-metalogger
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Install moosefs-metalogger package
+  yum:
+    name: moosefs-metalogger
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Copy configuration file
-#   copy:
-#     src: /etc/mfs/mfsmetalogger.cfg.sample
-#     dest: /etc/mfs/mfsmetalogger.cfg
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Copy configuration file
+  copy:
+    src: /etc/mfs/mfsmetalogger.cfg.sample
+    dest: /etc/mfs/mfsmetalogger.cfg
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Start MooseFS Metalogger Server
   ansible.builtin.systemd:
