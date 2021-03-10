@@ -9,6 +9,8 @@
 
 - name: Performing MooseFS installation
   hosts: chunkserver
+  vars:
+    dev_dir: /dev/sdb
   gather_facts: false
   tasks:
     - include_role:
