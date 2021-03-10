@@ -38,20 +38,68 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Create partition table and partition on target device(s)
+  community.general.parted:
+    device: /dev/sdb
+    number: 1
+    state: present
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Install XFS Progs
+  yum:
+    name: xfsprogs
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Format new partition with XFS
+  filesystem:
+    fstype: xfs
+    dev: /dev/sdb1
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Add entries into /etc/fstab
+  lineinfile:
+    path: /etc/fstab
+    line: /dev/sdb1    /mnt/mfschunks1    xfs    defaults    0 0
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Create dir for mounting new partition
+  ansible.builtin.file:
+    path: /mnt/mfschunks1
+    state: directory
+    mode: '0755'
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Mount new partition(s)
+  ansible.posix.mount:
+    path: /mnt/mfschunks1
+    src: /boot
+    opts: bind
+    state: mounted
+    fstype: xfs
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Change ownership and access to mountpoints
+  ansible.builtin.file:
+    path: /mnt/mfschunks1
+    owner: mfs
+    group: mfs
+    mode: '0770'
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Add mountpoints to mfshdd.cfg file
+  lineinfile:
+    path: /etc/fstab
+    line: /mnt/mfschunks1
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Start MooseFS Chunk Server
   ansible.builtin.systemd:
