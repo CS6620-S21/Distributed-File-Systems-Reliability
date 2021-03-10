@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a3f275f4-3e5d-47f5-a43c-a6ccb749f507" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform_master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/terraform_master.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1pYnpws9OnXUZ1pZy2BWemIet82" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TF_FMT" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aksha\OneDrive\Documents\projects\git\Distributed-File-Systems-Reliability\terraform_master\src" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\aksha\OneDrive\Documents\projects\git\Distributed-File-Systems-Reliability\terraform_master" />
+      <recent name="C:\Users\aksha\OneDrive\Documents\projects\git\Distributed-File-Systems-Reliability\terraform_master\src" />
+      <recent name="C:\Users\aksha\OneDrive\Documents\projects\git\Distributed-File-Systems-Reliability\terraform_master\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo" />
+      <module name="terraform_master" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Demo" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a3f275f4-3e5d-47f5-a43c-a6ccb749f507" name="Default Changelist" comment="" />
+      <created>1615369077443</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615369077443</updated>
+      <workItem from="1615369080481" duration="8040000" />
+    </task>
+    <task id="LOCAL-00001" summary="Adding terraform code">
+      <created>1615377965750</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1615377965750</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Some project Config files">
+      <created>1615378082651</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1615378082651</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adding terraform code" />
+    <MESSAGE value="Some project Config files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some project Config files" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="431" y="121" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1615376620399">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="431" y="121" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/62.0.1474.864@62.0.1474.864" timestamp="1615376620399" />
+    <state x="259" y="26" key="CommitChangelistDialog2" timestamp="1615378082260">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="259" y="26" key="CommitChangelistDialog2/62.0.1474.864@62.0.1474.864" timestamp="1615378082260" />
+    <state width="1431" height="351" key="GridCell.Tab.0.bottom" timestamp="1615369769336">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state width="1431" height="351" key="GridCell.Tab.0.bottom/62.0.1474.864@62.0.1474.864" timestamp="1615369769336" />
+    <state width="1431" height="351" key="GridCell.Tab.0.center" timestamp="1615369769336">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state width="1431" height="351" key="GridCell.Tab.0.center/62.0.1474.864@62.0.1474.864" timestamp="1615369769336" />
+    <state width="1431" height="351" key="GridCell.Tab.0.left" timestamp="1615369769335">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state width="1431" height="351" key="GridCell.Tab.0.left/62.0.1474.864@62.0.1474.864" timestamp="1615369769335" />
+    <state width="1431" height="351" key="GridCell.Tab.0.right" timestamp="1615369769336">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state width="1431" height="351" key="GridCell.Tab.0.right/62.0.1474.864@62.0.1474.864" timestamp="1615369769336" />
+    <state x="397" y="143" key="RollbackChangesDialog" timestamp="1615377905237">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="397" y="143" key="RollbackChangesDialog/62.0.1474.864@62.0.1474.864" timestamp="1615377905237" />
+    <state x="392" y="165" key="Vcs.Push.Dialog.v2" timestamp="1615378094602">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="392" y="165" key="Vcs.Push.Dialog.v2/62.0.1474.864@62.0.1474.864" timestamp="1615378094602" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/Demo.java</url>
+          <line>37</line>
+          <properties class="Demo" method="initializeTerraform">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
