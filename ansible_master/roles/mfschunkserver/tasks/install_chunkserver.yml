@@ -1,10 +1,10 @@
 ---
-# Install MooseFS Metalogger
+# Install MooseFS Chunkserver
 # Author: Xinyi Chen
 # Date: 03/09/2021
 # Version: 0.0.1
 #-----------------------------------------------------------------------------------------------------------------------------------
-# Description: This is a role for installing & Setting up MosseFS Metalogger.
+# Description: This is a role for installing & Setting up MosseFS Chunkserver.
 #-----------------------------------------------------------------------------------------------------------------------------------
 
 - name: Define variables
@@ -29,25 +29,33 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Install moosefs-metalogger package
+- name: Install moosefs-chunkserver package
   yum:
-    name: moosefs-metalogger
+    name: moosefs-chunkserver
     state: present
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Copy configuration file
-  copy:
-    src: /etc/mfs/mfsmetalogger.cfg.sample
-    dest: /etc/mfs/mfsmetalogger.cfg
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+- name: Create partition table and partition on target device(s)
 
-- name: Start MooseFS Metalogger Server
+- name: Install XFS Progs
+
+- name: Format new partition with XFS
+
+- name: Add entries into /etc/fstab
+
+- name: Create dir for mounting new partition
+
+- name: Mount new partition(s)
+
+- name: Change ownership and access to mountpoints
+
+- name: Add mountpoints to mfshdd.cfg file
+
+- name: Start MooseFS Chunk Server
   ansible.builtin.systemd:
-    name: moosefs-metalogger
+    name: moosefs-chunkserver
     enabled: yes
     state: started
   become: yes

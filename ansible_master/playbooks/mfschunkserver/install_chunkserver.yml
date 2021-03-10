@@ -1,19 +1,17 @@
 ---
-# Install MooseFS Client Server
+# Install MooseFS Chunk Server
 # Author: Xinyi Chen
 # Date: 03/09/2021
 # Version: 0.0.1
 #-----------------------------------------------------------------------------------------------------------------------------------
-# Description: This is a role for installing & Setting up MosseFS Client.
+# Description: This is a role for installing & Setting up MosseFS Chunkserver.
 #-----------------------------------------------------------------------------------------------------------------------------------
 
 - name: Performing MooseFS installation
-  hosts: client
-  vars:
-    client_dir: /mnt/mfs
+  hosts: chunkserver
   gather_facts: false
   tasks:
     - include_role:
-        name: mfsclient
-        tasks_from: install_client
+        name: mfschunkserver
+        tasks_from: install_chunkserver
 
