@@ -29,14 +29,14 @@
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
 
-- name: Create mfs directory for mounting
-  ansible.builtin.file:
-    path: "{{ client_dir }}"
-    state: directory
-    mode: '0755'
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Create mfs directory for mounting
+#   ansible.builtin.file:
+#     path: "{{ client_dir }}"
+#     state: directory
+#     mode: '0755'
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
 - name: Mount moosefs
   shell: mfsmount "{{ client_dir }}" -H mfsmaster
@@ -44,8 +44,3 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Create Directory
-  shell: sudo mkdir /mnt/mfs
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
