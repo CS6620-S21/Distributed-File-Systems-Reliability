@@ -20,6 +20,7 @@
 #   become: yes
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
+
 # - name: Download MooseFS-3-el7.repo
 #   get_url:
 #     url: http://ppa.moosefs.com/MooseFS-3-el7.repo
@@ -27,6 +28,7 @@
 #   become: yes
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
+
 # - name: Install moosefs-client package
 #   yum:
 #     name: moosefs-client
@@ -34,17 +36,23 @@
 #   become: yes
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
-- name: Create mfs directory for mounting
-  ansible.builtin.file:
-    path: ~/mfs
-    state: directory
-    mode: "0755"
-  # become: yes
-  # vars:
-  #   ansible_become_password: "{{ ans_pass }}"
+
+# - name: Create mfs directory for mounting
+#   ansible.builtin.file:
+#     path: ~/mfs
+#     state: directory
+#     mode: "0755"
+# become: yes
+# vars:
+#   ansible_become_password: "{{ ans_pass }}"
 # - name: Mount moosefs
 #   shell: mfsmount "{{ client_dir }}" -H mfsmaster
 #   become: yes
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
 
+- name: Create Directory
+  shell: sudo mkdir /mnt/mfs
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
