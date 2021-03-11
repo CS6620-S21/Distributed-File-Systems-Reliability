@@ -7,3 +7,11 @@ adduser $username
 echo $password | passwd --stdin $username
 
 usermod -aG wheel $username
+
+yum install -y nano
+
+cp -r /home/centos/.ssh /home/admin_user/
+chown -R admin_user:admin_user /home/admin_user/.ssh/
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDElOJzFjjlq8b3xkaa8nU5Sm6Ls/8Su5rOEyG8UEY161F/wVhe/spBlPTOE8M97O+9bUWx+ZJeshRAg+gHFPJkIo7bEBos3NuhfRDJ5/w4KxRUovetWq0p5N9t6JIMT7MPUpL5QHYlsgaMxnE09K8Q4DJQIkfv3yq8XaISd5mshrfDV7kPiEzAyPuHn0mUBfD1pxa5sc68tsI2vFM28LRpNg1lK9vhZbjU3h+5sGILvg37fzbaK5j3HciPgIBCNYI/OQ/5rYuZrM8ysucJEq2eYXQusedz9J8kqRutq+o7hsfHcEryyMBgOGnzMoaLS9YiqY2AicY2L1oW2uuRmTC8sFsjKe8bH3SxX8ucMnURVAdcB75rEcSB1ZODJzMwa5dxz89wCEwJERupxpMXDc7ETKTD7GIpIRchLssGbCkRNrf17v7t0EUISs9/dcrJkV6ie1A/kkalgNKq+0pI6FLdLi9UW96ESAi8xw1qHkj5Ngy3juwBwx3GTv6qgTLkMLk= centos@managementvm101" >> /home/admin_user/.ssh/authorized_keys
+
+echo "10.0.0.24  mfsmaster" >> /etc/hosts
