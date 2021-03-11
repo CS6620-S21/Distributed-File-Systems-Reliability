@@ -42,6 +42,7 @@
     device: /dev/vdb
     number: 1
     state: present
+  become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
@@ -57,6 +58,7 @@
   filesystem:
     fstype: xfs
     dev: /dev/vdb1
+  become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
@@ -64,6 +66,7 @@
   lineinfile:
     path: /etc/fstab
     line: /dev/vdb1    /mnt/mfschunks1    xfs    defaults    0 0
+  become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
@@ -72,6 +75,7 @@
     path: /mnt/mfschunks1
     state: directory
     mode: '0755'
+  become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
@@ -82,6 +86,7 @@
     opts: bind
     state: mounted
     fstype: xfs
+  become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
@@ -91,6 +96,7 @@
     owner: mfs
     group: mfs
     mode: '0770'
+  become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
@@ -98,6 +104,7 @@
   lineinfile:
     path: /etc/fstab
     line: /mnt/mfschunks1
+  become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
