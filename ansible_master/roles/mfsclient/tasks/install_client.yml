@@ -13,43 +13,38 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-- name: Download RPM-GPG-KEY-MooseFS
-  get_url:
-    url: https://ppa.moosefs.com/RPM-GPG-KEY-MooseFS
-    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-MooseFS
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
-
-- name: Download MooseFS-3-el7.repo
-  get_url:
-    url: http://ppa.moosefs.com/MooseFS-3-el7.repo
-    dest: /etc/yum.repos.d/MooseFS.repo
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
-
-- name: Install moosefs-client package
-  yum:
-    name: moosefs-client
-    state: present
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
-
+# - name: Download RPM-GPG-KEY-MooseFS
+#   get_url:
+#     url: https://ppa.moosefs.com/RPM-GPG-KEY-MooseFS
+#     dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-MooseFS
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
+# - name: Download MooseFS-3-el7.repo
+#   get_url:
+#     url: http://ppa.moosefs.com/MooseFS-3-el7.repo
+#     dest: /etc/yum.repos.d/MooseFS.repo
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
+# - name: Install moosefs-client package
+#   yum:
+#     name: moosefs-client
+#     state: present
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 - name: Create mfs directory for mounting
   ansible.builtin.file:
     path: ~/mfs
     state: directory
-    mode: '0755'
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
-
+    mode: "0755"
+  # become: yes
+  # vars:
+  #   ansible_become_password: "{{ ans_pass }}"
 # - name: Mount moosefs
 #   shell: mfsmount "{{ client_dir }}" -H mfsmaster
 #   become: yes
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
 
-  
