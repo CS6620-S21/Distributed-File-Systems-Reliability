@@ -1,60 +1,226 @@
 {
-  "output": [
-    {
-      "ip_address1": {
-          "description": "IP - 1",
-          "value": "${openstack_compute_instance_v2.test1.access_ip_v4}"
-        }
-    },
-    {
-      "ip_address2": {
-          "description": "IP - 2",
-          "value": "${openstack_compute_instance_v2.test2.access_ip_v4}"
-        }
-    }
-  ],
   "provider": [
     {
-      "openstack": {}
+      "openstack": [
+        {}
+      ]
     }
   ],
+
+
   "resource": [
     {
       "openstack_compute_instance_v2": [
         {
-          "test1": [
+          "master1": [
             {
               "flavor_name": "m1.tiny",
-              "image_name": "centos-8-x86_64",
-              "name": "test-vm-1",
-              "security_groups": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "test2": [
-            {
-              "flavor_name": "m1.tiny",
-              "image_name": "centos-8-x86_64",
-              "name": "test-vm-2",
+              "image_name": "ansibleChildnodeVMSnap101",
+              "name": "master1",
               "security_groups": [
                 "default"
               ]
             }
           ]
         }
-        ]
+      ]
+    },
+    {
+      "openstack_compute_instance_v2": [
+        {
+          "metalogger1": [
+            {
+              "flavor_name": "m1.tiny",
+              "image_name": "ansibleChildnodeVMSnap101",
+              "name": "metalogger1",
+              "security_groups": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_compute_instance_v2": [
+        {
+          "client1": [
+            {
+              "flavor_name": "m1.tiny",
+              "image_name": "ansibleChildnodeVMSnap101",
+              "name": "client1",
+              "security_groups": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_compute_instance_v2": [
+        {
+          "client2": [
+            {
+              "flavor_name": "m1.tiny",
+              "image_name": "ansibleChildnodeVMSnap101",
+              "name": "client2",
+              "security_groups": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_compute_instance_v2": [
+        {
+          "client3": [
+            {
+              "flavor_name": "m1.tiny",
+              "image_name": "ansibleChildnodeVMSnap101",
+              "name": "client3",
+              "security_groups": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_compute_instance_v2": [
+        {
+          "chunkserver1": [
+            {
+              "flavor_name": "m1.tiny",
+              "image_name": "centos-8-x86_64",
+              "name": "chunkserver1",
+              "security_groups": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_compute_instance_v2": [
+        {
+          "chunkserver2": [
+            {
+              "flavor_name": "m1.tiny",
+              "image_name": "centos-8-x86_64",
+              "name": "chunkserver2",
+              "security_groups": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_compute_instance_v2": [
+        {
+          "chunkserver3": [
+            {
+              "access_ip_v4": "10.10.10.69",
+              "flavor_name": "m1.tiny",
+              "image_name": "centos-8-x86_64",
+              "name": "chunkserver3",
+              "security_groups": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_blockstorage_volume_v2": [
+        {
+          "chunkserver1_volume": [
+            {
+              "name": "chunkserver1_volume",
+              "size": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_blockstorage_volume_v2": [
+        {
+          "chunkserver2_volume": [
+            {
+              "name": "chunkserver2_volume",
+              "size": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_blockstorage_volume_v2": [
+        {
+          "chunkserver3_volume": [
+            {
+              "name": "chunkserver3_volume",
+              "size": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_compute_volume_attach_v2": [
+        {
+          "va_1": [
+            {
+              "instance_id": "${openstack_compute_instance_v2.chunkserver1.id}",
+              "volume_id": "${openstack_blockstorage_volume_v2.chunkserver1_volume.id}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_compute_volume_attach_v2": [
+        {
+          "va_1": [
+            {
+              "instance_id": "${openstack_compute_instance_v2.chunkserver2.id}",
+              "volume_id": "${openstack_blockstorage_volume_v2.chunkserver2_volume.id}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "openstack_compute_volume_attach_v2": [
+        {
+          "va_1": [
+            {
+              "instance_id": "${openstack_compute_instance_v2.chunkserver3.id}",
+              "volume_id": "${openstack_blockstorage_volume_v2.chunkserver3_volume.id}"
+            }
+          ]
+        }
+      ]
     }
   ],
+
+
+
   "terraform": {
-      "required_providers": {
-          "openstack": {
-              "source": "terraform-provider-openstack/openstack",
-              "version": ">= 1.35.0"
-            }
-        },
-      "required_version": ">= 0.14.0"
-    }
+    "required_providers": {
+      "openstack": {
+        "source": "terraform-provider-openstack/openstack",
+        "version": ">= 1.35.0"
+      }
+    },
+    "required_version": ">= 0.14.0"
+  }
 }

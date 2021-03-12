@@ -1,4 +1,4 @@
-//import jdk.nashorn.internal.parser.JSONParser;
+
 //import org.json.JSONObject;
 //import org.json.JSONTokener;
 
@@ -56,7 +56,7 @@ public class Demo {
     private static void destroyTerraform() {
         String s = null;
         try {
-            Process p = Runtime.getRuntime().exec("terraform destroy");
+            Process p = Runtime.getRuntime().exec("sh destroy.sh");
             logger(p);
         }
         catch (IOException e) {
@@ -92,7 +92,7 @@ public class Demo {
 
     public static void main(String[] args) {
 //        initializeTerraform();
-//        executePlan();
+        executePlan();
         getOutput();
 //        destroyTerraform();
     }
