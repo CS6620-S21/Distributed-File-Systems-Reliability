@@ -54,7 +54,7 @@
 - name: Change mfsmaster
   lineinfile:
     path: /etc/mfs/mfsmetalogger.cfg
-    line: MASTER_HOST = 10.0.0.75
+    line: MASTER_HOST = 10.0.0.26
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
