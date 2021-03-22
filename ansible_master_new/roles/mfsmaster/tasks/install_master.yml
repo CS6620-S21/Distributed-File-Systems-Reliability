@@ -46,10 +46,10 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Update and upgrade apt packages
-  shell: apt update
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
 
 - name: Install moosefs-master package
   apt:
