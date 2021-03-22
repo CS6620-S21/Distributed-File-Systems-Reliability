@@ -13,19 +13,16 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-# - name: Add an MooseFS Apt signing key
-#   ansible.builtin.apt_key:
-#     url: https://ppa.moosefs.com/moosefs.key
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add an MooseFS Apt signing key
+  ansible.builtin.apt_key:
+    url: https://ppa.moosefs.com/moosefs.key
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Add MooseFS-3.repo to apt repos
   shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
-  # get_url:
-  #   url: http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic
-  #   dest: /etc/apt/sources.list.d/moosefs.list
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
