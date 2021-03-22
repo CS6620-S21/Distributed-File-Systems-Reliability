@@ -51,6 +51,14 @@
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
 
+- name: Change mfsmaster
+  lineinfile:
+    path: /etc/mfs/mfsmetalogger.cfg
+    line: mfsmaster = 10.0.0.75
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
 - name: Start MooseFS Metalogger Server
   ansible.builtin.systemd:
     name: moosefs-metalogger
