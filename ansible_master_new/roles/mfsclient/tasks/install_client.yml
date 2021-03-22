@@ -48,7 +48,7 @@
 - name: Change mfsmaster
   lineinfile:
     path: /etc/mfs/mfsmount.cfg
-    line: MASTER_HOST = 10.0.0.26
+    line: mfsmaster=10.0.0.26
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
@@ -63,7 +63,7 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Mount moosefs
-  shell: mfsmount "{{ client_dir }}" -H mfsmaster
+  shell: mfsmount /mnt/mfs -H mfsmaster
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
