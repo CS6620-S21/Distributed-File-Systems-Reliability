@@ -14,9 +14,7 @@
     host_name: "{{ inventory_hostname }}"
 
 - name: Add MooseFS Apt signing key
-  ansible.builtin.apt_key:
-    url: https://ppa.moosefs.com/moosefs.key
-    state: present
+  shell: wget -O - https://ppa.moosefs.com/moosefs.key | apt-key add -
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
@@ -28,10 +26,10 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Update and upgrade apt packages
-  become: true
-  apt:
-    upgrade: yes
-    update_cache: yes
+  shell: apt update
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Install moosefs-chunkserver package
   apt:

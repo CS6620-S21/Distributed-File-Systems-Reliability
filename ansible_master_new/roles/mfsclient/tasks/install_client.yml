@@ -13,47 +13,37 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-# - name: Add MooseFS Apt signing key
-#   ansible.builtin.apt_key:
-#     url: https://ppa.moosefs.com/moosefs.key
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add MooseFS Apt signing key
+  shell: wget -O - https://ppa.moosefs.com/moosefs.key | apt-key add -
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Add MooseFS-3.repo to apt repos
-#   shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add MooseFS-3.repo to apt repos
+  shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Update and upgrade apt packages
-#   become: true
-#   apt:
-#     upgrade: yes
-#     update_cache: yes
+- name: Update and upgrade apt packages
+  shell: apt update
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Install FUSE package
-#   shell: apt install fuse libfuse2
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Install FUSE package
+  shell: apt install fuse libfuse2
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Install FUSE package
-#   yum:
-#     name: fuse
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
-
-# - name: Install moosefs-client package
-#   apt:
-#     name: moosefs-client
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Install moosefs-client package
+  apt:
+    name: moosefs-client
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Change mfsmaster
   lineinfile:
@@ -63,18 +53,18 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-# - name: Create mfs directory for mounting
-#   ansible.builtin.file:
-#     path: "{{ client_dir }}"
-#     state: directory
-#     mode: '0755'
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Create mfs directory for mounting
+  ansible.builtin.file:
+    path: "{{ client_dir }}"
+    state: directory
+    mode: '0755'
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Mount moosefs
-#   shell: mfsmount "{{ client_dir }}" -H mfsmaster
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Mount moosefs
+  shell: mfsmount "{{ client_dir }}" -H mfsmaster
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
