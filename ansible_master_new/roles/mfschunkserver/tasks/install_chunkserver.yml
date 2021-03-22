@@ -114,7 +114,7 @@
 
 - name: Change mfsmaster
   lineinfile:
-    path: /etc/mfs/mfsmetalogger.cfg
+    path: /etc/mfs/mfschunkserver.cfg
     line: MASTER_HOST = 10.0.0.26
   become: yes
   vars:
