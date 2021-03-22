@@ -7,39 +7,39 @@
 # Description: This is a role for installing & Setting up MosseFS Chunkserver.
 #-----------------------------------------------------------------------------------------------------------------------------------
 
-- name: Define variables
-  set_fact:
-    ans_user: "{{ AnsibleUser }}"
-    ans_pass: "{{ AnsiblePass }}"
-    host_name: "{{ inventory_hostname }}"
+# - name: Define variables
+#   set_fact:
+#     ans_user: "{{ AnsibleUser }}"
+#     ans_pass: "{{ AnsiblePass }}"
+#     host_name: "{{ inventory_hostname }}"
 
-- name: Add MooseFS Apt signing key
-  ansible.builtin.apt_key:
-    url: https://ppa.moosefs.com/moosefs.key
-    state: present
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Add MooseFS Apt signing key
+#   ansible.builtin.apt_key:
+#     url: https://ppa.moosefs.com/moosefs.key
+#     state: present
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
-- name: Add MooseFS-3.repo to apt repos
-  shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Add MooseFS-3.repo to apt repos
+#   shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
-- name: Update and upgrade apt packages
-  become: true
-  apt:
-    upgrade: yes
-    update_cache: yes
+# - name: Update and upgrade apt packages
+#   become: true
+#   apt:
+#     upgrade: yes
+#     update_cache: yes
 
-- name: Install moosefs-chunkserver package
-  apt:
-    name: moosefs-chunkserver
-    state: present
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Install moosefs-chunkserver package
+#   apt:
+#     name: moosefs-chunkserver
+#     state: present
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
 - name: Create partition table and partition on target device(s)
   community.general.parted:
