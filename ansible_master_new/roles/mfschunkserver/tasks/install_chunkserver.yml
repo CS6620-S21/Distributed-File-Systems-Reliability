@@ -33,6 +33,14 @@
     upgrade: yes
     update_cache: yes
 
+- name: Install moosefs-chunkserver package
+  apt:
+    name: moosefs-chunkserver
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
 - name: Create partition table and partition on target device(s)
   community.general.parted:
     device: /dev/vdb
@@ -43,7 +51,7 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Install XFS Progs
-  yum:
+  apt:
     name: xfsprogs
     state: present
   become: yes
