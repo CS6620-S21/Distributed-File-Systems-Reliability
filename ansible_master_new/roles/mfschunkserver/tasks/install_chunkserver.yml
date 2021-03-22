@@ -39,18 +39,14 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Copy configuration file
-  copy:
-    src: /etc/mfs/mfschunkserver.cfg.sample
-    dest: /etc/mfs/mfschunkserver.cfg
+- name: Copy configuration file1
+  shell: cp mfschunkserver.cfg.sample mfschunkserver.cfg 
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Copy configuration file
-  copy:
-    src: /etc/mfs/mfshdd.cfg.sample
-    dest: /etc/mfs/mfshdd.cfg
+- name: Copy configuration file2
+  shell: cp mfshdd.cfg.sample mfshdd.cfg
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
