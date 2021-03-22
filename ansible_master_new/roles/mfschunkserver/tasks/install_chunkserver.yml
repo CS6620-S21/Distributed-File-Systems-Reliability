@@ -55,22 +55,22 @@
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
 
-- name: Create partition table and partition on target device(s)
-  community.general.parted:
-    device: /dev/vdb
-    number: 1
-    state: present
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Create partition table and partition on target device(s)
+#   community.general.parted:
+#     device: /dev/vdb
+#     number: 1
+#     state: present
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
-- name: Install XFS Progs
-  apt:
-    name: xfsprogs
-    state: present
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Install XFS Progs
+#   apt:
+#     name: xfsprogs
+#     state: present
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
 - name: Format new partition with XFS
   filesystem:
