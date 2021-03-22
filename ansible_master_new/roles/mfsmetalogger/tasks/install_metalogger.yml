@@ -39,21 +39,21 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Copy configuration file
-  copy:
-    src: /etc/mfs/mfsmetalogger.cfg.sample
-    dest: /etc/mfs/mfsmetalogger.cfg
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Copy configuration file
+#   copy:
+#     src: /etc/mfs/mfsmetalogger.cfg.sample
+#     dest: /etc/mfs/mfsmetalogger.cfg
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
-- name: Change mfsmaster
-  lineinfile:
-    path: /etc/mfs/mfsmetalogger.cfg
-    line: MASTER_HOST = 10.0.0.26
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Change mfsmaster
+#   lineinfile:
+#     path: /etc/mfs/mfsmetalogger.cfg
+#     line: MASTER_HOST = 10.0.0.26
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
 - name: Start MooseFS Metalogger Server
   ansible.builtin.systemd:
