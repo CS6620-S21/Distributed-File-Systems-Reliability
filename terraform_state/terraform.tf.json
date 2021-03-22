@@ -1,12 +1,9 @@
 {
   "provider": [
     {
-      "openstack": [
-        {}
-      ]
+      "openstack": {}
     }
   ],
-
 
   "resource": [
     {
@@ -15,10 +12,10 @@
           "master1": [
             {
               "flavor_name": "m1.tiny",
-              "image_name": "ansibleChildnodeVMSnap101",
+              "image_name": "testVMSnap1",
               "name": "master1",
               "security_groups": [
-                "default"
+                "default" 
               ]
             }
           ]
@@ -31,7 +28,7 @@
           "metalogger1": [
             {
               "flavor_name": "m1.tiny",
-              "image_name": "ansibleChildnodeVMSnap101",
+              "image_name": "testVMSnap1",
               "name": "metalogger1",
               "security_groups": [
                 "default"
@@ -47,7 +44,7 @@
           "client1": [
             {
               "flavor_name": "m1.tiny",
-              "image_name": "ansibleChildnodeVMSnap101",
+              "image_name": "testVMSnap1",
               "name": "client1",
               "security_groups": [
                 "default"
@@ -63,7 +60,7 @@
           "client2": [
             {
               "flavor_name": "m1.tiny",
-              "image_name": "ansibleChildnodeVMSnap101",
+              "image_name": "testVMSnap1",
               "name": "client2",
               "security_groups": [
                 "default"
@@ -79,7 +76,7 @@
           "client3": [
             {
               "flavor_name": "m1.tiny",
-              "image_name": "ansibleChildnodeVMSnap101",
+              "image_name": "testVMSnap1",
               "name": "client3",
               "security_groups": [
                 "default"
@@ -95,7 +92,7 @@
           "chunkserver1": [
             {
               "flavor_name": "m1.tiny",
-              "image_name": "centos-8-x86_64",
+              "image_name": "testVMSnap1",
               "name": "chunkserver1",
               "security_groups": [
                 "default"
@@ -111,7 +108,7 @@
           "chunkserver2": [
             {
               "flavor_name": "m1.tiny",
-              "image_name": "centos-8-x86_64",
+              "image_name": "testVMSnap1",
               "name": "chunkserver2",
               "security_groups": [
                 "default"
@@ -128,7 +125,7 @@
             {
               "access_ip_v4": "10.10.10.69",
               "flavor_name": "m1.tiny",
-              "image_name": "centos-8-x86_64",
+              "image_name": "testVMSnap1",
               "name": "chunkserver3",
               "security_groups": [
                 "default"
@@ -189,7 +186,7 @@
     {
       "openstack_compute_volume_attach_v2": [
         {
-          "va_1": [
+          "va_2": [
             {
               "instance_id": "${openstack_compute_instance_v2.chunkserver2.id}",
               "volume_id": "${openstack_blockstorage_volume_v2.chunkserver2_volume.id}"
@@ -201,7 +198,7 @@
     {
       "openstack_compute_volume_attach_v2": [
         {
-          "va_1": [
+          "va_3": [
             {
               "instance_id": "${openstack_compute_instance_v2.chunkserver3.id}",
               "volume_id": "${openstack_blockstorage_volume_v2.chunkserver3_volume.id}"
@@ -211,8 +208,6 @@
       ]
     }
   ],
-
-
 
   "terraform": {
     "required_providers": {

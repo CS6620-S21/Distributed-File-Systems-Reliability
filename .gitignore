@@ -1,1 +1,4 @@
 **/.idea/
+/python_master/terraform/shellscripts/terraform.runner1.sh
+/python_master/terraform/shellscripts/terraform.starter1.sh
+/python_master/terraform/shellscripts/terraform.destroy1.sh
