@@ -21,8 +21,8 @@
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
 
-- name: Download MooseFS-3.repo
-  command: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
+- name: Add MooseFS-3.repo to apt repos
+  shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
   # get_url:
   #   url: http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic
   #   dest: /etc/apt/sources.list.d/moosefs.list
