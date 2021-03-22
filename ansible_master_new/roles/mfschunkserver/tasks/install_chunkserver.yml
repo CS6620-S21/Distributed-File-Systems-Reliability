@@ -13,104 +13,104 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-# - name: Add MooseFS Apt signing key
-#   ansible.builtin.apt_key:
-#     url: https://ppa.moosefs.com/moosefs.key
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add MooseFS Apt signing key
+  ansible.builtin.apt_key:
+    url: https://ppa.moosefs.com/moosefs.key
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Add MooseFS-3.repo to apt repos
-#   shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add MooseFS-3.repo to apt repos
+  shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Update and upgrade apt packages
-#   become: true
-#   apt:
-#     upgrade: yes
-#     update_cache: yes
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
 
-# - name: Install moosefs-chunkserver package
-#   apt:
-#     name: moosefs-chunkserver
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Install moosefs-chunkserver package
+  apt:
+    name: moosefs-chunkserver
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Create partition table and partition on target device(s)
-#   community.general.parted:
-#     device: /dev/vdb
-#     number: 1
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Create partition table and partition on target device(s)
+  community.general.parted:
+    device: /dev/vdb
+    number: 1
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Install XFS Progs
-#   apt:
-#     name: xfsprogs
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Install XFS Progs
+  apt:
+    name: xfsprogs
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Format new partition with XFS
-#   filesystem:
-#     fstype: xfs
-#     dev: /dev/vdb1
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Format new partition with XFS
+  filesystem:
+    fstype: xfs
+    dev: /dev/vdb1
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Add entries into /etc/fstab
-#   lineinfile:
-#     path: /etc/fstab
-#     line: /dev/vdb1    /mnt/mfschunks1    xfs    defaults    0 0
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add entries into /etc/fstab
+  lineinfile:
+    path: /etc/fstab
+    line: /dev/vdb1    /mnt/mfschunks1    xfs    defaults    0 0
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Create dir for mounting new partition
-#   ansible.builtin.file:
-#     path: /mnt/mfschunks1
-#     state: directory
-#     mode: "0755"
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Create dir for mounting new partition
+  ansible.builtin.file:
+    path: /mnt/mfschunks1
+    state: directory
+    mode: "0755"
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Mount new partition(s)
-#   ansible.posix.mount:
-#     path: /mnt/mfschunks1
-#     src: /boot
-#     opts: bind
-#     state: mounted
-#     fstype: xfs
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Mount new partition(s)
+  ansible.posix.mount:
+    path: /mnt/mfschunks1
+    src: /boot
+    opts: bind
+    state: mounted
+    fstype: xfs
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Change ownership and access to mountpoints
-#   ansible.builtin.file:
-#     path: /mnt/mfschunks1
-#     owner: mfs
-#     group: mfs
-#     mode: "0770"
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Change ownership and access to mountpoints
+  ansible.builtin.file:
+    path: /mnt/mfschunks1
+    owner: mfs
+    group: mfs
+    mode: "0770"
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Add mountpoints to mfshdd.cfg file
-#   lineinfile:
-#     path: /etc/fstab
-#     line: /mnt/mfschunks1
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add mountpoints to mfshdd.cfg file
+  lineinfile:
+    path: /etc/fstab
+    line: /mnt/mfschunks1
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Change mfsmaster
   lineinfile:
