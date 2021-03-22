@@ -112,11 +112,11 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Start MooseFS Chunk Server
-  ansible.builtin.systemd:
-    name: moosefs-chunkserver
-    enabled: yes
-    state: started
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Start MooseFS Chunk Server
+#   ansible.builtin.systemd:
+#     name: moosefs-chunkserver
+#     enabled: yes
+#     state: started
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
