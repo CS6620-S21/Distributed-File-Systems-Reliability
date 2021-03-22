@@ -1,0 +1,10 @@
+---
+- name: Test Ping on remote Linux VMs
+  hosts: master
+  gather_facts: false
+  tasks:
+    - name: Ping remote linux boxes
+      ping:
+    - name: Print host name
+      debug:
+        msg: "{{ inventory_hostname }}"
