@@ -13,7 +13,7 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-- name: Add an MooseFS Apt signing key
+- name: Add MooseFS Apt signing key
   ansible.builtin.apt_key:
     url: https://ppa.moosefs.com/moosefs.key
     state: present
