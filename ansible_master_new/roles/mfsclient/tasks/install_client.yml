@@ -33,11 +33,11 @@
 #     upgrade: yes
 #     update_cache: yes
 
-- name: Install FUSE package
-  shell: apt install fuse libfuse2
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Install FUSE package
+#   shell: apt install fuse libfuse2
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
 # - name: Install FUSE package
 #   yum:
@@ -47,22 +47,30 @@
 #   vars:
 #     ansible_become_password: "{{ ans_pass }}"
 
-- name: Install moosefs-client package
-  apt:
-    name: moosefs-client
-    state: present
+# - name: Install moosefs-client package
+#   apt:
+#     name: moosefs-client
+#     state: present
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
+
+- name: Change mfsmaster
+  lineinfile:
+    path: /etc/mfs/mfsmount.cfg
+    line: MASTER_HOST = 10.0.0.26
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Create mfs directory for mounting
-  ansible.builtin.file:
-    path: "{{ client_dir }}"
-    state: directory
-    mode: '0755'
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Create mfs directory for mounting
+#   ansible.builtin.file:
+#     path: "{{ client_dir }}"
+#     state: directory
+#     mode: '0755'
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
 # - name: Mount moosefs
 #   shell: mfsmount "{{ client_dir }}" -H mfsmaster
