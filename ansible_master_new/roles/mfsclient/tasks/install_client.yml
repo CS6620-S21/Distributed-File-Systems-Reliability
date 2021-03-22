@@ -63,7 +63,7 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Mount moosefs
-  shell: mfsmount /mnt/mfs -H mfsmaster
+  shell: mfsmount "{{ client_dir }}" -H mfsmaster
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"

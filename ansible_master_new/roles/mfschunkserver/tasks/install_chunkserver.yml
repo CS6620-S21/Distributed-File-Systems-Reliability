@@ -13,64 +13,64 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-# - name: Add MooseFS Apt signing key
-#   shell: wget -O - https://ppa.moosefs.com/moosefs.key | apt-key add -
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add MooseFS Apt signing key
+  shell: wget -O - https://ppa.moosefs.com/moosefs.key | apt-key add -
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Add MooseFS-3.repo to apt repos
-#   shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add MooseFS-3.repo to apt repos
+  shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Update and upgrade apt packages
-#   shell: apt update
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Update and upgrade apt packages
+  shell: apt update
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Install moosefs-chunkserver package
-#   apt:
-#     name: moosefs-chunkserver
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Install moosefs-chunkserver package
+  apt:
+    name: moosefs-chunkserver
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Copy configuration file1
-#   copy:
-#     src: /etc/mfs/mfschunkserver.cfg.sample
-#     dest: /etc/mfs/mfschunkserver.cfg
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Copy configuration file1
+  copy:
+    src: /etc/mfs/mfschunkserver.cfg.sample
+    dest: /etc/mfs/mfschunkserver.cfg
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Copy configuration file2
-#   copy:
-#     src: /etc/mfs/mfshdd.cfg.sample
-#     dest: /etc/mfs/mfshdd.cfg
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Copy configuration file2
+  copy:
+    src: /etc/mfs/mfshdd.cfg.sample
+    dest: /etc/mfs/mfshdd.cfg
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Create partition table and partition on target device(s)
-#   community.general.parted:
-#     device: /dev/vdb
-#     number: 1
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Create partition table and partition on target device(s)
+  community.general.parted:
+    device: /dev/vdb
+    number: 1
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Install XFS Progs
-#   apt:
-#     name: xfsprogs
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Install XFS Progs
+  apt:
+    name: xfsprogs
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Format new partition with XFS
   filesystem:
@@ -79,14 +79,6 @@
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
-
-# - name: Add entries into /etc/fstab
-#   lineinfile:
-#     path: /etc/fstab
-#     line: "/dev/vdb1    /mnt/mfschunks1    xfs    defaults    0 0"
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
 
 - name: Create dir for mounting new partition
   ansible.builtin.file:
