@@ -1,0 +1,44 @@
+---
+# Install MooseFS Master Server
+# Author: Sameer Sinha
+# Date: 03/08/2021
+# Version: 0.0.1
+#-----------------------------------------------------------------------------------------------------------------------------------
+# Description: This is a role for installing & Setting up MosseFS Master Server.
+#-----------------------------------------------------------------------------------------------------------------------------------
+
+- name: Define variables
+  set_fact:
+    ans_user: "{{ AnsibleUser }}"
+    ans_pass: "{{ AnsiblePass }}"
+    host_name: "{{ inventory_hostname }}"
+
+- name: Add an MooseFS Apt signing key
+  ansible.builtin.apt_key:
+    url: https://ppa.moosefs.com/moosefs.key
+    state: present
+
+- name: Download MooseFS-3.repo
+  get_url:
+    url: http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main
+    dest: /etc/apt/sources.list.d/moosefs.list
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
+- name: Install moosefs-master package
+  apt:
+    name: moosefs-master
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
+- name: Start MooseFS Master Server
+  ansible.builtin.systemd:
+    name: moosefs-master
+    enabled: yes
+    state: started
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
