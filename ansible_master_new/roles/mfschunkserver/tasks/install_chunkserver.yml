@@ -39,6 +39,22 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
+- name: Copy configuration file
+  copy:
+    src: /etc/mfs/mfschunkserver.cfg.sample
+    dest: /etc/mfs/mfschunkserver.cfg
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
+- name: Copy configuration file
+  copy:
+    src: /etc/mfs/mfshdd.cfg.sample
+    dest: /etc/mfs/mfshdd.cfg
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
 - name: Create partition table and partition on target device(s)
   community.general.parted:
     device: /dev/vdb
@@ -67,7 +83,7 @@
 - name: Add entries into /etc/fstab
   lineinfile:
     path: /etc/fstab
-    line: /dev/vdb1    /mnt/mfschunks1    xfs    defaults    0 0
+    line: "/dev/vdb1    /mnt/mfschunks1    xfs    defaults    0 0"
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
@@ -104,8 +120,8 @@
 
 - name: Add mountpoints to mfshdd.cfg file
   lineinfile:
-    path: /etc/fstab
-    line: /mnt/mfschunks1
+    path: /etc/mfs/mfshdd.cfg
+    line: "/mnt/mfschunks1"
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
