@@ -7,11 +7,11 @@
 # Description: This is a role for installing & Setting up MosseFS Metalogger.
 #-----------------------------------------------------------------------------------------------------------------------------------
 
-# - name: Define variables
-#   set_fact:
-#     ans_user: "{{ AnsibleUser }}"
-#     ans_pass: "{{ AnsiblePass }}"
-#     host_name: "{{ inventory_hostname }}"
+- name: Define variables
+  set_fact:
+    ans_user: "{{ AnsibleUser }}"
+    ans_pass: "{{ AnsiblePass }}"
+    host_name: "{{ inventory_hostname }}"
 
 # - name: Add MooseFS Apt signing key
 #   ansible.builtin.apt_key:
