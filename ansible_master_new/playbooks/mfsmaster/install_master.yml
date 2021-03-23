@@ -11,12 +11,12 @@
   hosts: master
   gather_facts: false
   tasks:
+    # - include_role:
+    #     name: mfsmaster
+    #     tasks_from: install_master
     - include_role:
         name: mfsmaster
-        tasks_from: install_master
-    # - include_role:
-    #     name: mfsmaster
-    #     tasks_from: install_master_cli
-    # - include_role:
-    #     name: mfsmaster
-    #     tasks_from: install_master_cgi
+        tasks_from: install_master_cli
+    - include_role:
+        name: mfsmaster
+        tasks_from: install_master_cgi

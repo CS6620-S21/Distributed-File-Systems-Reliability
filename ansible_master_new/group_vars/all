@@ -1,2 +1,4 @@
 AnsibleUser: admin_user
 AnsiblePass: password1234!
+
+mfsmaster: 10.0.0.66
