@@ -1,3 +1,4 @@
+from terraformShell import *
 import json
 import random
 count = random.randint(1,9999999)
@@ -366,8 +367,3 @@ def resetState():
     json.dump(json_object, a_file)
     a_file.close()
 
-def getoutput():
-    a_file = open("./output.json", "r")
-    json_object = json.load(a_file)
-    a_file.close()
-    return json_object
