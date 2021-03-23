@@ -20,10 +20,14 @@ def createInfrastructure(masterservers, chunkservers, metaloggers, clientservers
     run()
 
 
+
+
 def destroyInfrastructure():
     destroy()
     resetState()
 
-# resetState()
+
+destroy()
+resetState()
 # createInfrastructure(1, 1, 1, 1)
-destroyInfrastructure()
+# output()

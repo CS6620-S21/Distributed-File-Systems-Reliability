@@ -11,3 +11,7 @@ def run():
 
 def destroy():
     subprocess.call(['sh', './terraform.destroy1.sh'])
+
+def output():
+    subprocess.call(['sh', './terraform.output.sh'])
+
