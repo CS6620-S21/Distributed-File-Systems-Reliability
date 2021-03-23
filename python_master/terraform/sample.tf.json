@@ -1,17 +1,1 @@
-{
-  "provider": [
-    {
-      "openstack": {}
-    }
-  ],
-  "resource": [],
-  "terraform": {
-    "required_providers": {
-      "openstack": {
-        "source": "terraform-provider-openstack/openstack",
-        "version": ">= 1.35.0"
-      }
-    },
-    "required_version": ">= 0.14.0"
-  }
-}
+{"provider": [{"openstack": {}}], "resource": [{"openstack_compute_instance_v2": [{"master15369342": [{"flavor_name": "m1.tiny", "image_name": "testVMSnap1", "name": "master17137965", "security_groups": ["default"]}]}]}, {"openstack_compute_instance_v2": [{"chunkserver3576200": [{"flavor_name": "m1.tiny", "image_name": "testVMSnap1", "name": "chunkserver3145921", "security_groups": ["default"]}]}]}, {"openstack_blockstorage_volume_v2": [{"chunkserver_volume1524478": [{"name": "chunkserver_volume517620", "size": 10}]}]}, {"openstack_compute_volume_attach_v2": [{"va6526161": [{"instance_id": "${openstack_compute_instance_v2.chunkserver3576200.id}", "volume_id": "${openstack_blockstorage_volume_v2.chunkserver_volume1524478.id}"}]}]}, {"openstack_compute_instance_v2": [{"metalogger740721": [{"flavor_name": "m1.tiny", "image_name": "testVMSnap1", "name": "metalogger686426", "security_groups": ["default"]}]}]}, {"openstack_compute_instance_v2": [{"client4404385": [{"flavor_name": "m1.tiny", "image_name": "testVMSnap1", "name": "client6972901", "security_groups": ["default"]}]}]}], "terraform": {"required_providers": {"openstack": {"source": "terraform-provider-openstack/openstack", "version": ">= 1.35.0"}}, "required_version": ">= 0.14.0"}, "output": [{"master15369342": [{"value": "${openstack_compute_instance_v2.master15369342.access_ip_v4}"}]}, {"chunkserver3576200": [{"value": "${openstack_compute_instance_v2.chunkserver3576200.access_ip_v4}"}]}, {"metalogger740721": [{"value": "${openstack_compute_instance_v2.metalogger740721.access_ip_v4}"}]}, {"client4404385": [{"value": "${openstack_compute_instance_v2.client4404385.access_ip_v4}"}]}]}
