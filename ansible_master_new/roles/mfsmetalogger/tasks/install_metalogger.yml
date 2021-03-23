@@ -13,39 +13,39 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-# - name: Add MooseFS Apt signing key
-#   shell: wget -O - https://ppa.moosefs.com/moosefs.key | apt-key add -
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add MooseFS Apt signing key
+  shell: wget -O - https://ppa.moosefs.com/moosefs.key | apt-key add -
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Add MooseFS-3.repo to apt repos
-#   shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Add MooseFS-3.repo to apt repos
+  shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Update and upgrade apt packages
-#   shell: apt update
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Update and upgrade apt packages
+  shell: apt update
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Install moosefs-metalogger package
-#   apt:
-#     name: moosefs-metalogger
-#     state: present
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Install moosefs-metalogger package
+  apt:
+    name: moosefs-metalogger
+    state: present
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
-# - name: Copy configuration file
-#   copy:
-#     src: /etc/mfs/mfsmetalogger.cfg.sample
-#     dest: /etc/mfs/mfsmetalogger.cfg
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Copy configuration file
+  copy:
+    src: /etc/mfs/mfsmetalogger.cfg.sample
+    dest: /etc/mfs/mfsmetalogger.cfg
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 
 - name: Change mfsmaster
   lineinfile:
@@ -55,11 +55,11 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-# - name: Start MooseFS Metalogger Server
-#   ansible.builtin.systemd:
-#     name: moosefs-metalogger
-#     enabled: yes
-#     state: started
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Start MooseFS Metalogger Server
+  ansible.builtin.systemd:
+    name: moosefs-metalogger
+    enabled: yes
+    state: started
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"

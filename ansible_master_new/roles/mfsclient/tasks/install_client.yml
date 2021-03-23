@@ -48,7 +48,7 @@
 - name: Change mfsmaster
   lineinfile:
     path: /etc/mfs/mfsmount.cfg
-    line: mfsmaster="{{ mfsmaster }}"
+    line: mfsmaster={{ mfsmaster }}
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
