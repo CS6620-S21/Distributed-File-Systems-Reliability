@@ -232,7 +232,27 @@ def addMetalogger():
     json_object = json.load(a_file)
     a_file.close()
 
-    json_object["resource"].append(metaLoggerInstance)
+
+    # Code for updating output node in sample.json.tf
+    instance = metaLoggerInstance
+    json_object["resource"].append(instance)
+
+    instanceId = ""
+    instanceDetails = instance["openstack_compute_instance_v2"][0]
+    for key in instanceDetails: instanceId = key
+
+    json_object["output"].append({
+        instanceId : [
+            {
+                "value": "${openstack_compute_instance_v2."+ instanceId + ".access_ip_v4}"
+            }
+        ]
+
+    })
+
+
+    # Code for updating output resource in sample.json.tf
+
 
 
     a_file = open("sample.tf.json", "w")
@@ -246,7 +266,26 @@ def addMasterServer():
     json_object = json.load(a_file)
     a_file.close()
 
-    json_object["resource"].append(masterInstance)
+
+    # Code for updating output node in sample.json.tf
+    instance = masterInstance
+    json_object["resource"].append(instance)
+
+    instanceId = ""
+    instanceDetails = instance["openstack_compute_instance_v2"][0]
+    for key in instanceDetails: instanceId = key
+
+    json_object["output"].append({
+        instanceId : [
+            {
+                "value": "${openstack_compute_instance_v2."+ instanceId + ".access_ip_v4}"
+            }
+        ]
+
+    })
+
+
+
 
     a_file = open("sample.tf.json", "w")
     json.dump(json_object, a_file)
@@ -290,9 +329,32 @@ def addChunkServer():
     a_file.close()
 
 
+    # Code for updating output node in sample.json.tf
+
+    instanceId = ""
+    instanceDetails = chunkServer["openstack_compute_instance_v2"][0]
+    for key in instanceDetails: instanceId = key
+
+    json_object["output"].append({
+        instanceId : [
+            {
+                "value": "${openstack_compute_instance_v2."+ instanceId + ".access_ip_v4}"
+            }
+        ]
+
+    })
+
+
+
+
+
     json_object["resource"].append(chunkServer)
     json_object["resource"].append(volume)
     json_object["resource"].append(volumeAttach)
+
+
+
+
 
 
     a_file = open("sample.tf.json", "w")
@@ -314,7 +376,7 @@ def resetState():
     a_file.close()
 
 def getoutput():
-    a_file = open("./sample.tf.json", "r")
+    a_file = open("./output.json", "r")
     json_object = json.load(a_file)
     a_file.close()
     return json_object
