@@ -22,7 +22,7 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Install MooseFS CGI Server on Master Server
-  yum:
+  apt:
     name: moosefs-cgiserv
     state: present
   become: yes
@@ -30,7 +30,7 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Install MooseFS CGI on Master Server
-  yum:
+  apt:
     name: moosefs-cgi
     state: present
   become: yes
