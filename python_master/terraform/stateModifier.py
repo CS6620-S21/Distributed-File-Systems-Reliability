@@ -1,5 +1,24 @@
 import json
 import random
+import time
+
+
+clientServerInstance = {
+    "openstack_compute_instance_v2": [
+        {
+            "client" + str(random.randint(1, 99999)): [
+                {
+                    "flavor_name": "m1.tiny",
+                    "image_name": "testVMSnap1",
+                    "name": "client" + str(random.randint(1, 99999)),
+                    "security_groups": [
+                        "default"
+                    ]
+                }
+            ]
+        }
+    ]
+}
 
 metaLoggerInstance = {
     "openstack_compute_instance_v2": [
@@ -77,6 +96,20 @@ masterInstance = {
         }
     ]
 }
+
+def addClientServer():
+    a_file = open("./sample.tf.json", "r")
+    json_object = json.load(a_file)
+    a_file.close()
+
+    json_object["resource"].append(clientServerInstance)
+    print(json_object)
+
+    a_file = open("sample.tf.json", "w")
+    json.dump(json_object, a_file)
+    a_file.close()
+
+
 
 def addMetalogger():
     a_file = open("./sample.tf.json", "r")
@@ -170,3 +203,15 @@ def deleteresource(id):
     json_object = json.load(a_file)
     a_file.close()
     print("Resource deleted")
+
+
+def resetState():
+    a_file = open("./sample.tf.json", "r")
+    json_object = json.load(a_file)
+    a_file.close()
+
+    json_object["resource"] = []
+
+    a_file = open("sample.tf.json", "w")
+    json.dump(json_object, a_file)
+    a_file.close()

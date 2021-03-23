@@ -3,13 +3,16 @@
 from terraformShell import *
 from stateModifier import *
 
-# init()
-#
-# addvm()
 
 
 
+addMetalogger()
+addMasterServer()
 addChunkServer()
+addClientServer()
 run()
 
+
+destroy()
+resetState()
 
