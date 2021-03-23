@@ -17,7 +17,9 @@ def createInfrastructure(masterservers, chunkservers, metaloggers, clientservers
     for i in range(0, clientservers):
         addClientServer()
 
+    init()
     run()
+    return getoutput()
 
 
 def destroyInfrastructure():
@@ -26,8 +28,9 @@ def destroyInfrastructure():
 
 
 # destroy()
-resetState()
+# resetState()
 
-# destroyInfrastructure()
-createInfrastructure(1, 1, 1, 1)
-output()
+
+print(createInfrastructure(1, 2, 1, 2))
+destroyInfrastructure()
+# output()

@@ -2,8 +2,6 @@ import json
 import random
 count = random.randint(1,9999999)
 
-
-
 clientServerInstance = {
     "openstack_compute_instance_v2": [
         {
@@ -224,8 +222,6 @@ def addClientServer():
     json.dump(json_object, a_file)
     a_file.close()
 
-
-
 def addMetalogger():
     updateGlobalInstance()
     a_file = open("./sample.tf.json", "r")
@@ -259,7 +255,6 @@ def addMetalogger():
     json.dump(json_object, a_file)
     a_file.close()
 
-
 def addMasterServer():
     updateGlobalInstance()
     a_file = open("./sample.tf.json", "r")
@@ -290,8 +285,6 @@ def addMasterServer():
     a_file = open("sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
-
-
 
 def addChunkServer():
     updateGlobalInstance()
@@ -360,8 +353,6 @@ def addChunkServer():
     a_file = open("sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
-
-
 
 def resetState():
     a_file = open("./sample.tf.json", "r")
