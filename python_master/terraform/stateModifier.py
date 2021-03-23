@@ -1,16 +1,20 @@
 import json
-import random
-import time
 
+count = 1000000
+
+def updatedcount():
+    global count
+    count = count + 1
+    return count
 
 clientServerInstance = {
     "openstack_compute_instance_v2": [
         {
-            "client" + str(random.randint(1, 99999)): [
+            "client" + str(updatedcount()): [
                 {
                     "flavor_name": "m1.tiny",
                     "image_name": "testVMSnap1",
-                    "name": "client" + str(random.randint(1, 99999)),
+                    "name": "client" + str(updatedcount()),
                     "security_groups": [
                         "default"
                     ]
@@ -23,11 +27,11 @@ clientServerInstance = {
 metaLoggerInstance = {
     "openstack_compute_instance_v2": [
         {
-            "metalogger" + str(random.randint(1, 99999)): [
+            "metalogger" + str(updatedcount()): [
                 {
                     "flavor_name": "m1.tiny",
                     "image_name": "testVMSnap1",
-                    "name": "metalogger" + str(random.randint(1, 99999)),
+                    "name": "metalogger" + str(updatedcount()),
                     "security_groups": [
                         "default"
                     ]
@@ -40,7 +44,7 @@ metaLoggerInstance = {
 volumeAttachInstance = {
     "openstack_compute_volume_attach_v2": [
         {
-            "va" + str(random.randint(1, 99999)): [
+            "va" + str(updatedcount()): [
                 {
                     "instance_id": "${openstack_compute_instance_v2.chunkserver3.id}",
                     "volume_id": "${openstack_blockstorage_volume_v2.chunkserver3_volume.id}"
@@ -53,9 +57,9 @@ volumeAttachInstance = {
 volumeInstance = {
     "openstack_blockstorage_volume_v2": [
         {
-            "chunkserver_volume" + str(random.randint(1, 99999)): [
+            "chunkserver_volume" + str(updatedcount()): [
                 {
-                    "name": "chunkserver_volume" + str(random.randint(1, 99999)),
+                    "name": "chunkserver_volume" + str(updatedcount()),
                     "size": 10
                 }
             ]
@@ -66,11 +70,11 @@ volumeInstance = {
 chunkServerInstance = {
   "openstack_compute_instance_v2": [
       {
-          "chunkserver" + str(random.randint(1, 99999)): [
+          "chunkserver" + str(updatedcount()): [
               {
                   "flavor_name": "m1.tiny",
                   "image_name": "testVMSnap1",
-                  "name": "chunkserver" + str(random.randint(1, 99999)),
+                  "name": "chunkserver" + str(updatedcount()),
                   "security_groups": [
                       "default"
                   ]
@@ -83,11 +87,11 @@ chunkServerInstance = {
 masterInstance = {
     "openstack_compute_instance_v2": [
         {
-            "master1" + str(random.randint(1, 99999)): [
+            "master1" + str(updatedcount()): [
                 {
                     "flavor_name": "m1.tiny",
                     "image_name": "testVMSnap1",
-                    "name": "master1" + str(random.randint(1, 99999)),
+                    "name": "master1" + str(updatedcount()),
                     "security_groups": [
                         "default"
                     ]
@@ -184,26 +188,6 @@ def addChunkServer():
     a_file.close()
 
 
-def addresource():
-    a_file = open("./sample.tf.json", "r")
-    json_object = json.load(a_file)
-    a_file.close()
-
-
-    ll = json_object["resource"][0]
-    json_object["resource"].pop()
-    print(json_object)
-    a_file = open("sample.tf.json", "w")
-    json.dump(json_object, a_file)
-    a_file.close()
-
-
-def deleteresource(id):
-    a_file = open("./sample.tf.json", "r")
-    json_object = json.load(a_file)
-    a_file.close()
-    print("Resource deleted")
-
 
 def resetState():
     a_file = open("./sample.tf.json", "r")
@@ -215,3 +199,4 @@ def resetState():
     a_file = open("sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
+
