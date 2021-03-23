@@ -1,14 +1,15 @@
 
 
 from terraformShell import *
-from jsonModifier import *
+from stateModifier import *
 
 # init()
+#
+# addvm()
 
-addvm()
+
+
+addChunkServer()
 run()
 
 
-
-# test1 will interact with [terraform] [ansible] SSH.py Scenario - 1
-# test2 will interact with terraformShell.py ansible.py SSH.py Scenario - 2
