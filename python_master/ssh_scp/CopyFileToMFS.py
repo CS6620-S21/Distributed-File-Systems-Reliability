@@ -21,4 +21,8 @@ mfsClientVM.exec_command('sh bash')
 print("Success copy to MFS")
 
 
+#git pull
+#intelij commit
+#git push
+
 
