@@ -2,17 +2,17 @@ from abc import ABC, abstractmethod
 import subprocess
 import json
 
-hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
-                        'metalogger': {'mettalogger1': '10.0.0.154'},
-                        'chunkserver': {'chunkserver1': '10.0.0.62',
-                                        'chunkserver2': '10.0.0.107',
-                                        'chunkserver3': '10.0.0.162'},
-                        'client': {'client1': '10.0.0.190',
-                                   'client2': '10.0.0.223',
-                                   'client3': '10.0.0.79'}}
+# hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
+#                         'metalogger': {'mettalogger1': '10.0.0.154'},
+#                         'chunkserver': {'chunkserver1': '10.0.0.62',
+#                                         'chunkserver2': '10.0.0.107',
+#                                         'chunkserver3': '10.0.0.162'},
+#                         'client': {'client1': '10.0.0.190',
+#                                    'client2': '10.0.0.223',
+#                                    'client3': '10.0.0.79'}}
 
 
-class AbstractAnsibleWorkflow(ABC):
+class AbstractFSAnsibleSetupVM(ABC):
 
     @abstractmethod
     def create_inventory(self, hosts_inventory: dict):
@@ -23,10 +23,10 @@ class AbstractAnsibleWorkflow(ABC):
         pass
 
 
-class AnsibleConfigVMs(AbstractAnsibleWorkflow):
-    def __init__(self) -> None:
+class MFSAnsibleSetupVMs(AbstractFSAnsibleSetupVM):
+    def __init__(self, ansible_basepath) -> None:
         super().__init__()
-        self.ansible_basepath = '/home/admin_user/Distributed-File-Systems-Reliability/ansible_master_new'
+        self.ansible_basepath = ansible_basepath
         self.ansible_playbooks = {self.ansible_basepath + '/playbooks/mfsmaster': 'install_master.yml',
                                   self.ansible_basepath + '/playbooks/mfsmetalogger': 'install_metalogger.yml',
                                   self.ansible_basepath + '/playbooks/mfschunkserver': 'install_chunkserver.yml',
@@ -101,6 +101,6 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
         return mfs_server_inventory
 
 
-ansible_conf = AnsibleConfigVMs()
-ansible_conf.create_inventory(hosts_inventory_dict)
-ansible_conf.execute_ansible_playbook()
+# ansible_conf = AnsibleConfigVMs()
+# ansible_conf.create_inventory(hosts_inventory_dict)
+# ansible_conf.execute_ansible_playbook()

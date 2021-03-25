@@ -7,7 +7,7 @@
 # Description: This is a role for installing & Setting up MosseFS Master Server.
 #-----------------------------------------------------------------------------------------------------------------------------------
 
-- name: Performing MooseFS installation
+- name: Performing MooseFS Master Server installation & Setup
   hosts: master
   gather_facts: false
   tasks:

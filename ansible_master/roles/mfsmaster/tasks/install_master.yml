@@ -13,24 +13,46 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-- name: Download RPM-GPG-KEY-MooseFS
-  get_url:
-    url: https://ppa.moosefs.com/RPM-GPG-KEY-MooseFS
-    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-MooseFS
+# - name: Add MooseFS Apt signing key
+#   ansible.builtin.apt_key:
+#     url: https://ppa.moosefs.com/moosefs.key
+#     state: present
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
+
+# - name: Add MooseFS-3.repo to apt repos
+#   shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
+
+# - name: Update and upgrade apt packages
+#   become: true
+#   apt:
+#     upgrade: yes
+#     update_cache: yes
+
+- name: Add MooseFS Apt signing key
+  shell: wget -O - https://ppa.moosefs.com/moosefs.key | apt-key add -
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Download MooseFS-3-el7.repo
-  get_url:
-    url: http://ppa.moosefs.com/MooseFS-3-el7.repo
-    dest: /etc/yum.repos.d/MooseFS.repo
+- name: Add MooseFS-3.repo to apt repos
+  shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
+
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
 
 - name: Install moosefs-master package
-  yum:
+  apt:
     name: moosefs-master
     state: present
   become: yes

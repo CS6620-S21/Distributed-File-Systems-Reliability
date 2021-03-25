@@ -7,7 +7,7 @@
 # Description: This is a role for installing & Setting up MosseFS Chunkserver.
 #-----------------------------------------------------------------------------------------------------------------------------------
 
-- name: Performing MooseFS installation
+- name: Performing MooseFS Chunk Servers installation & Setup
   hosts: chunkserver
   vars:
     dev_dir: /dev/vdb
@@ -16,4 +16,3 @@
     - include_role:
         name: mfschunkserver
         tasks_from: install_chunkserver
-

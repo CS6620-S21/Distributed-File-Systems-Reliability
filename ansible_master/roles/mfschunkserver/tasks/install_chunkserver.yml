@@ -13,24 +13,26 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-- name: Download RPM-GPG-KEY-MooseFS
-  get_url:
-    url: https://ppa.moosefs.com/RPM-GPG-KEY-MooseFS
-    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-MooseFS
+- name: Add MooseFS Apt signing key
+  shell: wget -O - https://ppa.moosefs.com/moosefs.key | apt-key add -
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Download MooseFS-3-el7.repo
-  get_url:
-    url: http://ppa.moosefs.com/MooseFS-3-el7.repo
-    dest: /etc/yum.repos.d/MooseFS.repo
+- name: Add MooseFS-3.repo to apt repos
+  shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
+- name: Update and upgrade apt packages
+  shell: apt update
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Install moosefs-chunkserver package
-  yum:
+  apt:
     name: moosefs-chunkserver
     state: present
   become: yes
@@ -47,7 +49,7 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Install XFS Progs
-  yum:
+  apt:
     name: xfsprogs
     state: present
   become: yes
@@ -58,14 +60,6 @@
   filesystem:
     fstype: xfs
     dev: /dev/vdb1
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
-
-- name: Add entries into /etc/fstab
-  lineinfile:
-    path: /etc/fstab
-    line: /dev/vdb1    /mnt/mfschunks1    xfs    defaults    0 0
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
@@ -82,28 +76,36 @@
 - name: Mount new partition(s)
   ansible.posix.mount:
     path: /mnt/mfschunks1
-    src: /boot
-    opts: bind
+    src: /dev/vdb1
+    opts: defaults
     state: mounted
     fstype: xfs
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Change ownership and access to mountpoints
-  ansible.builtin.file:
-    path: /mnt/mfschunks1
-    owner: mfs
-    group: mfs
-    mode: "0770"
+# - name: Change ownership and access to mountpoints
+#   ansible.builtin.file:
+#     path: /mnt/mfschunks1
+#     owner: mfs
+#     group: mfs
+#     mode: "0770"
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
+
+- name: Add mountpoints to mfshdd.cfg file
+  lineinfile:
+    path: /etc/mfs/mfshdd.cfg
+    line: "/mnt/mfschunks1"
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Add mountpoints to mfshdd.cfg file
+- name: Change mfsmaster
   lineinfile:
-    path: /etc/fstab
-    line: /mnt/mfschunks1
+    path: /etc/mfs/mfschunkserver.cfg
+    line: MASTER_HOST = {{ mfsmaster }}
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"

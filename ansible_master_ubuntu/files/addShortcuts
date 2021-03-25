@@ -1,4 +1,0 @@
-ln -s ~/Distributed-File-Systems-Reliability/ansible_master/hosts hosts
-ln -s ~/Distributed-File-Systems-Reliability/ansible_master/ansible.cfg ansible.cfg
-ln -s ~/Distributed-File-Systems-Reliability/ansible_master/host_vars/ host_vars
-ln -s ~/Distributed-File-Systems-Reliability/ansible_master/group_vars/ group_vars

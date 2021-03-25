@@ -13,16 +13,16 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-- name: Install Python2 Package
-  dnf:
-    name: python2
-    state: present
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Install Python2 Package
+#   dnf:
+#     name: python2
+#     state: present
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
 - name: Install MooseFS CGI Server on Master Server
-  yum:
+  apt:
     name: moosefs-cgiserv
     state: present
   become: yes
@@ -30,7 +30,7 @@
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Install MooseFS CGI on Master Server
-  yum:
+  apt:
     name: moosefs-cgi
     state: present
   become: yes
