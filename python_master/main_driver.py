@@ -1,9 +1,9 @@
 
 # Read form Config / Default Values
-from python_master.ssh_scp.CopyFileToMFS import *
-from python_master.ssh_scp.CheckMFSFile import *
-from python_master.terraform.driver import createInfrastructure, getIPs
-from python_master.ansible.ansible_driver import MFSAnsibleSetupVMs
+import python_master.ssh_scp.CopyFileToMFS
+import python_master.ssh_scp.CheckMFSFile
+import python_master.terraform.driver
+import python_master.ansible.ansible_driver.MFSAnsibleSetupVMs
 import json
 
 # Opening Input config JSON file
