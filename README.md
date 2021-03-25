@@ -40,9 +40,12 @@ Stretch goals, if time allows, include:
 - Since their are many different types of distributed file system the idea here is to hide the steps taken behind clean 
 interfaces, and thus testing different file systems would require developing different ansible playbooks which are an 
 of these interfaces.
-- Using Terraform to create and start VMs for MooseFS servers on MOC platform.
-- Utilizing Ansible Playbook to configure environment and install MooseFS servers(Master, Metalogger, Chunkserver, Client) on corresponding VM. Start the servers after creation.
-- Use SSH/SCP/SFTP to connect to the client VM(s) and run the testing scripts on client.
+- Architecture of Workflow:
+    - Using Terraform to create and start VMs for MooseFS servers on MOC platform.
+    - Utilizing Ansible Playbook to configure environment and install MooseFS servers(Master, Metalogger, Chunkserver, Client) on corresponding VM. Start the servers after creation.
+    - Use SSH/SCP/SFTP to connect to the client VM(s) and run the testing scripts on client.
+    - Reboot/destroy a MooseFS server through Terraform.
+    - SSH to the client VM to check the status/content of the files.
 ![arch diagram](https://user-images.githubusercontent.com/52186552/112475253-990a2600-8d3e-11eb-8964-f4080c9e27eb.jpg)
 - Design different failure scenarios for testing. 
  
