@@ -41,11 +41,11 @@ Stretch goals, if time allows, include:
 interfaces, and thus testing different file systems would require developing different ansible playbooks which are an 
 of these interfaces.
 - Architecture of Workflow:
-    - management VM as the workflow engine, drive the testing routine through Python.
-        1. Utilizing Ansible Playbook to configure environment and install MooseFS servers(Master, Metalogger, Chunkserver, Client) on corresponding VM. Start the servers after creation.
-        2. Use SSH/SCP/SFTP to connect to the client VM(s) and run the testing scripts on client.
-        3. Reboot/destroy a MooseFS server through Terraform.
-        4. SSH to the client VM to check the status/content of the files.
+management VM as the workflow engine, drive the testing routine through Python.
+1. Utilizing Ansible Playbook to configure environment and install MooseFS servers(Master, Metalogger, Chunkserver, Client) on corresponding VM. Start the servers after creation.
+2. Use SSH/SCP/SFTP to connect to the client VM(s) and run the testing scripts on client.
+3. Reboot/destroy a MooseFS server through Terraform.
+4. SSH to the client VM to check the status/content of the files.
 ![arch diagram](https://user-images.githubusercontent.com/52186552/112475253-990a2600-8d3e-11eb-8964-f4080c9e27eb.jpg)
 - Design different failure scenarios for testing. 
  
