@@ -1,7 +1,7 @@
 {
   "all": {
     "vars": {
-      "ansible_user": "admin_user",
+      "AnsibleUser": "admin_user",
       "ansible_password": "Password1234!",
       "ansible_python_interpreter": "/usr/bin/python3",
       "mfsmaster": "10.0.0.66"

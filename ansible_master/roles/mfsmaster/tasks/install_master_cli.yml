@@ -14,7 +14,7 @@
     host_name: "{{ inventory_hostname }}"
 
 - name: Install MooseFS CGI Server on Master Server
-  yum:
+  apt:
     name: moosefs-cli
     state: present
   become: yes

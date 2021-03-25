@@ -7,7 +7,7 @@
 # Description: This is a role for installing & Setting up MosseFS Client.
 #-----------------------------------------------------------------------------------------------------------------------------------
 
-- name: Performing MooseFS installation
+- name: Performing MooseFS Client servers installation & Setup
   hosts: client
   vars:
     client_dir: /mnt/mfs
@@ -16,4 +16,3 @@
     - include_role:
         name: mfsclient
         tasks_from: install_client
-
