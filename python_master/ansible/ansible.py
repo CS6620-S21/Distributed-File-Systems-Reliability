@@ -41,13 +41,18 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
         # index = 0
 
         # subprocess.run(["cd", self.ansible_playbooks_basepath])
-        print(subprocess.run(["pwd"], cwd=self.ansible_playbooks_basepath))
+        # subprocess.run(["pwd"], cwd=self.ansible_playbooks_basepath)
+        # subprocess.run(["ansible", "--version"],
+        #                cwd=self.ansible_playbooks_basepath)
 
-        list_files = subprocess.run(
-            ["ls", "-l"], cwd=self.ansible_playbooks_basepath)
-        print("The exit code was: %d" % list_files.returncode)
+        # list_files = subprocess.run(
+        #     ["ls", "-l"], cwd=self.ansible_playbooks_basepath)
+        # print("The exit code was: %d" % list_files.returncode)
 
-        # for key, value in self.ansible_playbooks.items():  # working here
+        for dir, playbook in self.ansible_playbooks.items():
+            subprocess.run(["pwd"], cwd=dir)
+            subprocess.run(["ls", "-l"], cwd=dir)
+            subprocess.run(["ansible", "--version"], cwd=dir)
 
         print("Hello")
 
