@@ -26,10 +26,10 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
     def __init__(self) -> None:
         super().__init__()
         self.ansible_playbooks_basepath = '/home/admin_user/Distributed-File-Systems-Reliability/ansible_master_new/playbooks/'
-        self.ansible_playbooks = {self.ansible_playbooks_basepath + 'mfsmaster': 'install_master',
-                                  self.ansible_playbooks_basepath + 'mfsmetalogger': 'install_metalogger',
-                                  self.ansible_playbooks_basepath + 'mfschunkserver': 'install_chunkserver',
-                                  self.ansible_playbooks_basepath + 'mfsclient': 'install_client'}
+        self.ansible_playbooks = {self.ansible_playbooks_basepath + 'mfsmaster': 'install_master.yml',
+                                  self.ansible_playbooks_basepath + 'mfsmetalogger': 'install_metalogger.yml',
+                                  self.ansible_playbooks_basepath + 'mfschunkserver': 'install_chunkserver.yml',
+                                  self.ansible_playbooks_basepath + 'mfsclient': 'install_client.yml'}
 
     def create_inventory(self, input_inventory: dict, output_inventory_filepath: str) -> None:
         self.__format_inventory(input_inventory)
