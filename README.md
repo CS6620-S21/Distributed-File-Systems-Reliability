@@ -44,6 +44,7 @@ of these interfaces.
 - Utilizing Ansible Playbook to configure and install MooseFS servers(Master, Metalogger, Chunkserver, Client) on the VMs.
 - Use SSH/SCP/SFTP to connect to the client VM(s) and run the testing scripts on client.
 ![arch diagram](https://user-images.githubusercontent.com/52186552/112475253-990a2600-8d3e-11eb-8964-f4080c9e27eb.jpg)
+- Design different failure scenarios for testing.
  
 ## 5. Acceptance criteria
 - Teraform Scripts should be able to create VMs on demand in MOC.
@@ -63,7 +64,17 @@ a guideline or a general approach to be taken to test any Distributed File Syste
 - Due for Week 2:
     - Setting up Ansible Master Control node on MOC VM
     - Learning Terraform Experimenting on MOC
-    - Set up MooseFS on MOC
+    - Set up MooseFS manually on MOC
+
+#### Sprint 2 (26 Feb 2021 to 12 Mar 2021)
+    - Design the project architecture
+    - Connect to the MOC and programmatically provision VMs using terraform
+    - Set up Ansible architecture and VM environment
+    - Automate MooseFS installation on MOC using Ansible Playbook
+
+#### Sprint 3 (15 Mar 2021 to 27 Mar 2021)
+    - Enhance Terraform, Ansible, and SSH in Python Driver Program
+    - Design failure scenarios
 
 The further releases of application are not fixed yet for a particular date and are dependent on evaluation results 
 from experiments being conducted for the project.
