@@ -3,10 +3,10 @@
 
 # /Users/aksha/OneDrive/Documents/projects/git/Distributed-File-Systems-Reliability
 
-from python_master.ssh_scp.CopyFileToMFS import *
-from python_master.ssh_scp.CheckMFSFile import *
-from python_master.terraform.driver import *
-from python_master.ansible.ansible_driver import *
+from ssh_scp.CopyFileToMFS import *
+from ssh_scp.CheckMFSFile import *
+from terraform.driver import *
+from ansible.ansible_driver import *
 import json
 
 # Opening Input config JSON file
