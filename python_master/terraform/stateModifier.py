@@ -273,14 +273,14 @@ def removeChunkServer():
             print(json_object["resource"][i]["openstack_compute_instance_v2"][0])
 
 def resetState():
-    a_file = open("/sample.tf.json", "r")
+    a_file = open("./terraform/sample.tf.json", "r")
     json_object = json.load(a_file)
     a_file.close()
 
     json_object["resource"] = []
     json_object["output"] = []
 
-    a_file = open("/sample.tf.json", "w")
+    a_file = open("./terraform/sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
 
