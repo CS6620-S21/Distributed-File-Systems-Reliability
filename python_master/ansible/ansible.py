@@ -102,5 +102,5 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
 
 
 ansible_conf = AnsibleConfigVMs()
-# ansible_conf.create_inventory(hosts_inventory_dict)
+ansible_conf.create_inventory(hosts_inventory_dict)
 ansible_conf.execute_ansible_playbook()
