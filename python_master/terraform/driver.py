@@ -23,7 +23,7 @@ def destroyInfrastructure():
     resetState()
 
 def getIPs():
-    # output()
+    output()
     a_file = open("./terraform/output.json", "r")
     json_object = json.load(a_file)
     a_file.close()
