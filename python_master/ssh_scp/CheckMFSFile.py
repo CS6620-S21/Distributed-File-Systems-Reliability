@@ -4,11 +4,14 @@ import sys
 
 
 
-clients = ['10.0.0.214', '10.0.0.241', 'cl3']
+# clients = ['cl1', '10.0.0.241', 'cl3']
 
+clients = []
 resultList = []
-def check():
-
+def check(client1, client2, client3):
+    clients.append(client1)
+    clients.append(client2)
+    clients.append(client3)
     for client in clients:
         mfsClientVM = SSHClient()
 
@@ -18,7 +21,10 @@ def check():
         mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         mfsClientVM.load_system_host_keys()
         mfsClientVM.connect(hostname=hostname, username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
-
+        # if client == '10.0.0.241':
+        #     print("The client ip/name is: cl2")
+        # else:
+        #     print("The client ip/name is: ", client)
         print("File name is:")
         stdin, stdout, stderr = mfsClientVM.exec_command('cd ..; cd ..; cd mnt; cd mfs; ls')
         outlines = stdout.readlines()
@@ -30,12 +36,14 @@ def check():
     for i in range(1,2):
         if resultList[i-1] != resultList[i]:
             print("Test failure")
+            return
 
     print("Test success")
+    return
 
 
-if __name__ == '__main__':
-    check()
+# if __name__ == '__main__':
+#     check()
 
 
 
