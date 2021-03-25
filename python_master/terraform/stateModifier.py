@@ -1,4 +1,3 @@
-from terraformShell import *
 import json
 import random
 count = random.randint(1,9999999)
@@ -229,7 +228,6 @@ def addMetalogger():
     json_object = json.load(a_file)
     a_file.close()
 
-
     # Code for updating output node in sample.json.tf
     instance = metaLoggerInstance
     json_object["resource"].append(instance)
@@ -247,11 +245,7 @@ def addMetalogger():
 
     })
 
-
     # Code for updating output resource in sample.json.tf
-
-
-
     a_file = open("sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
@@ -338,22 +332,27 @@ def addChunkServer():
 
     })
 
-
-
-
-
     json_object["resource"].append(chunkServer)
     json_object["resource"].append(volume)
     json_object["resource"].append(volumeAttach)
 
 
-
-
-
-
     a_file = open("sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
+
+def removeChunkServer():
+
+    a_file = open("./sample.tf.json", "r")
+    json_object = json.load(a_file)
+    a_file.close()
+
+    # print(json_object["resource"][0])
+
+    n = len(json_object["resource"])
+    for i in range(0, n):
+        if("openstack_compute_instance_v2" in json_object["resource"][i].keys()):
+            print(json_object["resource"][i]["openstack_compute_instance_v2"][0])
 
 def resetState():
     a_file = open("./sample.tf.json", "r")
