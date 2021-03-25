@@ -8,10 +8,11 @@ import sys
 
 clients = []
 resultList = []
-def check(client1, client2, client3):
-    clients.append(client1)
-    clients.append(client2)
-    clients.append(client3)
+def check(dict):
+    for key in dict['client']:
+        clients.append(dict['client'][key])
+
+
     for client in clients:
         mfsClientVM = SSHClient()
 
