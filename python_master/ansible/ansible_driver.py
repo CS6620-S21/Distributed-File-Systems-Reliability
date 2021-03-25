@@ -24,9 +24,9 @@ class AbstractAnsibleWorkflow(ABC):
 
 
 class AnsibleConfigVMs(AbstractAnsibleWorkflow):
-    def __init__(self) -> None:
+    def __init__(self, ansible_basepath) -> None:
         super().__init__()
-        self.ansible_basepath = '/home/admin_user/Distributed-File-Systems-Reliability/ansible_master_new'
+        self.ansible_basepath = ansible_basepath
         self.ansible_playbooks = {self.ansible_basepath + '/playbooks/mfsmaster': 'install_master.yml',
                                   self.ansible_basepath + '/playbooks/mfsmetalogger': 'install_metalogger.yml',
                                   self.ansible_basepath + '/playbooks/mfschunkserver': 'install_chunkserver.yml',
@@ -101,6 +101,6 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
         return mfs_server_inventory
 
 
-ansible_conf = AnsibleConfigVMs()
-ansible_conf.create_inventory(hosts_inventory_dict)
-ansible_conf.execute_ansible_playbook()
+# ansible_conf = AnsibleConfigVMs()
+# ansible_conf.create_inventory(hosts_inventory_dict)
+# ansible_conf.execute_ansible_playbook()

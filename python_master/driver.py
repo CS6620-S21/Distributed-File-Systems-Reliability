@@ -3,6 +3,12 @@
 from python_master.ssh_scp.CopyFileToMFS import copyFile
 from python_master.ssh_scp.CheckMFSFile import *
 from python_master.terraform.driver import createInfrastructure, getIPs
+from python_master.ansible.ansible_driver import AnsibleConfigVMs
+import json
+
+# Opening Input config JSON file
+with open('input_config.json') as json_file:
+    data = json.load(json_file)
 
 masterservers = 5
 chunkservers = 5
@@ -30,9 +36,8 @@ ansible_conf.execute_ansible_playbook()
 
 # SSH_SCP
 copyFile(hosts_inventory_dict['client']['client1'])
-check(hosts_inventory_dict['client']['client1'],hosts_inventory_dict['client']['client2'],
+check(hosts_inventory_dict['client']['client1'], hosts_inventory_dict['client']['client2'],
       hosts_inventory_dict['client']['client3'])
-
 
 
 # Terraform Destroys
