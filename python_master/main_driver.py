@@ -34,6 +34,8 @@ createInfrastructure(num_masterservers, num_chunkservers,
                      num_metaloggers, num_clientservers)
 hosts_inventory_dict = getIPs()
 
+print(hosts_inventory_dict)
+
 # Ansible
 ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
 ansible_conf.create_inventory(hosts_inventory_dict)
