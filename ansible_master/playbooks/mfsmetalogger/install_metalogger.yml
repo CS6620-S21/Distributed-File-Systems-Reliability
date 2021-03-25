@@ -7,11 +7,10 @@
 # Description: This is a role for installing & Setting up MosseFS Metalogger.
 #-----------------------------------------------------------------------------------------------------------------------------------
 
-- name: Performing MooseFS installation
+- name: Performing MooseFS Metalogger server installation & Setup
   hosts: metalogger
   gather_facts: false
   tasks:
     - include_role:
         name: mfsmetalogger
         tasks_from: install_metalogger
-

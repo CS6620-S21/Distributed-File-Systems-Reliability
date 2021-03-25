@@ -13,34 +13,42 @@
     ans_pass: "{{ AnsiblePass }}"
     host_name: "{{ inventory_hostname }}"
 
-- name: Download RPM-GPG-KEY-MooseFS
-  get_url:
-    url: https://ppa.moosefs.com/RPM-GPG-KEY-MooseFS
-    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-MooseFS
+- name: Add MooseFS Apt signing key
+  shell: wget -O - https://ppa.moosefs.com/moosefs.key | apt-key add -
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Download MooseFS-3-el7.repo
-  get_url:
-    url: http://ppa.moosefs.com/MooseFS-3-el7.repo
-    dest: /etc/yum.repos.d/MooseFS.repo
+- name: Add MooseFS-3.repo to apt repos
+  shell: echo "deb http://ppa.moosefs.com/moosefs-3/apt/ubuntu/bionic bionic main" > /etc/apt/sources.list.d/moosefs.list
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
+
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: Install FUSE package
+  shell: apt install fuse libfuse2
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
 - name: Install moosefs-client package
-  yum:
+  apt:
     name: moosefs-client
     state: present
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Install FUSE package
-  yum:
-    name: fuse
-    state: present
+- name: Change mfsmaster
+  lineinfile:
+    path: /etc/mfs/mfsmount.cfg
+    line: mfsmaster={{ mfsmaster }}
   become: yes
   vars:
     ansible_become_password: "{{ ans_pass }}"
@@ -54,9 +62,9 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-# - name: Mount moosefs
-#   shell: mfsmount "{{ client_dir }}" -H mfsmaster
-#   become: yes
-#   vars:
-#     ansible_become_password: "{{ ans_pass }}"
+- name: Mount moosefs
+  shell: mfsmount "{{ client_dir }}" -H mfsmaster
+  become: yes
+  vars:
+    ansible_become_password: "{{ ans_pass }}"
 

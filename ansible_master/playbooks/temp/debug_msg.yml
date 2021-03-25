@@ -1,8 +1,0 @@
----
-- name: Print a debug message with variable
-  hosts: client
-  gather_facts: false
-  tasks:
-    - name: Print mfsmaster host name
-      debug:
-        msg: "{{ mfsmaster }}"
