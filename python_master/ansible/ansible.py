@@ -46,7 +46,7 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
 
     def __write_to_file(self, formatted_inventory: dict):
         print("Creating JSON hosts file")
-        hosts_filepath = self.ansible_basepath + '/hosts_temp.json'
+        hosts_filepath = self.ansible_basepath + '/hosts.json'
         with open(hosts_filepath, "w") as outfile:
             json.dump(formatted_inventory, outfile)
 
