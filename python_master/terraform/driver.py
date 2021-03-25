@@ -2,7 +2,7 @@
 from terraformShell import *
 from stateModifier import *
 
-from python_master.terraform.stateModifier import removeChunkServer
+# from python_master.terraform.stateModifier import removeChunkServer
 
 
 def createInfrastructure(masterservers, chunkservers, metaloggers, clientservers):
