@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-
-echo "$pwd"
+#echo "Hello "
+#echo "$pwd"
+cd terraform
 terraform init
