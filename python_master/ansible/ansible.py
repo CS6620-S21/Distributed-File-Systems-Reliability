@@ -2,14 +2,14 @@ from abc import ABC, abstractmethod
 import subprocess
 import json
 
-hosts_inventory_dict = {'master': {'master1': '10.0.0.66'},
-                        'metalogger': {'mettalogger1': '10.0.0.67'},
-                        'chunkserver': {'chunkserver1': '10.0.0.114',
-                                        'chunkserver2': '10.0.0.186',
-                                        'chunkserver3': '10.0.0.211'},
-                        'client': {'client1': '10.0.0.214',
-                                   'client2': '10.0.0.241',
-                                   'client3': '10.0.0.17'}}
+hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
+                        'metalogger': {'mettalogger1': '10.0.0.154'},
+                        'chunkserver': {'chunkserver1': '10.0.0.62',
+                                        'chunkserver2': '10.0.0.107',
+                                        'chunkserver3': '10.0.0.162'},
+                        'client': {'client1': '10.0.0.190',
+                                   'client2': '10.0.0.223',
+                                   'client3': '10.0.0.79'}}
 
 
 class AbstractAnsibleWorkflow(ABC):
