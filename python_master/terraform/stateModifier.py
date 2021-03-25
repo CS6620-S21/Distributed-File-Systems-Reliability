@@ -114,7 +114,7 @@ def updateGlobalInstance():
 
 def addClientServer():
     updateGlobalInstance()
-    a_file = open("./sample.tf.json", "r")
+    a_file = open("./terraform/sample.tf.json", "r")
     json_object = json.load(a_file)
     a_file.close()
 
@@ -136,13 +136,13 @@ def addClientServer():
     })
 
 
-    a_file = open("sample.tf.json", "w")
+    a_file = open("./terraform/sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
 
 def addMetalogger():
     updateGlobalInstance()
-    a_file = open("./sample.tf.json", "r")
+    a_file = open("./terraform/sample.tf.json", "r")
     json_object = json.load(a_file)
     a_file.close()
 
@@ -164,13 +164,13 @@ def addMetalogger():
     })
 
     # Code for updating output resource in sample.json.tf
-    a_file = open("sample.tf.json", "w")
+    a_file = open("./terraform/sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
 
 def addMasterServer():
     updateGlobalInstance()
-    a_file = open("./sample.tf.json", "r")
+    a_file = open("./terraform/sample.tf.json", "r")
     json_object = json.load(a_file)
     a_file.close()
 
@@ -195,7 +195,7 @@ def addMasterServer():
 
 
 
-    a_file = open("sample.tf.json", "w")
+    a_file = open("./terraform/sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
 
@@ -230,7 +230,7 @@ def addChunkServer():
     dict["instance_id"] = "${openstack_compute_instance_v2." + chunkServerid + ".id}"
     dict["volume_id"] = "${openstack_blockstorage_volume_v2." + volumeid + ".id}"
 
-    a_file = open("./sample.tf.json", "r")
+    a_file = open("./terraform/sample.tf.json", "r")
     json_object = json.load(a_file)
     a_file.close()
 
@@ -255,13 +255,13 @@ def addChunkServer():
     json_object["resource"].append(volumeAttach)
 
 
-    a_file = open("sample.tf.json", "w")
+    a_file = open("./terraform/sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
 
 def removeChunkServer():
 
-    a_file = open("./sample.tf.json", "r")
+    a_file = open("./terraform/sample.tf.json", "r")
     json_object = json.load(a_file)
     a_file.close()
 
