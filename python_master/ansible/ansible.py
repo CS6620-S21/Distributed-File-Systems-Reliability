@@ -4,12 +4,12 @@ import json
 
 hosts_inventory_dict = {'master': {'master1': '10.0.0.66'},
                         'metalogger': {'mettalogger1': '10.0.0.67'},
-                        'chunkserver': {'chunkserver1': '10.0.0.101',
-                                        'chunkserver2': '10.0.0.102',
-                                        'chunkserver3': '10.0.0.103'},
-                        'client': {'client1': '10.0.0.201',
-                                   'client2': '10.0.0.202',
-                                   'client3': '10.0.0.203'}}
+                        'chunkserver': {'chunkserver1': '10.0.0.114',
+                                        'chunkserver2': '10.0.0.186',
+                                        'chunkserver3': '10.0.0.211'},
+                        'client': {'client1': '10.0.0.214',
+                                   'client2': '10.0.0.241',
+                                   'client3': '10.0.0.17'}}
 
 
 class AbstractAnsibleWorkflow(ABC):
@@ -33,25 +33,11 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
                                   self.ansible_basepath + '/playbooks/mfsclient': 'install_client.yml'}
 
     def execute_ansible_playbook(self):
-        # list_run_results = list()
-        # index = 0
-
-        # subprocess.run(["cd", self.ansible_basepath])
-        # subprocess.run(["pwd"], cwd=self.ansible_basepath)
-        # subprocess.run(["ansible", "--version"],
-        #                cwd=self.ansible_basepath)
-
-        # list_files = subprocess.run(
-        #     ["ls", "-l"], cwd=self.ansible_basepath)
-        # print("The exit code was: %d" % list_files.returncode)
-
         for playbook_dir, playbook_name in self.ansible_playbooks.items():
             # subprocess.run(["pwd"], cwd=dir)
             # subprocess.run(["ls", "-l"], cwd=dir)
             subprocess.run(["ansible-playbook", playbook_name],
                            cwd=playbook_dir)
-
-        print("Hello")
 
     def create_inventory(self, input_inventory: dict) -> None:
         formatted_inventory = self.__create_inventory_structure(
@@ -72,7 +58,7 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
         inventory['all']['vars'] = self.__prepare_inventory_vars()
         inventory['all']['children'] = self.__prepare_inventory_children(
             input_inventory)
-        inventory['all']['vars']['mfsmaster'] = input_inventory['master'].values()[
+        inventory['all']['vars']['mfsmaster'] = list(input_inventory['master'].values())[
             0]
         return inventory
 
@@ -80,7 +66,7 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
         all_vars = dict()
         all_vars['AnsibleUser'] = 'admin_user'
         all_vars['AnsiblePass'] = 'Password1234'
-        all_vars['AnsibleUser'] = 'admin_user'
+        all_vars['ansible_python_interpreter'] = '/usr/bin/python3'
         return all_vars
 
     def __prepare_inventory_children(self, input_inventory: dict) -> dict:
@@ -98,11 +84,10 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
 
     def __prepare_inventory_localhost(self) -> dict:
         localhost_inventory = dict()
-        localhost_inventory['control'] = dict()
-        localhost_inventory['control']['hosts'] = dict()
-        localhost_inventory['control']['vars'] = dict()
-        localhost_inventory['control']['hosts']['localhost'] = None
-        localhost_inventory['control']['vars']['ansible_conection'] = 'local'
+        localhost_inventory['hosts'] = dict()
+        localhost_inventory['vars'] = dict()
+        localhost_inventory['hosts']['localhost'] = None
+        localhost_inventory['vars']['ansible_conection'] = 'local'
         return localhost_inventory
 
     def __prepare_inventory_mfs(self, input_inventory: dict, mfs_server_type: str) -> dict:
@@ -117,5 +102,5 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
 
 
 ansible_conf = AnsibleConfigVMs()
-# conf.execute_ansible_playbook()
 ansible_conf.create_inventory(hosts_inventory_dict)
+conf.execute_ansible_playbook()
