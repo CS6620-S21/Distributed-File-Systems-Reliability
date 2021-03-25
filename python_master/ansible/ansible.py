@@ -49,10 +49,11 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
         #     ["ls", "-l"], cwd=self.ansible_playbooks_basepath)
         # print("The exit code was: %d" % list_files.returncode)
 
-        for dir, playbook in self.ansible_playbooks.items():
+        for playbook_dir, playbook_name in self.ansible_playbooks.items():
             # subprocess.run(["pwd"], cwd=dir)
             # subprocess.run(["ls", "-l"], cwd=dir)
-            subprocess.run(["ansible", "-m", "ping", "master"], cwd=dir)
+            subprocess.run(["ansible-playbook", playbook_name],
+                           cwd=playbook_dir)
 
         print("Hello")
 
