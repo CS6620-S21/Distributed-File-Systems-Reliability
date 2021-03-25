@@ -67,14 +67,14 @@ a guideline or a general approach to be taken to test any Distributed File Syste
     - Set up MooseFS manually on MOC
 
 #### Sprint 2 (26 Feb 2021 to 12 Mar 2021)
-    - Design the project architecture
-    - Connect to the MOC and programmatically provision VMs using terraform
-    - Set up Ansible architecture and VM environment
-    - Automate MooseFS installation on MOC using Ansible Playbook
+- Design the project architecture
+- Connect to the MOC and programmatically provision VMs using terraform
+- Set up Ansible architecture and VM environment
+- Automate MooseFS installation on MOC using Ansible Playbook
 
 #### Sprint 3 (15 Mar 2021 to 27 Mar 2021)
-    - Enhance Terraform, Ansible, and SSH in Python Driver Program
-    - Design failure scenarios
+- Enhance Terraform, Ansible, and SSH in Python Driver Program
+- Design failure scenarios
 
 The further releases of application are not fixed yet for a particular date and are dependent on evaluation results 
 from experiments being conducted for the project.
