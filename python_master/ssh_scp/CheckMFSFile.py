@@ -34,7 +34,7 @@ def check(dict):
         print(resp)
         resultList.append(resp)
 
-    for i in range(1,2):
+    for i in range(1,len(resultList)):
         if resultList[i-1] != resultList[i]:
             print("Test failure")
             return
