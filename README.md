@@ -40,6 +40,10 @@ Stretch goals, if time allows, include:
 - Since their are many different types of distributed file system the idea here is to hide the steps taken behind clean 
 interfaces, and thus testing different file systems would require developing different ansible playbooks which are an 
 of these interfaces.
+- Using Terraform to create VMs on MOC platform.
+- Utilizing Ansible Playbook to configure and install MooseFS servers(Master, Metalogger, Chunkserver, Client) on the VMs.
+- Use SSH/SCP/SFTP to connect to the client VM(s) and run the testing scripts on client.
+
  
 ## 5. Acceptance criteria
 - Teraform Scripts should be able to create VMs on demand in MOC.
