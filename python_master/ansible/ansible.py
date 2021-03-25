@@ -50,9 +50,9 @@ class AnsibleConfigVMs(AbstractAnsibleWorkflow):
         # print("The exit code was: %d" % list_files.returncode)
 
         for dir, playbook in self.ansible_playbooks.items():
-            subprocess.run(["pwd"], cwd=dir)
-            subprocess.run(["ls", "-l"], cwd=dir)
-            subprocess.run(["ansible", "--version"], cwd=dir)
+            # subprocess.run(["pwd"], cwd=dir)
+            # subprocess.run(["ls", "-l"], cwd=dir)
+            subprocess.run(["ansible", "-m", "ping", "master"], cwd=dir)
 
         print("Hello")
 
