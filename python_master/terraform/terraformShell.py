@@ -3,7 +3,7 @@ import os
 import subprocess
 
 def init():
-    os.system("terraform init")
+    subprocess.call(['sh', './terraform/terraform.starter.sh'])
 
 def run():
     subprocess.call(['sh', './terraform/terraform.runner1.sh'])
