@@ -12,7 +12,7 @@ hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
                                    'client3': '10.0.0.79'}}
 
 
-class AbstractAnsibleWorkflow(ABC):
+class AbstractFSAnsibleSetupVM(ABC):
 
     @abstractmethod
     def create_inventory(self, hosts_inventory: dict):
@@ -23,7 +23,7 @@ class AbstractAnsibleWorkflow(ABC):
         pass
 
 
-class AnsibleConfigVMs(AbstractAnsibleWorkflow):
+class MFSAnsibleSetupVMs(AbstractFSAnsibleSetupVM):
     def __init__(self, ansible_basepath) -> None:
         super().__init__()
         self.ansible_basepath = ansible_basepath
