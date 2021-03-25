@@ -43,8 +43,7 @@ of these interfaces.
 - Using Terraform to create VMs on MOC platform.
 - Utilizing Ansible Playbook to configure and install MooseFS servers(Master, Metalogger, Chunkserver, Client) on the VMs.
 - Use SSH/SCP/SFTP to connect to the client VM(s) and run the testing scripts on client.
-![alt text](https://github.com/CS6620-S21/Distributed-File-Systems-Reliability/blob/main/images/arch%20diagram.pdf)
-
+![arch diagram](https://user-images.githubusercontent.com/52186552/112475253-990a2600-8d3e-11eb-8964-f4080c9e27eb.jpg)
  
 ## 5. Acceptance criteria
 - Teraform Scripts should be able to create VMs on demand in MOC.
