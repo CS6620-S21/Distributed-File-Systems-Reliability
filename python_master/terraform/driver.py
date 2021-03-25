@@ -1,6 +1,6 @@
 
-from terraform.terraformShell import *
-from terraform.stateModifier import *
+from terraformShell import *
+from stateModifier import *
 
 # from python_master.terraform.stateModifier import removeChunkServer
 
