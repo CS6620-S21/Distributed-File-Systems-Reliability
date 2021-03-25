@@ -273,7 +273,7 @@ def removeChunkServer():
             print(json_object["resource"][i]["openstack_compute_instance_v2"][0])
 
 def resetState():
-    a_file = open("./sample.tf.json", "r")
+    a_file = open("sample.tf.json", "r")
     json_object = json.load(a_file)
     a_file.close()
 
