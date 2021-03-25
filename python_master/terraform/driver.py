@@ -56,6 +56,6 @@ def deleteChunkServer():
 # removeChunkServer()
 # Users/aksha/OneDrive/Documents/projects/git/Distributed-File-Systems-Reliability/python_master/terraform
 # destroyInfrastructure()
-# createInfrastructure(1, 0, 1, 1)
+# createInfrastructure(0, 0, 0, 1)
 # print(getIPs())
 # getIPs()
