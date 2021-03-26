@@ -16,9 +16,8 @@ def copyFile(dict):
         connectVM = dict['client'][key]
 
 
-    # mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename=None)
-    mfsClientVM.connect(connectVM)
 
+    mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='./ssh_scp/cs6620Key101.pem')
     sftp_client = mfsClientVM.open_sftp()
     sftp_client.put("/home/centos/bash", "/home/ubuntu/bash")
 
