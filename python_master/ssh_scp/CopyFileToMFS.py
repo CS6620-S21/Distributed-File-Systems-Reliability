@@ -19,7 +19,7 @@ def copyFile(dict):
 
     mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='./ssh_scp/real_key.pem')
 
-    stdin, stdout, stderr = mfsClientVM.exec_command('ls')
+    stdin, stdout, stderr = mfsClientVM.exec_command('pwd')
     outlines = stdout.readlines()
     stdin.close()
     resp = ''.join(outlines)
