@@ -21,7 +21,10 @@ def check(dict):
 
         mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         mfsClientVM.load_system_host_keys()
-        mfsClientVM.connect(hostname=hostname, username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
+
+        #.ssh/cs6620Key101.pem
+        # mfsClientVM.connect(hostname=hostname, username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
+        mfsClientVM.connect(hostname=hostname, username='admin_user')
         # if client == '10.0.0.241':
         #     print("The client ip/name is: cl2")
         # else:
