@@ -84,15 +84,15 @@
   vars:
     ansible_become_password: "{{ ans_pass }}"
 
-- name: Change ownership and access to mountpoints
-  ansible.builtin.file:
-    path: /mnt/mfschunks1
-    owner: mfs
-    group: mfs
-    mode: "0770"
-  become: yes
-  vars:
-    ansible_become_password: "{{ ans_pass }}"
+# - name: Change ownership and access to mountpoints
+#   ansible.builtin.file:
+#     path: /mnt/mfschunks1
+#     owner: mfs
+#     group: mfs
+#     mode: "0770"
+#   become: yes
+#   vars:
+#     ansible_become_password: "{{ ans_pass }}"
 
 - name: Add mountpoints to mfshdd.cfg file
   lineinfile:
