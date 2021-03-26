@@ -11,8 +11,12 @@ def copyFile(dict):
     mfsClientVM.load_system_host_keys()
 
     # mfsClientVM.connect(hostname=dict['client']['client1'], username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
+    connectVM = ''
+    for key in dict['client']:
+        connectVM = dict['client'][key]
 
-    mfsClientVM.connect(hostname=dict['client']['client1'], username='admin_user')
+
+    mfsClientVM.connect(hostname=connectVM, username='admin_user')
     sftp_client = mfsClientVM.open_sftp()
     sftp_client.put("/home/centos/bash", "/home/ubuntu/bash")
 
