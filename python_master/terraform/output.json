@@ -1,0 +1,17 @@
+{
+  "client7110194": {
+    "sensitive": false,
+    "type": "string",
+    "value": "10.0.0.63"
+  },
+  "master15556927": {
+    "sensitive": false,
+    "type": "string",
+    "value": "10.0.0.134"
+  },
+  "metalogger93765": {
+    "sensitive": false,
+    "type": "string",
+    "value": "10.0.0.178"
+  }
+}

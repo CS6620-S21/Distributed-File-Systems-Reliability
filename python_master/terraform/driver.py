@@ -1,8 +1,8 @@
 
-from terraformShell import *
-from stateModifier import *
+from terraform.terraformShell import *
+from terraform.stateModifier import *
 
-from python_master.terraform.stateModifier import removeChunkServer
+# from python_master.terraform.stateModifier import removeChunkServer
 
 
 def createInfrastructure(masterservers, chunkservers, metaloggers, clientservers):
@@ -23,8 +23,8 @@ def destroyInfrastructure():
     resetState()
 
 def getIPs():
-    # output()
-    a_file = open("./output.json", "r")
+    output()
+    a_file = open("./terraform/output.json", "r")
     json_object = json.load(a_file)
     a_file.close()
 
