@@ -8,6 +8,7 @@ from ssh_scp.CheckMFSFile import *
 from terraform.driver import *
 from ansible.ansible_driver import *
 import json
+import time
 
 # Opening Input config JSON file
 with open('input_config.json') as json_file:
@@ -24,6 +25,8 @@ createInfrastructure(num_masterservers, num_chunkservers,
                      num_metaloggers, num_clientservers)
 hosts_inventory_dict = getIPs()
 print(hosts_inventory_dict)
+
+time.sleep(120)
 
 
 # Performs setup of configuration of the different vms that has been created by terraform.
