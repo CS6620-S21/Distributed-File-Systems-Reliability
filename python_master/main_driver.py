@@ -39,7 +39,7 @@ hosts_inventory_dict = getIPs()
 
 
 # SSH_SCP
-copyFile(hosts_inventory_dict)
+# copyFile(hosts_inventory_dict)
 check(hosts_inventory_dict)
 
 
