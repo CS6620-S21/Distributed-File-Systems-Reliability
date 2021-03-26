@@ -39,9 +39,8 @@ ansible_conf.execute_ansible_playbook()
 
 
 # SSH_SCP
-# copyFile(hosts_inventory_dict['client']['client1'])
-# check(hosts_inventory_dict['client']['client1'], hosts_inventory_dict['client']['client2'],
-#       hosts_inventory_dict['client']['client3'])
+copyFile(hosts_inventory_dict)
+check(hosts_inventory_dict)
 
 
 # Terraform Destroys
