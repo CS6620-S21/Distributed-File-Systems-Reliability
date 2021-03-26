@@ -18,6 +18,14 @@ def copyFile(dict):
 
 
     mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='./ssh_scp/real_key.pem')
+
+    stdin, stdout, stderr = mfsClientVM.exec_command('ls')
+    outlines = stdout.readlines()
+    stdin.close()
+    resp = ''.join(outlines)
+    print(resp)
+
+
     sftp_client = mfsClientVM.open_sftp()
     sftp_client.put("./ssh_scp/bash", "./home/ubuntu/bash")
 
