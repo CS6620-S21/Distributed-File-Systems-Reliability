@@ -18,9 +18,11 @@ def createInfrastructure(masterservers, chunkservers, metaloggers, clientservers
     init()
     run()
 
+
 def destroyInfrastructure():
     destroy()
     resetState()
+
 
 def getIPs():
     output()
@@ -28,9 +30,10 @@ def getIPs():
     json_object = json.load(a_file)
     a_file.close()
 
-    hosts_inventory_dict = {'master': {},'metalogger': {},'chunkserver': {},'client': {}}
+    hosts_inventory_dict = {'master': {},
+                            'metalogger': {}, 'chunkserver': {}, 'client': {}}
 
-    for val in  json_object.keys():
+    for val in json_object.keys():
 
         if("chunkserver" in val):
             hosts_inventory_dict["chunkserver"][val] = json_object[val]["value"]
@@ -49,13 +52,3 @@ def getIPs():
 
 def deleteChunkServer():
     print("Client Destroyed")
-
-
-
-# addChunkServer()
-# removeChunkServer()
-# Users/aksha/OneDrive/Documents/projects/git/Distributed-File-Systems-Reliability/python_master/terraform
-# destroyInfrastructure()
-# createInfrastructure(0, 0, 0, 1)
-# print(getIPs())
-# getIPs()
