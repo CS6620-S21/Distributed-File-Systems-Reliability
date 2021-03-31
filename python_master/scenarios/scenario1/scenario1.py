@@ -1,13 +1,7 @@
-
-# Read form Config / Default Values
-
-# /Users/aksha/OneDrive/Documents/projects/git/Distributed-File-Systems-Reliability
-
 from ssh_scp.CopyFileToMFS import *
 from ssh_scp.CheckMFSFile import *
 from terraform.driver import *
 from ansible.ansible_driver import *
-
 import json
 import time
 
@@ -51,12 +45,3 @@ time.sleep(120)
 ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
 ansible_conf.create_inventory(hosts_inventory_dict)
 ansible_conf.execute_ansible_playbook()
-
-
-# Testing framework execution using SSH_SCP
-copyFile(hosts_inventory_dict)
-check(hosts_inventory_dict)
-
-
-# Terraform Destroys
-# destroyInfrastructure()
