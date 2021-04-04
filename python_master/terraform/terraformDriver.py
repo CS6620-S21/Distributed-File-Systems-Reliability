@@ -14,7 +14,7 @@ def createInfrastructure(masterservers, chunkservers, metaloggers, clientservers
     for i in range(0, metaloggers):
         addMetalogger()
     for i in range(0, clientservers):
-        addClientServer()
+        addClientInstance()
     init()
     run()
 
