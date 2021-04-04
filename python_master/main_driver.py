@@ -5,7 +5,7 @@
 
 from ssh_scp.CopyFileToMFS import *
 from ssh_scp.CheckMFSFile import *
-from terraform.driver import *
+from terraform.terraformDriver import *
 from ansible.ansible_driver import *
 
 import json
