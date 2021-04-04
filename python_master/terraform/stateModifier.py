@@ -5,8 +5,10 @@ import math
 count = random.randint(1,9999999)
 
 timestamp = math.floor(time.time())
-numberOfClients = 0
 
+numberOfClients = 0
+numberOfMetaloggers = 0
+numberOfMasters = 0
 
 clientServerInstance = {}
 
@@ -174,66 +176,88 @@ def addClientInstance():
 
     updateCurrentState(json_object)
 
-
-
 def addMetalogger():
-    updateGlobalInstance()
-    a_file = open("./terraform/sample.tf.json", "r")
-    json_object = json.load(a_file)
-    a_file.close()
 
-    # Code for updating output node in sample.json.tf
-    instance = metaLoggerInstance
-    json_object["resource"].append(instance)
+    global numberOfMetaloggers
+    global timestamp
 
-    instanceId = ""
-    instanceDetails = instance["openstack_compute_instance_v2"][0]
-    for key in instanceDetails: instanceId = key
+    numberOfMetaloggers += 1
+
+    metaloggerInstanceID = "METALOGGER_" + str(numberOfClients) + "_" + str(timestamp)
+
+    json_object = fetchCurrentState()
+
+    metaloggerInstance = {
+        "openstack_compute_instance_v2": [
+            {
+                metaloggerInstanceID: [
+                    {
+                        "flavor_name": "m1.tiny",
+                        "image_name": "ubuntu_dummy_config_snap101",
+                        "name": metaloggerInstanceID,
+                        "security_groups": [
+                            "default"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+    json_object["resource"].append(metaloggerInstance)
 
     json_object["output"].append({
-        instanceId : [
+        metaloggerInstanceID : [
             {
-                "value": "${openstack_compute_instance_v2."+ instanceId + ".access_ip_v4}"
+                "value": "${openstack_compute_instance_v2." + metaloggerInstanceID + ".access_ip_v4}"
             }
         ]
 
     })
 
-    # Code for updating output resource in sample.json.tf
-    a_file = open("./terraform/sample.tf.json", "w")
-    json.dump(json_object, a_file)
-    a_file.close()
+    updateCurrentState(json_object)
 
 def addMasterServer():
-    updateGlobalInstance()
-    a_file = open("./terraform/sample.tf.json", "r")
-    json_object = json.load(a_file)
-    a_file.close()
 
+    global numberOfMasters
+    global timestamp
 
-    # Code for updating output node in sample.json.tf
-    instance = masterInstance
-    json_object["resource"].append(instance)
+    numberOfMasters += 1
 
-    instanceId = ""
-    instanceDetails = instance["openstack_compute_instance_v2"][0]
-    for key in instanceDetails: instanceId = key
+    masterInstanceID = "MASTER" + str(numberOfMasters) + "_" + str(timestamp)
+
+    json_object = fetchCurrentState()
+
+    masterServerInstance = {
+        "openstack_compute_instance_v2": [
+            {
+                masterInstanceID: [
+                    {
+                        "flavor_name": "m1.tiny",
+                        "image_name": "ubuntu_dummy_config_snap101",
+                        "name": masterInstanceID,
+                        "security_groups": [
+                            "default"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+    json_object["resource"].append(masterServerInstance)
 
     json_object["output"].append({
-        instanceId : [
+        masterInstanceID : [
             {
-                "value": "${openstack_compute_instance_v2."+ instanceId + ".access_ip_v4}"
+                "value": "${openstack_compute_instance_v2." + masterInstanceID + ".access_ip_v4}"
             }
         ]
 
     })
 
+    updateCurrentState(json_object)
 
-
-
-    a_file = open("./terraform/sample.tf.json", "w")
-    json.dump(json_object, a_file)
-    a_file.close()
 
 def addChunkServer():
     updateGlobalInstance()
