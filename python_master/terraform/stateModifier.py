@@ -212,7 +212,7 @@ def addChunkServer():
                 volumeAttachInstanceID [
                     {
                         "instance_id": "${openstack_compute_instance_v2" + chunkServerInstanceID +" } ",
-                        "volume_id": "${openstack_blockstorage_volume_v2" + volumeInstanceID.id +"}"
+                        "volume_id": "${openstack_blockstorage_volume_v2" + volumeInstanceID +"}"
                     }
                 ]
             }
