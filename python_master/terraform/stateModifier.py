@@ -225,6 +225,16 @@ def addChunkServer():
     json_object["resource"].append(volumeInstance)
     json_object["resource"].append(volumeAttachInstance)
 
+    json_object["output"].append({
+        chunkServerInstanceID : [
+            {
+                "value": "${openstack_compute_instance_v2." + chunkServerInstanceID + ".access_ip_v4}"
+            }
+        ]
+
+    })
+
+
     updateCurrentState(json_object)
 
 
