@@ -23,8 +23,8 @@ num_clientservers = data['mfs_num_client_servers']
 
 # Terraform VM Creation
 # Create infratructure
-createInfrastructure(num_masterservers, num_chunkservers,
-                     num_metaloggers, num_clientservers)
+# createInfrastructure(num_masterservers, num_chunkservers,
+#                      num_metaloggers, num_clientservers)
 
 
 # Fetch the dictionary of type
@@ -59,4 +59,4 @@ createInfrastructure(num_masterservers, num_chunkservers,
 
 
 # Terraform Destroys
-# destroyInfrastructure()
+destroyInfrastructure()
