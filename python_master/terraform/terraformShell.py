@@ -1,4 +1,7 @@
 
+# This file interact with the shell script for the terraform
+# These shell files just contains the command required to be triggered for terraform to function
+
 import os
 import subprocess
 

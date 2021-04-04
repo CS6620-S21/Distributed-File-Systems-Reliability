@@ -1,8 +1,14 @@
+# This file is the first point of contact for the main_driver it provides methods to be used by it
+# Here the methods are a combination of state modifier function and terraform shell
+
+
 
 from terraform.terraformShell import *
 from terraform.stateModifier import *
 
 # from python_master.terraform.stateModifier import removeChunkServer
+
+
 
 
 def createInfrastructure(masterservers, chunkservers, metaloggers, clientservers):
@@ -51,4 +57,4 @@ def getIPs():
 
 
 def deleteChunkServer():
-    print("Client Destroyed")
+    print("Chunk server Destroyed")
