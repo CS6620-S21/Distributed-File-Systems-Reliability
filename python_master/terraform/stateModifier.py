@@ -2,6 +2,9 @@ import json
 import random
 count = random.randint(1,9999999)
 
+numberOfClients = 0
+
+
 clientServerInstance = {}
 
 metaLoggerInstance = {}
@@ -112,34 +115,62 @@ def updateGlobalInstance():
         ]
     }
 
-
-def addClientServer():
-    updateGlobalInstance()
+# Fetches the current state of the terraform state
+def fetchCurrentState():
     a_file = open("./terraform/sample.tf.json", "r")
     json_object = json.load(a_file)
     a_file.close()
+    return json_object
+
+# Updates the current state of the terraform state
+def updateCurrentState(json_object):
+    a_file = open("./terraform/sample.tf.json", "w")
+    json.dump(json_object, a_file)
+    a_file.close()
 
 
-    instance = clientServerInstance
-    json_object["resource"].append(instance)
+# Adds a Client Instance in the terraform state
+def addClientInstance():
 
-    instanceId = ""
-    instanceDetails = clientServerInstance["openstack_compute_instance_v2"][0]
-    for key in instanceDetails: instanceId = key
+    global numberOfClients
+
+    numberOfClients += 1
+
+    clientInstanceID = "CLIENT" + numberOfClients
+
+    json_object = fetchCurrentState()
+
+    clientServerInstance = {
+        "openstack_compute_instance_v2": [
+            {
+                clientInstanceID: [
+                    {
+                        "flavor_name": "m1.tiny",
+                        "image_name": "ubuntu_dummy_config_snap101",
+                        "name": clientInstanceID,
+                        "security_groups": [
+                            "default"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+    json_object["resource"].append(clientServerInstance)
 
     json_object["output"].append({
-        instanceId : [
+        clientInstanceID : [
             {
-                "value": "${openstack_compute_instance_v2."+ instanceId + ".access_ip_v4}"
+                "value": "${openstack_compute_instance_v2." + clientInstanceID + ".access_ip_v4}"
             }
         ]
 
     })
 
+    updateCurrentState(json_object)
 
-    a_file = open("./terraform/sample.tf.json", "w")
-    json.dump(json_object, a_file)
-    a_file.close()
+
 
 def addMetalogger():
     updateGlobalInstance()
