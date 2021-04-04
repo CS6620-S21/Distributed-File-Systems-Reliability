@@ -136,7 +136,7 @@ def addClientInstance():
 
     numberOfClients += 1
 
-    clientInstanceID = "CLIENT" + numberOfClients
+    clientInstanceID = "CLIENT" + str(numberOfClients)
 
     json_object = fetchCurrentState()
 
