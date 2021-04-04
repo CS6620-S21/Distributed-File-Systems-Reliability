@@ -3,7 +3,7 @@ import random
 import time
 count = random.randint(1,9999999)
 
-timestamp = time.time()
+timestamp = math.floor(time.time())
 numberOfClients = 0
 
 
