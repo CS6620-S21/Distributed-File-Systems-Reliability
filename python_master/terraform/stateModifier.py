@@ -1,7 +1,9 @@
 import json
 import random
+import time
 count = random.randint(1,9999999)
 
+timestamp = time.time()
 numberOfClients = 0
 
 
@@ -133,10 +135,11 @@ def updateCurrentState(json_object):
 def addClientInstance():
 
     global numberOfClients
+    global timestamp
 
     numberOfClients += 1
 
-    clientInstanceID = "CLIENT" + str(numberOfClients)
+    clientInstanceID = "CLIENT_" + str(numberOfClients) + "_" + str(timestamp)
 
     json_object = fetchCurrentState()
 
