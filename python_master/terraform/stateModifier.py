@@ -169,7 +169,7 @@ def addChunkServer():
     numberOfChunkServers += 1
     numberOfVolumes += 1
 
-    chunkServerInstanceID = "CHUNK_" + str(numberOfChunkServers) + "_" + str(timestamp)
+    chunkServerInstanceID = "CHUNKSERVER_" + str(numberOfChunkServers) + "_" + str(timestamp)
     volumeInstanceID = "VOLUME" + str(numberOfChunkServers) + "_" + str(timestamp)
     volumeAttachInstanceID = "VOLUMEATTACH" + str(numberOfChunkServers) + "_" + str(timestamp)
 
