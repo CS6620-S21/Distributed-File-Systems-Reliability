@@ -170,7 +170,7 @@ def addChunkServer():
     numberOfChunkServers += 1
     numberOfVolumes += 1
 
-    chunkServerInstanceID = "MASTER_" + str(numberOfChunkServers) + "_" + str(timestamp)
+    chunkServerInstanceID = "CHUNK_" + str(numberOfChunkServers) + "_" + str(timestamp)
     volumeInstanceID = "VOLUME" + str(numberOfChunkServers) + "_" + str(timestamp)
     volumeAttachInstanceID = "VOLUMEATTACH" + str(numberOfChunkServers) + "_" + str(timestamp)
 
@@ -205,8 +205,6 @@ def addChunkServer():
             }
         ]
     }
-
-
 
     volumeAttachInstance  = {
         "openstack_compute_volume_attach_v2": [
