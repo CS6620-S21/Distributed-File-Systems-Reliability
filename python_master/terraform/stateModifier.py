@@ -224,7 +224,7 @@ def addMasterServer():
 
     numberOfMasters += 1
 
-    masterInstanceID = "MASTER" + str(numberOfMasters) + "_" + str(timestamp)
+    masterInstanceID = "MASTER_" + str(numberOfMasters) + "_" + str(timestamp)
 
     json_object = fetchCurrentState()
 
