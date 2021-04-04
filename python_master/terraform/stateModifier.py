@@ -112,6 +112,7 @@ def updateGlobalInstance():
         ]
     }
 
+
 def addClientServer():
     updateGlobalInstance()
     a_file = open("./terraform/sample.tf.json", "r")
