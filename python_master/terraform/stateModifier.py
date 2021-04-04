@@ -13,7 +13,6 @@ import random
 import time
 import math
 
-count = random.randint(1,9999999)
 timestamp = math.floor(time.time())
 numberOfClients = 0
 numberOfMetaloggers = 0
@@ -249,6 +248,7 @@ def removeChunkServer():
         if("openstack_compute_instance_v2" in json_object["resource"][i].keys()):
             print(json_object["resource"][i]["openstack_compute_instance_v2"][0])
 
+# A method that empties the json file representing state
 def resetState():
     a_file = open("./terraform/sample.tf.json", "r")
     json_object = json.load(a_file)
