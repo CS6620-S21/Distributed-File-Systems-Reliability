@@ -183,7 +183,7 @@ def addMetalogger():
 
     numberOfMetaloggers += 1
 
-    metaloggerInstanceID = "METALOGGER_" + str(numberOfClients) + "_" + str(timestamp)
+    metaloggerInstanceID = "METALOGGER_" + str(numberOfMetaloggers) + "_" + str(timestamp)
 
     json_object = fetchCurrentState()
 
