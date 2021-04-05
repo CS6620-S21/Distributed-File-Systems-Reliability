@@ -67,6 +67,7 @@ print("STARTING TERRAFORM CREATION")
 
 
 print(fetchCurrentState())
+removeChunkServer()
 
 # time.sleep(120)
 # Terraform Destroys
