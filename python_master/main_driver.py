@@ -25,7 +25,7 @@ num_clientservers = data['mfs_num_client_servers']
 # Terraform VM Creation
 # Create infratructure
 
-print("STARTING TERRAFORM CREATION")
+# print("STARTING TERRAFORM CREATION")
 # createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
 
 
