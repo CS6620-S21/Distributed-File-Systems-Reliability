@@ -36,25 +36,25 @@ createInfrastructure(num_masterservers, num_chunkservers,
 #                         'client': {'client1': '10.0.0.190',
 #                                    'client2': '10.0.0.223',
 #                                    'client3': '10.0.0.79'}}
-hosts_inventory_dict = getIPs()
+# hosts_inventory_dict = getIPs()
 
 
 # print(hosts_inventory_dict)
 
 # Wait for VMs to boot up
-time.sleep(120)
+# time.sleep(120)
 
 
 # Performs setup of configuration of the different vms that has been created by terraform.
 # It creates a dynamic inventory hosts file to be used by ansible, which contains the server types
 # and IP address details.
 # It then executes the different ansible playbooks for Moose FS setup across different group of servers.
-ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
-ansible_conf.create_inventory(hosts_inventory_dict)
-ansible_conf.execute_ansible_playbook()
-
-
-time.sleep(120)
+# ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
+# ansible_conf.create_inventory(hosts_inventory_dict)
+# ansible_conf.execute_ansible_playbook()
+#
+#
+# time.sleep(120)
 
 # Testing framework execution using SSH_SCP
 copyFile(hosts_inventory_dict)
