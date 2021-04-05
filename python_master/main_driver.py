@@ -66,7 +66,7 @@ print("STARTING TERRAFORM CREATION")
 # print("SANITY TEST COMPLETE")
 
 
-fetchCurrentState()
+print(fetchCurrentState())
 
 # time.sleep(120)
 # Terraform Destroys
