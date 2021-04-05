@@ -63,6 +63,7 @@ print("SANITY TEST COMPLETE")
 
 
 
+
 # time.sleep(120)
 # Terraform Destroys
 # print("DESTROYING THE INFRASTRUCTURE")
