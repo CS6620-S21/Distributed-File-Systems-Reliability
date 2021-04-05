@@ -70,6 +70,11 @@ print(fetchCurrentState())
 
 print()
 
+
+removeClientInstance()
+
+print()
+
 removeChunkServer()
 
 # time.sleep(120)
