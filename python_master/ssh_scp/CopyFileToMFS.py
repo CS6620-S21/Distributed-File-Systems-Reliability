@@ -27,7 +27,7 @@ def copyFile(dict):
 
 
     sftp_client = mfsClientVM.open_sftp()
-    sftp_client.put("./ssh_scp/sample.sh", "/home/admin_user/sample.sh")
+    sftp_client.put("./ssh_scp/sample1.sh", "/home/admin_user/sample.sh")
 
 
     mfsClientVM.exec_command('sh sample1.sh')
