@@ -14,7 +14,7 @@ import time
 
 # Opening Input config JSON file
 with open('input_config.json') as json_file:
-    data = json.load(json_file) 
+    data = json.load(json_file)
 
 num_masterservers = data['mfs_num_master_servers']
 num_metaloggers = data['mfs_num_metalogger_servers']
@@ -26,7 +26,7 @@ num_clientservers = data['mfs_num_client_servers']
 # Create infratructure
 
 print("STARTING TERRAFORM CREATION")
-createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
+# createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
 
 
 # Fetch the dictionary of type
@@ -39,33 +39,34 @@ createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_cl
 #                                    'client2': '10.0.0.223',
 #                                    'client3': '10.0.0.79'}}
 
-hosts_inventory_dict = getIPs()
-print(hosts_inventory_dict)
-print("TERRAFORM CREATION COMPLETE")
+# hosts_inventory_dict = getIPs()
+# print(hosts_inventory_dict)
+# print("TERRAFORM CREATION COMPLETE")
 
 # Wait for VMs to boot up
-time.sleep(120)
+# time.sleep(120)
 
 
 # Performs setup of configuration of the different vms that has been created by terraform.
 # It creates a dynamic inventory hosts file to be used by ansible, which contains the server types
 # and IP address details.
 # It then executes the different ansible playbooks for Moose FS setup across different group of servers.
-print("STARTING ANSIBLE CONFIGURATION")
-ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
-ansible_conf.create_inventory(hosts_inventory_dict)
-ansible_conf.execute_ansible_playbook()
-print("ANSIBLE CONFIGURATION COMPLETE")
+# print("STARTING ANSIBLE CONFIGURATION")
+# ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
+# ansible_conf.create_inventory(hosts_inventory_dict)
+# ansible_conf.execute_ansible_playbook()
+# print("ANSIBLE CONFIGURATION COMPLETE")
 
-time.sleep(120)
+# time.sleep(120)
 
 # Testing framework execution using SSH_SCP
-print("EXECUTING A SANITY TEST")
-copyFile(hosts_inventory_dict)
-check(hosts_inventory_dict)
-print("SANITY TEST COMPLETE")
+# print("EXECUTING A SANITY TEST")
+# copyFile(hosts_inventory_dict)
+# check(hosts_inventory_dict)
+# print("SANITY TEST COMPLETE")
 
 
+fetchCurrentState()
 
 # time.sleep(120)
 # Terraform Destroys
