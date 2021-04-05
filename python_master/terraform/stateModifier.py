@@ -239,6 +239,7 @@ def removeChunkServer():
 
 
     json_object = fetchCurrentState()
+    dummy_object = fetchCurrentState()
 
     # print(json_object["resource"][0])
     index = 0
@@ -248,10 +249,11 @@ def removeChunkServer():
             for key in json_object["resource"][i]["openstack_compute_instance_v2"][0].keys():
                 if("CHUNKSERVER" in key):
                     index = i
+                    del dummy_object["resource"][i]
 
-    del json_object["resource"][i]
 
-    print(json_object)
+
+    print(dummy_object)
 
 # A method that empties the json file representing state
 def resetState():
