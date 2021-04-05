@@ -38,6 +38,7 @@ createInfrastructure(num_masterservers, num_chunkservers,
 #                                    'client3': '10.0.0.79'}}
 hosts_inventory_dict = getIPs()
 
+
 # print(hosts_inventory_dict)
 
 # Wait for VMs to boot up

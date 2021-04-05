@@ -41,16 +41,16 @@ def getIPs():
 
     for val in json_object.keys():
 
-        if("chunkserver" in val):
+        if("CHUNKSERVER" in val):
             hosts_inventory_dict["chunkserver"][val] = json_object[val]["value"]
 
-        if("metalogger" in val):
+        if("METALOGGER" in val):
             hosts_inventory_dict["metalogger"][val] = json_object[val]["value"]
 
-        if("client" in val):
+        if("CLIENT" in val):
             hosts_inventory_dict["client"][val] = json_object[val]["value"]
 
-        if("master" in val):
+        if("MASTER" in val):
             hosts_inventory_dict["master"][val] = json_object[val]["value"]
 
     return hosts_inventory_dict
