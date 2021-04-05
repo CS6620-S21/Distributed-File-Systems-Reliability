@@ -67,6 +67,9 @@ num_clientservers = data['mfs_num_client_servers']
 
 
 print(fetchCurrentState())
+
+print()
+
 removeChunkServer()
 
 # time.sleep(120)
