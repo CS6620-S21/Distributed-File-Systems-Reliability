@@ -62,8 +62,8 @@ check(hosts_inventory_dict)
 print("SANITY TEST COMPLETE")
 
 
-time.sleep(120)
 
+# time.sleep(120)
 # Terraform Destroys
 # print("DESTROYING THE INFRASTRUCTURE")
 # destroyInfrastructure()
