@@ -14,7 +14,7 @@ import time
 
 # Opening Input config JSON file
 with open('input_config.json') as json_file:
-    data = json.load(json_file)
+    data = json.load(json_file) 
 
 num_masterservers = data['mfs_num_master_servers']
 num_metaloggers = data['mfs_num_metalogger_servers']
