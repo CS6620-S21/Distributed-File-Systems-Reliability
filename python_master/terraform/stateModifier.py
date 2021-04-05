@@ -234,6 +234,20 @@ def addChunkServer():
 
     updateCurrentState(json_object)
 
+def removeClientInstance():
+    json_object = fetchCurrentState()
+    n = len(json_object["resource"])
+    index = -1
+    for i in range(0, n):
+        data = json.dumps(json_object["resource"][i])
+        if("CLIENT" in data):
+            index = i
+            break
+
+    if(index >= 0):
+        json_object["resource"].pop(index)
+
+    print(json_object)
 
 def removeChunkServer():
 
