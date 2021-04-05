@@ -248,6 +248,7 @@ def removeChunkServer():
 
         data = json.dumps(json_object["resource"][i])
         if("CHUNKSERVER" in data):
+            print(json_object["resource"][i])
             print(i)
 
         # if("openstack_compute_instance_v2" in json_object["resource"][i].keys()):
