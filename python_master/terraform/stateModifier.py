@@ -41,7 +41,7 @@ def addClientInstance():
 
     numberOfClients += 1
 
-    clientInstanceID = str(timestamp) + "_CLIENT_" + str(numberOfClients)
+    clientInstanceID = "CLUSTER_" + str(timestamp) + "_CLIENT_" + str(numberOfClients)
 
     json_object = fetchCurrentState()
 
@@ -83,7 +83,7 @@ def addMetalogger():
 
     numberOfMetaloggers += 1
 
-    metaloggerInstanceID = str(timestamp) + "_METALOGGER_" + str(numberOfMetaloggers)
+    metaloggerInstanceID = "CLUSTER_" + str(timestamp) + "_METALOGGER_" + str(numberOfMetaloggers)
 
     json_object = fetchCurrentState()
 
@@ -125,7 +125,7 @@ def addMasterServer():
 
     numberOfMasters += 1
 
-    masterInstanceID = str(timestamp) + "_MASTER_" + str(numberOfMasters)
+    masterInstanceID = "CLUSTER_" + str(timestamp) + "_MASTER_" + str(numberOfMasters)
 
     json_object = fetchCurrentState()
 
@@ -169,9 +169,9 @@ def addChunkServer():
     numberOfChunkServers += 1
     numberOfVolumes += 1
 
-    chunkServerInstanceID =  str(timestamp) + "_CHUNKSERVER_" + str(numberOfChunkServers)
-    volumeInstanceID = str(timestamp) + "_VOLUME" + str(numberOfChunkServers)
-    volumeAttachInstanceID = str(timestamp) + "_VOLUMEATTACH" + str(numberOfChunkServers) + "_" + str(timestamp)
+    chunkServerInstanceID = "CLUSTER_" + str(timestamp) + "_CHUNKSERVER_" + str(numberOfChunkServers)
+    volumeInstanceID = "CLUSTER_" + str(timestamp) + "_VOLUME" + str(numberOfChunkServers)
+    volumeAttachInstanceID = "CLUSTER_" + str(timestamp) + "_VOLUMEATTACH" + str(numberOfChunkServers) + "_" + str(timestamp)
 
     json_object = fetchCurrentState()
 
