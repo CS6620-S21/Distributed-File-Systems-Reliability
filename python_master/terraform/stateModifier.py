@@ -237,9 +237,8 @@ def addChunkServer():
 
 def removeChunkServer():
 
-    a_file = open("./terraform/sample.tf.json", "r")
-    json_object = json.load(a_file)
-    a_file.close()
+
+    json_object = fetchCurrentState()
 
     # print(json_object["resource"][0])
 
