@@ -255,7 +255,8 @@ def removeChunkServer():
         #             print(i)
         # dummy_object["resource"].pop(i)
 
-
+    json_object["resource"].pop(1)
+    print(len(json_object["resource"]))
 
     # print(dummy_object)
 
