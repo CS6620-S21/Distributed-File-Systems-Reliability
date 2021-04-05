@@ -21,6 +21,7 @@ num_chunkservers = data['mfs_num_chunk_servers']
 num_clientservers = data['mfs_num_client_servers']
 
 
+
 # Terraform VM Creation
 # Create infratructure
 # createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
