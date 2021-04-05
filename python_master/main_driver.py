@@ -35,9 +35,9 @@ num_clientservers = data['mfs_num_client_servers']
 #                         'client': {'client1': '10.0.0.190',
 #                                    'client2': '10.0.0.223',
 #                                    'client3': '10.0.0.79'}}
-# hosts_inventory_dict = getIPs()
+hosts_inventory_dict = getIPs()
 
-# print(hosts_inventory_dict)
+print(hosts_inventory_dict)
 
 # Wait for VMs to boot up
 # time.sleep(120)
