@@ -7,6 +7,8 @@ from ssh_scp.CopyFileToMFS import *
 from ssh_scp.CheckMFSFile import *
 from terraform.terraformDriver import *
 from ansible.ansible_driver import *
+from terraform.terraformShell import *
+from terraform.stateModifier import *
 
 
 import json
@@ -66,16 +68,16 @@ num_clientservers = data['mfs_num_client_servers']
 # print("SANITY TEST COMPLETE")
 
 
-print(fetchCurrentState())
 
-print()
 
 
 removeClientInstance()
+init()
+run()
 
-print()
 
-removeChunkServer()
+
+# removeChunkServer()
 
 # time.sleep(120)
 # Terraform Destroys
