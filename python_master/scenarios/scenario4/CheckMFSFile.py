@@ -35,6 +35,13 @@ def check(dict):
     stdin.close()
     resp = ''.join(outlines)
     print(resp)
+
+
+
+
+    print("Destroy client 1 and client2 manually now")
+
+
     if "test1" in resp and "test2" in resp and "test3" in resp:
         print("Test Success")
         return
