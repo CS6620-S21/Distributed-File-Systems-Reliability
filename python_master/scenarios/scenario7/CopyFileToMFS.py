@@ -11,9 +11,7 @@ def copy_and_execute(dict, file_name):
     mfsClientVM.load_system_host_keys()
 
     # mfsClientVM.connect(hostname=dict['client']['client1'], username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
-    connectVM = ''
-    for key in dict['client']:
-        connectVM = dict['client'][key]
+    connectVM = dict['client']['client1']
 
     mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='cs6620Key101.pem')
 
