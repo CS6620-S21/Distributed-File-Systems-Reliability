@@ -98,4 +98,6 @@ dict = {'master': {'master1': '10.0.0.200'},
                    'client3': '10.0.0.123'}}
 
 copyFile1(dict)
+copyFile2(dict)
+# copyFile3(dict)
 
