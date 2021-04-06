@@ -3,16 +3,21 @@ from paramiko.client import AutoAddPolicy, SSHClient
 
 mfsClientVM = SSHClient()
 
+list = []
 
 
 def copyFile1(dict):
+    list.append(dict['client']['client1'])
+    list.append(dict['client']['client2'])
+    list.append(dict['client']['client3'])
+
 
     mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     mfsClientVM.load_system_host_keys()
 
     # mfsClientVM.connect(hostname=dict['client']['client1'], username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
 
-    connectVM = '10.0.0.151'
+    connectVM = list[0]
     # connectVM = list(dict['client'])[0]
     mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='cs6620Key101.pem')
 
@@ -35,7 +40,7 @@ def copyFile2(dict):
     # mfsClientVM.connect(hostname=dict['client']['client1'], username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
 
     # connectVM = list(dict['client'])[1]
-    connectVM = '10.0.0.131'
+    connectVM = list[1]
 
     mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='cs6620Key101.pem')
 
@@ -60,7 +65,7 @@ def copyFile3(dict):
     # mfsClientVM.connect(hostname=dict['client']['client1'], username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
     connectVM = ''
     #connectVM = list(dict['client'])[2]
-    connectVM = '10.0.0.123'
+    connectVM = list[2]
 
 
 
