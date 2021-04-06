@@ -3,10 +3,10 @@
 
 # /Users/aksha/OneDrive/Documents/projects/git/Distributed-File-Systems-Reliability
 
-from scenarios.scenario7.CopyFileToMFS import *
-from scenarios.scenario7.CheckMFSFile import *
-from terraform.driver import *
-from ansible.ansible_driver import *
+from CopyFileToMFS import *
+from CheckMFSFile import *
+# from terraform.driver import *
+# from ansible.ansible_driver import *
 
 import json
 import time
