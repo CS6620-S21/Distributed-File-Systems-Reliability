@@ -28,7 +28,7 @@ def check(dict):
         #     print("The client ip/name is: cl2")
         # else:
         #     print("The client ip/name is: ", client)
-        print("File name is:")
+        print("Test result:")
         stdin, stdout, stderr = mfsClientVM.exec_command('cd /mnt/mfs/test7; grep -c "A" testfile.txt')
         outlines = stdout.readlines()
         stdin.close()
@@ -37,7 +37,7 @@ def check(dict):
         # resultList.append(resp)
 
     # for i in range(0,len(resultList) - 1):
-        if resp != 0 and resp != "0" and resp != '0':
+        if resp != "0":
             print("Test failure")
             return
 
