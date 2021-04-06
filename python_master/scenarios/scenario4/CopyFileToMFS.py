@@ -99,5 +99,5 @@ dict = {'master': {'master1': '10.0.0.200'},
 
 copyFile1(dict)
 copyFile2(dict)
-# copyFile3(dict)
+copyFile3(dict)
 
