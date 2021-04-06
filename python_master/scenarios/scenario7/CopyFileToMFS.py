@@ -15,7 +15,7 @@ def copy_and_execute(dict, file_name):
     for key in dict['client']:
         connectVM = dict['client'][key]
 
-    mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='./ssh_scp/real_key.pem')
+    mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='cs6620Key101.pem')
 
     stdin, stdout, stderr = mfsClientVM.exec_command('pwd')
     outlines = stdout.readlines()
