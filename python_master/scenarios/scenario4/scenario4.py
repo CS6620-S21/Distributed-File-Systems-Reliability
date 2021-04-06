@@ -1,5 +1,5 @@
-from python_master.scenarios.scenario4.CheckMFSFile import *
-from python_master.scenarios.scenario4.CopyFileToMFS import *
+from CheckMFSFile import *
+from CopyFileToMFS import *
 # from python_master.terraform.driver import *
 from python_master.ansible.ansible_driver import *
 
