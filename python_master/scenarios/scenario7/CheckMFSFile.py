@@ -37,7 +37,7 @@ def check(dict):
         resultList.append(resp)
 
     for i in range(0,len(resultList) - 1):
-        if resultList[i] != 0 or resultList[i] != "0":
+        if resultList[i] != 0 and resultList[i] != "0":
             print("Test failure")
             return
 
