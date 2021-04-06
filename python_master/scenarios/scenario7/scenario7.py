@@ -54,8 +54,8 @@ hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
 
 
 # Copy and execute first and second part of script
-copy_and_execute(hosts_inventory_dict, "test7_1.sh")
-copy_and_execute(hosts_inventory_dict, "test7_2.sh")
+# copy_and_execute(hosts_inventory_dict, "test7_1.sh")
+# copy_and_execute(hosts_inventory_dict, "test7_2.sh")
 
 # Kill client1
 # TODO
