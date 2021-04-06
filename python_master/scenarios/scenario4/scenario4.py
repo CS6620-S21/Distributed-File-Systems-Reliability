@@ -32,7 +32,7 @@ hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
                                    'client3': '10.0.0.123'}}
 # hosts_inventory_dict = getIPs()
 
-print(hosts_inventory_dict)
+
 
 # Wait for VMs to boot up
 # time.sleep(120)
