@@ -33,11 +33,12 @@ def check(dict):
         outlines = stdout.readlines()
         stdin.close()
         resp = ''.join(outlines)
+        resp = int(resp)
         print(resp)
         # resultList.append(resp)
 
     # for i in range(0,len(resultList) - 1):
-        if resp == '0':
+        if resp == 0:
             print("Test failure")
             return
 
