@@ -23,7 +23,7 @@ def check(dict):
 
         #.ssh/cs6620Key101.pem
         # mfsClientVM.connect(hostname=hostname, username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
-        mfsClientVM.connect(hostname=hostname, username='admin_user', key_filename='./ssh_scp/real_key.pem')
+        mfsClientVM.connect(hostname=hostname, username='admin_user', key_filename='cs6620Key101.pem')
         # if client == '10.0.0.241':
         #     print("The client ip/name is: cl2")
         # else:
