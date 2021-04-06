@@ -31,7 +31,7 @@ def copy_and_execute(dict, file_name):
 
     mfsClientVM.exec_command('sh ' + file_name)
 
-    printf("File %s copied to MFS and executed", file_name)
+    print("File %s copied to MFS and executed", file_name)
 
 # if __name__ == '__main__':
 #     copyFile(hostname)
