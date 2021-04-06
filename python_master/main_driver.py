@@ -9,6 +9,7 @@ from terraform.terraformDriver import *
 from ansible.ansible_driver import *
 from terraform.terraformShell import *
 from terraform.stateModifier import *
+from scenario1.scenario1_driver import *
 
 
 
@@ -42,23 +43,23 @@ createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_cl
 #                                    'client2': '10.0.0.223',
 #                                    'client3': '10.0.0.79'}}
 
-# hosts_inventory_dict = getIPs()
-# print(hosts_inventory_dict)
-# print("TERRAFORM CREATION COMPLETE")
+hosts_inventory_dict = getIPs()
+print(hosts_inventory_dict)
+print("TERRAFORM CREATION COMPLETE")
 
 # Wait for VMs to boot up
-# time.sleep(120)
+time.sleep(120)
 
 
 # Performs setup of configuration of the different vms that has been created by terraform.
 # It creates a dynamic inventory hosts file to be used by ansible, which contains the server types
 # and IP address details.
 # It then executes the different ansible playbooks for Moose FS setup across different group of servers.
-# print("STARTING ANSIBLE CONFIGURATION")
-# ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
-# ansible_conf.create_inventory(hosts_inventory_dict)
-# ansible_conf.execute_ansible_playbook()
-# print("ANSIBLE CONFIGURATION COMPLETE")
+print("STARTING ANSIBLE CONFIGURATION")
+ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
+ansible_conf.create_inventory(hosts_inventory_dict)
+ansible_conf.execute_ansible_playbook()
+print("ANSIBLE CONFIGURATION COMPLETE")
 
 # time.sleep(120)
 
@@ -72,7 +73,7 @@ createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_cl
 
 
 
-deleteClientInstance()
+# deleteClientInstance()
 
 
 
