@@ -12,7 +12,8 @@ def copyFile1(dict):
 
     # mfsClientVM.connect(hostname=dict['client']['client1'], username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
 
-    connectVM = list(dict['client'])[0]
+    connectVM = '10.0.0.151'
+    # connectVM = list(dict['client'])[0]
     mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='cs6620Key101.pem')
 
     sftp_client = mfsClientVM.open_sftp()
