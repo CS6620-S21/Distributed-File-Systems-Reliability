@@ -260,9 +260,9 @@ def removeClientInstance():
     if(index >= 0):
         json_object["output"].pop(index)
 
-    print()
-    print(json_object)
-    print()
+    # print()
+    # print(json_object)
+    # print()
     updateCurrentState(json_object)
 
 def removeChunkServer():

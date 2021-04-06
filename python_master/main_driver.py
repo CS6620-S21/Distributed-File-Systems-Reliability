@@ -28,7 +28,7 @@ num_clientservers = data['mfs_num_client_servers']
 # Create infratructure
 
 # print("STARTING TERRAFORM CREATION")
-# createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
+createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
 
 
 # Fetch the dictionary of type
@@ -71,9 +71,7 @@ num_clientservers = data['mfs_num_client_servers']
 
 
 
-removeClientInstance()
-init()
-run()
+deleteClientInstance()
 
 
 
