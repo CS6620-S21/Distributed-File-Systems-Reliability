@@ -4,29 +4,27 @@ from paramiko.client import AutoAddPolicy, SSHClient
 
 
 
-# clients = ['cl1', '10.0.0.241', 'cl3']
-
-# clients = []
-# resultList = []
+list = []
 def check(dict):
+
+    list.append(dict['client']['client1'])
+    list.append(dict['client']['client2'])
+    list.append(dict['client']['client3'])
     # for key in dict['client']:
     #     clients.append(dict['client'][key])
 
 
     # for client in clients:
 
-    client = list(dict['client'])[2]
+    client = list[2]
     mfsClientVM = SSHClient()
-
-
-    hostname=client
 
     mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     mfsClientVM.load_system_host_keys()
 
     #.ssh/cs6620Key101.pem
     # mfsClientVM.connect(hostname=hostname, username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
-    mfsClientVM.connect(hostname=hostname, username='admin_user', key_filename='./ssh_scp/real_key.pem')
+    mfsClientVM.connect(hostname=client, username='admin_user', key_filename='cs6620Key101.pem')
     # if client == '10.0.0.241':
     #     print("The client ip/name is: cl2")
     # else:
@@ -37,7 +35,7 @@ def check(dict):
     stdin.close()
     resp = ''.join(outlines)
     print(resp)
-    if "test1" in resp and "test2" in resp:
+    if "test1" in resp and "test2" in resp and "test3" in resp:
         print("Test Success")
         return
     print("Test Failure")

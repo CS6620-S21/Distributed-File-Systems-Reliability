@@ -7,13 +7,13 @@ import json
 import time
 
 # Opening Input config JSON file
-with open('input_config.json') as json_file:
-    data = json.load(json_file)
-
-num_masterservers = data['mfs_num_master_servers']
-num_metaloggers = data['mfs_num_metalogger_servers']
-num_chunkservers = data['mfs_num_chunk_servers']
-num_clientservers = data['mfs_num_client_servers']
+# with open('input_config.json') as json_file:
+#     data = json.load(json_file)
+#
+# num_masterservers = data['mfs_num_master_servers']
+# num_metaloggers = data['mfs_num_metalogger_servers']
+# num_chunkservers = data['mfs_num_chunk_servers']
+# num_clientservers = data['mfs_num_client_servers']
 
 # Terraform VM Creation
 # Create infratructure
