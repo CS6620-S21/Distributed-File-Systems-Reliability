@@ -25,8 +25,9 @@ def copy_and_execute(dict, file_name):
 
 
     sftp_client = mfsClientVM.open_sftp()
-    source = "./scenarios/scenario7/" + file_name
+    source = file_name
     dest = "/home/admin_user/" + file_name
+    # printf("source %s copied to MFS and executed", file_name)
     sftp_client.put(source, dest)
 
 
