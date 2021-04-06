@@ -60,9 +60,9 @@ copy_and_execute(hosts_inventory_dict, "test7_2.sh")
 # Kill client1
 # TODO
 
-# # Check the status of the file
+# Check the status of the file
 # hosts_inventory_dict = getIPs()
-# check(hosts_inventory_dict)
+check(hosts_inventory_dict)
 
 # # Terraform Destroys
 # destroyInfrastructure()
