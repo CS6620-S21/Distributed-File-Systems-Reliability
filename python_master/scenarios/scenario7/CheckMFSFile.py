@@ -16,6 +16,7 @@ def check(dict):
     for client in clients:
         mfsClientVM = SSHClient()
 
+
         hostname=client
 
         mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -29,15 +30,15 @@ def check(dict):
         # else:
         #     print("The client ip/name is: ", client)
         print("File name is:")
-        stdin, stdout, stderr = mfsClientVM.exec_command('cd /mnt/mfs/test7; grep -c "B" testfile.txt')
+        stdin, stdout, stderr = mfsClientVM.exec_command('cd ..; cd ..; cd mnt; cd mfs; ls')
         outlines = stdout.readlines()
         stdin.close()
         resp = ''.join(outlines)
         print(resp)
         resultList.append(resp)
 
-    for i in range(0,len(resultList) - 1):
-        if resultList[i] != 0 | resultList[i] != "0":
+    for i in range(1,len(resultList)):
+        if resultList[i-1] != resultList[i]:
             print("Test failure")
             return
 
