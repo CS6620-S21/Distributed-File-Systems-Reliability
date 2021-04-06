@@ -249,9 +249,21 @@ def removeClientInstance():
     if(index >= 0):
         json_object["resource"].pop(index)
 
+
+    index = -1
+    for i in range(0, n):
+        data = json.dumps(json_object["output"][i])
+        if("CLIENT" in data):
+            index = i
+            break
+
+    if(index >= 0):
+        json_object["output"].pop(index)
+
     print()
     print(json_object)
     print()
+    updateCurrentState(json_object)
 
 def removeChunkServer():
 
@@ -278,6 +290,7 @@ def removeChunkServer():
 
     json_object["resource"].pop(1)
     print(len(json_object["resource"]))
+    # updateCurrentState(json_object)
 
     # print(dummy_object)
 
