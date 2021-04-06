@@ -28,14 +28,14 @@ import time
 
 
 # # Fetch the dictionary of type
-# # hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
-# #                         'metalogger': {'mettalogger1': '10.0.0.154'},
-# #                         'chunkserver': {'chunkserver1': '10.0.0.62',
-# #                                         'chunkserver2': '10.0.0.107',
-# #                                         'chunkserver3': '10.0.0.162'},
-# #                         'client': {'client1': '10.0.0.190',
-# #                                    'client2': '10.0.0.223',
-# #                                    'client3': '10.0.0.79'}}
+hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
+                        'metalogger': {'mettalogger1': '10.0.0.154'},
+                        'chunkserver': {'chunkserver1': '10.0.0.62',
+                                        'chunkserver2': '10.0.0.107',
+                                        'chunkserver3': '10.0.0.162'},
+                        'client': {'client1': '10.0.0.151',
+                                   'client2': '10.0.0.131',
+                                   'client3': '10.0.0.123'}}
 # hosts_inventory_dict = getIPs()
 
 # print(hosts_inventory_dict)
