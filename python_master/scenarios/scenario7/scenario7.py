@@ -20,7 +20,7 @@ import time
 # num_chunkservers = data['mfs_num_chunk_servers']
 # num_clientservers = data['mfs_num_client_servers']
 
-
+ 
 # # Terraform VM Creation
 # # Create infratructure
 # createInfrastructure(num_masterservers, num_chunkservers,
@@ -54,8 +54,8 @@ import time
 
 
 # Copy and execute first and second part of script
-copyFile(hosts_inventory_dict, "test7_1.sh")
-copyFile(hosts_inventory_dict, "test7_2.sh")
+copy_and_execute(hosts_inventory_dict, "test7_1.sh")
+copy_and_execute(hosts_inventory_dict, "test7_2.sh")
 
 # Kill client1
 # TODO
