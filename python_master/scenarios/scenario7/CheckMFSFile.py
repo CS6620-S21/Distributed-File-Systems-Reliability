@@ -29,7 +29,7 @@ def check(dict):
         # else:
         #     print("The client ip/name is: ", client)
         print("File name is:")
-        stdin, stdout, stderr = mfsClientVM.exec_command('cd /mnt/mfs/test7; grep -c "B" testfile.txt')
+        stdin, stdout, stderr = mfsClientVM.exec_command('cd /mnt/mfs/test7; grep -c "A" testfile.txt')
         outlines = stdout.readlines()
         stdin.close()
         resp = ''.join(outlines)
