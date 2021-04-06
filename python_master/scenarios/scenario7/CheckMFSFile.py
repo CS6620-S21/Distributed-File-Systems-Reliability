@@ -37,7 +37,7 @@ def check(dict):
         # resultList.append(resp)
 
     # for i in range(0,len(resultList) - 1):
-        if resp != "0":
+        if resp == "0":
             print("Test failure")
             return
 
