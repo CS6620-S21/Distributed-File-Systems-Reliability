@@ -17,8 +17,9 @@ def copyFile1(dict):
 
     sftp_client = mfsClientVM.open_sftp()
 
-    sftp_client.put("./ssh_scp/sample1.sh", "/home/admin_user/sample1.sh")
+    #sftp_client.put("./ssh_scp/sample1.sh", "/home/admin_user/sample1.sh")
     # sftp_client.put("sample1.sh", "/home/admin_user/sample1.sh")
+    sftp_client.put("sample1.sh", "/home/admin_user/sample1.sh")
 
     mfsClientVM.exec_command('sh sample1.sh')
 
@@ -38,7 +39,8 @@ def copyFile2(dict):
 
 
     sftp_client = mfsClientVM.open_sftp()
-    sftp_client.put("./ssh_scp/sample2.sh", "/home/admin_user/sample2.sh")
+    # sftp_client.put("./ssh_scp/sample2.sh", "/home/admin_user/sample2.sh")
+    sftp_client.put("sample2.sh", "/home/admin_user/sample2.sh")
     #sftp_client.put("sample2.sh", "/home/admin_user/sample2.sh")
 
 
@@ -62,8 +64,9 @@ def copyFile3(dict):
     mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='./ssh_scp/real_key.pem')
 
     sftp_client = mfsClientVM.open_sftp()
-    sftp_client.put("./ssh_scp/sample3.sh", "/home/admin_user/sample3.sh")
+    #sftp_client.put("./ssh_scp/sample3.sh", "/home/admin_user/sample3.sh")
     #sftp_client.put("sample3.sh", "/home/admin_user/sample3.sh")
+    sftp_client.put("sample3.sh", "/home/admin_user/sample3.sh")
 
 
     mfsClientVM.exec_command('sh sample3.sh')
@@ -77,5 +80,14 @@ def copyFile3(dict):
 #git pull
 #intelij commit
 #git push
+dict = {'master': {'master1': '10.0.0.200'},
+        'metalogger': {'mettalogger1': '10.0.0.154'},
+        'chunkserver': {'chunkserver1': '10.0.0.62',
+                        'chunkserver2': '10.0.0.107',
+                        'chunkserver3': '10.0.0.162'},
+        'client': {'client1': '10.0.0.151',
+                   'client2': '10.0.0.131',
+                   'client3': '10.0.0.123'}}
 
+copyFile1(dict)
 
