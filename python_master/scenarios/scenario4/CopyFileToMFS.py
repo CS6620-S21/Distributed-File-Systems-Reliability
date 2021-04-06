@@ -34,7 +34,8 @@ def copyFile2(dict):
 
     # mfsClientVM.connect(hostname=dict['client']['client1'], username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
 
-    connectVM = list(dict['client'])[1]
+    # connectVM = list(dict['client'])[1]
+    connectVM = '10.0.0.131'
 
     mfsClientVM.connect(hostname=connectVM, username='admin_user', key_filename='cs6620Key101.pem')
 
@@ -58,7 +59,8 @@ def copyFile3(dict):
 
     # mfsClientVM.connect(hostname=dict['client']['client1'], username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
     connectVM = ''
-    connectVM = list(dict['client'])[2]
+    #connectVM = list(dict['client'])[2]
+    connectVM = '10.0.0.123'
 
 
 
