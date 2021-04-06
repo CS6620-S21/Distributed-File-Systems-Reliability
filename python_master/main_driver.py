@@ -48,7 +48,7 @@ print(hosts_inventory_dict)
 print("TERRAFORM CREATION COMPLETE")
 
 # Wait for VMs to boot up
-time.sleep(120)
+time.sleep(180)
 
 
 # Performs setup of configuration of the different vms that has been created by terraform.
