@@ -34,10 +34,10 @@ def check(dict):
         stdin.close()
         resp = ''.join(outlines)
         print(resp)
-        resultList.append(resp)
+        # resultList.append(resp)
 
-    for i in range(0,len(resultList) - 1):
-        if resultList[i] != 0 and resultList[i] != "0" and resultList[i] != '0':
+    # for i in range(0,len(resultList) - 1):
+        if resp != 0 and resp != "0" and resp != '0':
             print("Test failure")
             return
 
