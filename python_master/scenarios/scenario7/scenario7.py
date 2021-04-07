@@ -35,7 +35,7 @@ hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
                                         'chunkserver3': '10.0.0.162'},
                         'client': {'client1': '10.0.0.151',
                                    'client2': '10.0.0.131',
-                                   'client3': '10.0.0.123'}}
+                                   'client3': '10.0.0.123'}}       
 # hosts_inventory_dict = getIPs()
 
 # print(hosts_inventory_dict)
