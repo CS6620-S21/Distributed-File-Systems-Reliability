@@ -44,7 +44,7 @@ createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_cl
 hosts_inventory_dict = getIPs()
 
 
-for key in hosts_inventory_dict['client'].keys():
+for key in hosts_inventory_dict['chunkserver'].keys():
     print("LOG")
     print(key)
     deleteResource(key)
