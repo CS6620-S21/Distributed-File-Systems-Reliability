@@ -3,9 +3,7 @@ from paramiko.client import AutoAddPolicy, SSHClient
 import paramiko
 import sys
 
-
-
-
+"""
 class AbstractScenarioDriver(ABC):
 
     def __init__(self) -> None:
@@ -41,10 +39,12 @@ class AbstractScenarioDriver(ABC):
     def clear_infrastructure(self) -> None:
         pass
 
+    """
 
-class Scenario1Driver(AbstractScenarioDriver):
 
-    def __init__(self, hosts_inventory_dict: dict, remote_host_ip: str, local_source_filepath: str, remote_dest_filepath: str) -> None:
+class Scenario1Driver():
+
+    def __init__(self, hosts_inventory_dict: dict, local_source_filepath: str, remote_dest_filepath: str) -> None:
         super().__init__()
         self.mfs_ssh_client = SSHClient()
         self.hosts_inventory_dict = hosts_inventory_dict
@@ -60,10 +60,10 @@ class Scenario1Driver(AbstractScenarioDriver):
     def scenario_execution(self) -> bool:
         # Perform Script copying & then execution on client 1 to create dummy file on the mounted moosefs drive
         run_result = self.__script_copy_execute_remote_vm(self.local_source_filepath,
-                                                        self.remote_dest_filepath,
-                                                        self.remote_primary_client_host_ip,
-                                                        self.remote_host_username,
-                                                        self.ssh_key_filepath)
+                                                          self.remote_dest_filepath,
+                                                          self.remote_primary_client_host_ip,
+                                                          self.remote_host_username,
+                                                          self.ssh_key_filepath)
         if run_result == False:
             print("Unable to copy and execute script on primary client VM")
             return False
@@ -100,11 +100,11 @@ class Scenario1Driver(AbstractScenarioDriver):
         return self.__verify_file_name_content(file_name_content_dict)
 
     def __script_copy_execute_remote_vm(self,
-                                      source_filepath: str,
-                                      dest_filepath: str,
-                                      remote_host_ip: str,
-                                      remote_host_username: str,
-                                      ssh_key_filepath: str) -> bool:
+                                        source_filepath: str,
+                                        dest_filepath: str,
+                                        remote_host_ip: str,
+                                        remote_host_username: str,
+                                        ssh_key_filepath: str) -> bool:
         try:
             self.__establish_ssh_connection_to_remote(remote_host_ip,
                                                       remote_host_username,
@@ -202,13 +202,17 @@ class Scenario1Driver(AbstractScenarioDriver):
         return True
 
 
-hosts_inventory_dict = {'master': {'CLUSTER_1617744534_MASTER_1': '10.0.0.186'},
-                        'metalogger': {'CLUSTER_1617744534_METALOGGER_1': '10.0.0.70'},
-                        'chunkserver': {'CLUSTER_1617744534_CHUNKSERVER_1': '10.0.0.126',
-                                        'CLUSTER_1617744534_CHUNKSERVER_2': '10.0.0.245',
-                                        },
-                        'client': {'CLUSTER_1617744534_CLIENT_1': '10.0.0.76',
-                                   'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
-                                   'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
-
-if __name__== "__main__":
+if __name__ == "__main__":
+    hosts_inventory_dict = {'master': {'CLUSTER_1617744534_MASTER_1': '10.0.0.186'},
+                            'metalogger': {'CLUSTER_1617744534_METALOGGER_1': '10.0.0.70'},
+                            'chunkserver': {'CLUSTER_1617744534_CHUNKSERVER_1': '10.0.0.126',
+                                            'CLUSTER_1617744534_CHUNKSERVER_2': '10.0.0.245',
+                                            },
+                            'client': {'CLUSTER_1617744534_CLIENT_1': '10.0.0.76',
+                                       'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
+                                       'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
+    local_source_filepath = "~/Distributed-File-Systems-Reliability-Sameer/python_master/scenarios/scenario1/script_s1.sh"
+    remote_dest_filepath = "~/script_s1.sh"
+    s1_driver = Scenario1Driver(
+        hosts_inventory_dict, local_source_filepath, remote_dest_filepath)
+    s1_driver.scenario_execution()
