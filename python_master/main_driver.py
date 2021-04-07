@@ -41,7 +41,13 @@ createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_cl
 #                                    'client2': '10.0.0.223',
 #                                    'client3': '10.0.0.79'}}
 
-# hosts_inventory_dict = getIPs()
+hosts_inventory_dict = getIPs()
+
+
+for key in hosts_inventory_dict['chunkserver'].keys():
+    deleteResource(hosts_inventory_dict)
+
+
 # print(hosts_inventory_dict)
 # print("TERRAFORM CREATION COMPLETE")
 
@@ -71,7 +77,7 @@ createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_cl
 
 
 
-deleteClientInstance()
+
 
 
 
