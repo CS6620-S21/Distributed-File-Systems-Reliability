@@ -45,7 +45,7 @@ hosts_inventory_dict = getIPs()
 
 
 for key in hosts_inventory_dict['chunkserver'].keys():
-    deleteResource(hosts_inventory_dict)
+    deleteResource(key)
 
 
 # print(hosts_inventory_dict)
