@@ -1,4 +1,3 @@
-
 # This file contains a combination of methods which can be used by the terraform_driver file
 # Here the methods are an amalgamation of three abstraction
 # Terraform itself for specifying type of vms with volume, without volume, only volumes, mounting
@@ -19,6 +18,8 @@ numberOfMetaloggers = 0
 numberOfMasters = 0
 numberOfChunkServers = 0
 numberOfVolumes = 0
+numberOfVolumeAttach = 0
+
 
 # Fetches the current state of the terraform state
 def fetchCurrentState():
@@ -27,15 +28,16 @@ def fetchCurrentState():
     a_file.close()
     return json_object
 
+
 # Updates the current state of the terraform state
 def updateCurrentState(json_object):
     a_file = open("./terraform/sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
 
+
 # Adds a Client Instance in the terraform state
 def addClientInstance():
-
     global numberOfClients
     global timestamp
 
@@ -65,7 +67,7 @@ def addClientInstance():
     json_object["resource"].append(clientServerInstance)
 
     json_object["output"].append({
-        clientInstanceID : [
+        clientInstanceID: [
             {
                 "value": "${openstack_compute_instance_v2." + clientInstanceID + ".access_ip_v4}"
             }
@@ -75,9 +77,9 @@ def addClientInstance():
 
     updateCurrentState(json_object)
 
+
 # Adds a Metalogger Instance in the terraform state
 def addMetalogger():
-
     global numberOfMetaloggers
     global timestamp
 
@@ -107,7 +109,7 @@ def addMetalogger():
     json_object["resource"].append(metaloggerInstance)
 
     json_object["output"].append({
-        metaloggerInstanceID : [
+        metaloggerInstanceID: [
             {
                 "value": "${openstack_compute_instance_v2." + metaloggerInstanceID + ".access_ip_v4}"
             }
@@ -117,9 +119,9 @@ def addMetalogger():
 
     updateCurrentState(json_object)
 
+
 # Adds a MasterServer Instance in the terraform state
 def addMasterServer():
-
     global numberOfMasters
     global timestamp
 
@@ -149,7 +151,7 @@ def addMasterServer():
     json_object["resource"].append(masterServerInstance)
 
     json_object["output"].append({
-        masterInstanceID : [
+        masterInstanceID: [
             {
                 "value": "${openstack_compute_instance_v2." + masterInstanceID + ".access_ip_v4}"
             }
@@ -159,19 +161,21 @@ def addMasterServer():
 
     updateCurrentState(json_object)
 
+
 # Adds a MasterServer Instance in the terraform state
 def addChunkServer():
-
     global numberOfChunkServers
     global numberOfVolumes
+    global numberOfVolumeAttach
     global timestamp
 
     numberOfChunkServers += 1
     numberOfVolumes += 1
+    numberOfVolumeAttach += 1
 
     chunkServerInstanceID = "CLUSTER_" + str(timestamp) + "_CHUNKSERVER_" + str(numberOfChunkServers)
-    volumeInstanceID = "CLUSTER_" + str(timestamp) + "_VOLUME" + str(numberOfChunkServers)
-    volumeAttachInstanceID = "CLUSTER_" + str(timestamp) + "_VOLUMEATTACH" + str(numberOfChunkServers) + "_" + str(timestamp)
+    volumeInstanceID = chunkServerInstanceID + "_VOLUME_" + str(numberOfVolumes)
+    volumeAttachInstanceID = chunkServerInstanceID + "_VOLUMEATTACH_" + str(numberOfVolumeAttach)
 
     json_object = fetchCurrentState()
 
@@ -205,10 +209,10 @@ def addChunkServer():
         ]
     }
 
-    volumeAttachInstance  = {
+    volumeAttachInstance = {
         "openstack_compute_volume_attach_v2": [
             {
-                volumeAttachInstanceID : [
+                volumeAttachInstanceID: [
                     {
                         "instance_id": "${openstack_compute_instance_v2." + chunkServerInstanceID + ".id}",
                         "volume_id": "${openstack_blockstorage_volume_v2." + volumeInstanceID + ".id}"
@@ -223,7 +227,7 @@ def addChunkServer():
     json_object["resource"].append(volumeAttachInstance)
 
     json_object["output"].append({
-        chunkServerInstanceID : [
+        chunkServerInstanceID: [
             {
                 "value": "${openstack_compute_instance_v2." + chunkServerInstanceID + ".access_ip_v4}"
             }
@@ -231,68 +235,41 @@ def addChunkServer():
 
     })
 
-
     updateCurrentState(json_object)
 
-def removeClientInstance():
-    print()
+
+def removeResource(resourceid):
+    resource = []
+    output = []
     json_object = fetchCurrentState()
-    print(json_object)
+
     n = len(json_object["resource"])
-    index = -1
+
     for i in range(0, n):
+        data_raw = json_object["resource"][i]
         data = json.dumps(json_object["resource"][i])
-        if("CLIENT" in data):
-            index = i
-            break
 
-    if(index >= 0):
-        json_object["resource"].pop(index)
+        if resourceid in data:
+            resource.append(data_raw)
 
 
-    index = -1
+    n = len(json_object["output"])
+
     for i in range(0, n):
         data = json.dumps(json_object["output"][i])
-        if("CLIENT" in data):
-            index = i
-            break
+        data_raw = json_object["output"][i]
+        if resourceid in data:
+            output.append(data_raw)
 
-    if(index >= 0):
-        json_object["output"].pop(index)
+    for i in range(0, len(resource)):
+        json_object["resource"].remove(resource[i])
 
-    # print()
-    # print(json_object)
-    # print()
+
+    for i in range(0, len(output)):
+        json_object["output"].remove(output[i])
+
     updateCurrentState(json_object)
 
-def removeChunkServer():
-
-
-    json_object = fetchCurrentState()
-    dummy_object = fetchCurrentState()
-
-    # print(json_object["resource"][0])
-    index = 0
-    n = len(json_object["resource"])
-    for i in range(0, n):
-
-        data = json.dumps(json_object["resource"][i])
-        if("CHUNKSERVER" in data):
-            print(json_object["resource"][i])
-            print(i)
-
-        # if("openstack_compute_instance_v2" in json_object["resource"][i].keys()):
-        #     for key in json_object["resource"][i]["openstack_compute_instance_v2"][0].keys():
-        #         if "CHUNKSERVER" in key:
-        #             index = i
-        #             print(i)
-        # dummy_object["resource"].pop(i)
-
-    json_object["resource"].pop(1)
-    print(len(json_object["resource"]))
-    # updateCurrentState(json_object)
-
-    # print(dummy_object)
 
 # A method that empties the json file representing state
 def resetState():
@@ -306,7 +283,3 @@ def resetState():
     a_file = open("./terraform/sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
-
-
-
-
