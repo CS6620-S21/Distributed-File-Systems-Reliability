@@ -243,23 +243,15 @@ def removeResource(resourceid):
     output = []
     json_object = fetchCurrentState()
 
-    print("LOGS INPUT")
-    print(json_object)
-    print(json_object["resource"])
-
     n = len(json_object["resource"])
 
     for i in range(0, n):
         data_raw = json_object["resource"][i]
         data = json.dumps(json_object["resource"][i])
 
-        print("DATA")
-        print(data)
         if resourceid in data:
             resource.append(data_raw)
 
-    print("LOOK UP")
-    print(resource)
 
     n = len(json_object["output"])
 
@@ -270,11 +262,8 @@ def removeResource(resourceid):
             output.append(data_raw)
 
     for i in range(0, len(resource)):
-        print("resource[i]")
-        print(resource[i])
         json_object["resource"].remove(resource[i])
-        print("json_object")
-        print(json_object)
+
 
     for i in range(0, len(output)):
         json_object["output"].remove(output[i])
