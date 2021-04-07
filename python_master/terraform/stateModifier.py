@@ -259,7 +259,7 @@ def removeResource(resourceid):
 
     for i in range(0, n):
         data = json.dumps(json_object["output"][i])
-        if resourceid in data:
+        if resourceid in data or resourceid + "_VOLUME" in data:
             output.append(i)
 
     for i in range(0, len(resource)):
