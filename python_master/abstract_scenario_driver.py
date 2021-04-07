@@ -14,29 +14,29 @@ class AbstractScenarioDriver(ABC):
         self.ansible_basepath = ''
         self.hosts_inventory_dict = dict()
 
-    @abstractmethod
-    def read_config_file(self, config_file_path: str) -> None:
-        pass
+    # @abstractmethod
+    # def read_config_file(self, config_file_path: str) -> None:
+    #     pass
 
-    @abstractmethod
-    def create_infrastructure(self, num_masterservers: int, num_chunkservers: int, num_metaloggers: int, num_clientservers: int) -> None:
-        pass
+    # @abstractmethod
+    # def create_infrastructure(self, num_masterservers: int, num_chunkservers: int, num_metaloggers: int, num_clientservers: int) -> None:
+    #     pass
 
-    @abstractmethod
-    def get_cluster_ips(self) -> dict:
-        pass
+    # @abstractmethod
+    # def get_cluster_ips(self) -> dict:
+    #     pass
 
-    @abstractmethod
-    def config_cluster_vms(self) -> None:
-        pass
+    # @abstractmethod
+    # def config_cluster_vms(self) -> None:
+    #     pass
 
-    @abstractmethod
-    def scenario_execution(self) -> bool:
-        pass
+    # @abstractmethod
+    # def scenario_execution(self) -> bool:
+    #     pass
 
-    @abstractmethod
-    def clear_infrastructure(self) -> None:
-        pass
+    # @abstractmethod
+    # def clear_infrastructure(self) -> None:
+    #     pass
 
     def script_copy_execute_remote_vm(self,
                                       source_filepath: str,

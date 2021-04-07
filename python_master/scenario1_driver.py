@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from python_master.scenarios.abstract_scenario_driver import AbstractScenarioDriver
+from abstract_scenario_driver import AbstractScenarioDriver
 from paramiko.client import AutoAddPolicy, SSHClient
 import paramiko
 import sys
@@ -41,7 +41,7 @@ class Scenario1Driver(AbstractScenarioDriver):
         file_name_content_dict['content'] = list()
 
         # fetch file and its content from primary client vm
-        primary_client_details = self.__fetch_moosefs_drive_content(
+        primary_client_details = self.fetch_moosefs_drive_content(
             self.remote_primary_client_host_ip)
 
         file_name_content_dict['files'].extend(primary_client_details['files'])
@@ -73,7 +73,7 @@ if __name__ == "__main__":
                             'client': {'CLUSTER_1617744534_CLIENT_1': '10.0.0.76',
                                        'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
                                        'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
-    local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability-Sameer/python_master/scenarios/scenario1/script_s1.sh"
+    local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability-Sameer/python_master/scripts/script_s1.sh"
     remote_dest_filepath = "/home/admin_user/script_s1.sh"
 
     s1 = Scenario1Driver(hosts_inventory_dict,
