@@ -3,8 +3,6 @@ from paramiko.client import AutoAddPolicy, SSHClient
 import sys
 mfsClientVM = SSHClient()
 
-
-
 def copy_and_execute(dict, file_name):
 
     mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
