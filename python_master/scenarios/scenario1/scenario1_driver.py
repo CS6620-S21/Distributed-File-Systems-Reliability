@@ -116,6 +116,7 @@ class Scenario1Driver():
             print("SFTP file transfer to remote VM done")
             self.mfs_ssh_client.exec_command('sh ' + dest_filepath)
             print("Remote Script Execution Done")
+            self.mfs_ssh_client.close()
             return True
         except:
             print("Exception occurred while executing script on remote VM")
@@ -151,37 +152,42 @@ class Scenario1Driver():
         # 'cotent': [file 1 content here', 'file 2 content here' ]
         # }
 
-        result_dict = dict()
-        result_dict['files'] = list()
-        result_dict['content'] = list()
+        try:
+            result_dict = dict()
+            result_dict['files'] = list()
+            result_dict['content'] = list()
 
-        mfsClientVM = SSHClient()
-        mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        mfsClientVM.load_system_host_keys()
+            mfsClientVM = SSHClient()
+            mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            mfsClientVM.load_system_host_keys()
 
-        mfsClientVM.connect(hostname=remote_host_ip,
-                            username=self.remote_host_username,
-                            key_filename=self.ssh_key_filepath)
+            mfsClientVM.connect(hostname=remote_host_ip,
+                                username=self.remote_host_username,
+                                key_filename=self.ssh_key_filepath)
 
-        # Fetch file name on client VM
-        stdin, stdout, stderr = mfsClientVM.exec_command(
-            'cd /mnt/mfs/; ls')
-        outlines = stdout.readlines()
-        stdin.close()
-        file_name = ''.join(outlines)
-        result_dict['files'].append(file_name)
-        print('File name is: ' + file_name)
+            # Fetch file name on client VM
+            stdin, stdout, stderr = mfsClientVM.exec_command(
+                'cd /mnt/mfs/; ls')
+            outlines = stdout.readlines()
+            stdin.close()
+            file_name = ''.join(outlines)
+            result_dict['files'].append(file_name)
+            print('File name is: ' + file_name)
 
-        # Fetch file content on client VM
-        stdin, stdout, stderr = mfsClientVM.exec_command(
-            'cd /mnt/mfs/; cat ' + file_name)
-        outlines = stdout.readlines()
-        stdin.close()
-        file_content = ''.join(outlines)
-        result_dict['content'].append(file_content)
-        print('File Content is: ' + file_content)
+            # Fetch file content on client VM
+            stdin, stdout, stderr = mfsClientVM.exec_command(
+                'cd /mnt/mfs/; cat ' + file_name)
+            outlines = stdout.readlines()
+            stdin.close()
+            file_content = ''.join(outlines)
+            result_dict['content'].append(file_content)
+            print('File Content is: ' + file_content)
 
-        return result_dict
+            mfsClientVM.close()
+            return result_dict
+        except:
+            print("Something went wrong while fetching the moosefs drive content")
+            return None
 
     def __verify_file_name_content(seld, file_name_content_dict: dict) -> bool:
         # A sample result dictionary
@@ -213,6 +219,13 @@ if __name__ == "__main__":
                                        'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
     local_source_filepath = "~/Distributed-File-Systems-Reliability-Sameer/python_master/scenarios/scenario1/script_s1.sh"
     remote_dest_filepath = "~/script_s1.sh"
-    s1_driver = Scenario1Driver(
-        hosts_inventory_dict, local_source_filepath, remote_dest_filepath)
-    s1_driver.scenario_execution()
+
+    s1 = Scenario1Driver(hosts_inventory_dict,
+                         local_source_filepath,
+                         remote_dest_filepath)
+    result = s1.scenario_execution()
+
+    if result:
+        print("Scenario execution successfully passed")
+    else:
+        print("Something went wrong. Scenario execution failed")
