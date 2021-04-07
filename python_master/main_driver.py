@@ -44,8 +44,15 @@ createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_cl
 #                                    'client3': '10.0.0.79'}}
 
 hosts_inventory_dict = getIPs()
-print(hosts_inventory_dict)
-print("TERRAFORM CREATION COMPLETE")
+for key in hosts_inventory_dict['chunkserver'].keys():
+    print("LOG")
+    print(key)
+    deleteResource(key)
+    break;
+
+
+# print(hosts_inventory_dict)
+# print("TERRAFORM CREATION COMPLETE")
 
 # Wait for VMs to boot up
 time.sleep(180)
@@ -68,12 +75,6 @@ print("ANSIBLE CONFIGURATION COMPLETE")
 # copyFile(hosts_inventory_dict)
 # check(hosts_inventory_dict)
 # print("SANITY TEST COMPLETE")
-
-
-
-
-
-# deleteClientInstance()
 
 
 
