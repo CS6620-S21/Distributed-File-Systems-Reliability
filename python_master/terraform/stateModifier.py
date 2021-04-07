@@ -251,6 +251,8 @@ def removeResource(resourceid):
         if resourceid in data:
             resource.append(i)
 
+    n = len(json_object["output"])
+
     for i in range(0, n):
         data = json.dumps(json_object["output"][i])
         if resourceid in data:
