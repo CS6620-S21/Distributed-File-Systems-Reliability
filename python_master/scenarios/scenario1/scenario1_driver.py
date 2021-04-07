@@ -53,7 +53,6 @@ class Scenario1Driver():
         self.remote_secondary_client_host_ips_list = list(
             hosts_inventory_dict['client'].values())[1:]
         self.remote_host_username = 'admin_user'
-        self.ssh_key_filepath = '~/.ssh/cs6620Key101.pem'
         self.local_source_filepath = local_source_filepath
         self.remote_dest_filepath = remote_dest_filepath
 
@@ -62,8 +61,7 @@ class Scenario1Driver():
         run_result = self.__script_copy_execute_remote_vm(self.local_source_filepath,
                                                           self.remote_dest_filepath,
                                                           self.remote_primary_client_host_ip,
-                                                          self.remote_host_username,
-                                                          self.ssh_key_filepath)
+                                                          self.remote_host_username)
         if run_result == False:
             print("Unable to copy and execute script on primary client VM")
             return False
@@ -103,12 +101,10 @@ class Scenario1Driver():
                                         source_filepath: str,
                                         dest_filepath: str,
                                         remote_host_ip: str,
-                                        remote_host_username: str,
-                                        ssh_key_filepath: str) -> bool:
+                                        remote_host_username: str) -> bool:
         try:
             self.__establish_ssh_connection_to_remote(remote_host_ip,
-                                                      remote_host_username,
-                                                      ssh_key_filepath)
+                                                      remote_host_username)
             print("Established SSH connection to remote VM")
             self.__verify_ssh_connection_established()
             print("Verification of SSH connection complete")
@@ -118,8 +114,9 @@ class Scenario1Driver():
             print("Remote Script Execution Done")
             self.mfs_ssh_client.close()
             return True
-        except:
+        except Exception as e:
             print("Exception occurred while executing script on remote VM")
+            print("Error details: " + str(e))
             return False
 
     def __sftp_file_transfer(self, source_filepath, dest_filepath) -> None:
@@ -128,13 +125,12 @@ class Scenario1Driver():
         return
 
     def __establish_ssh_connection_to_remote(self, remote_host_ip: str,
-                                             remote_host_username: str, ssh_key_filepath: str) -> None:
+                                             remote_host_username: str) -> None:
         self.mfs_ssh_client.set_missing_host_key_policy(
             paramiko.AutoAddPolicy())
         self.mfs_ssh_client.load_system_host_keys()
         self.mfs_ssh_client.connect(hostname=remote_host_ip,
-                                    username=remote_host_username,
-                                    key_filename=ssh_key_filepath)
+                                    username=remote_host_username)
         return
 
     def __verify_ssh_connection_established(self) -> None:
@@ -162,8 +158,7 @@ class Scenario1Driver():
             mfsClientVM.load_system_host_keys()
 
             mfsClientVM.connect(hostname=remote_host_ip,
-                                username=self.remote_host_username,
-                                key_filename=self.ssh_key_filepath)
+                                username=self.remote_host_username)
 
             # Fetch file name on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
@@ -171,6 +166,7 @@ class Scenario1Driver():
             outlines = stdout.readlines()
             stdin.close()
             file_name = ''.join(outlines)
+            file_name = str(file_name).rstrip('\n')
             result_dict['files'].append(file_name)
             print('File name is: ' + file_name)
 
@@ -180,13 +176,15 @@ class Scenario1Driver():
             outlines = stdout.readlines()
             stdin.close()
             file_content = ''.join(outlines)
+            file_content = str(file_content).rstrip('\n')
             result_dict['content'].append(file_content)
             print('File Content is: ' + file_content)
 
             mfsClientVM.close()
             return result_dict
-        except:
+        except Exception as e:
             print("Something went wrong while fetching the moosefs drive content")
+            print("Error Details: " + str(e))
             return None
 
     def __verify_file_name_content(seld, file_name_content_dict: dict) -> bool:
@@ -217,8 +215,8 @@ if __name__ == "__main__":
                             'client': {'CLUSTER_1617744534_CLIENT_1': '10.0.0.76',
                                        'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
                                        'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
-    local_source_filepath = "~/Distributed-File-Systems-Reliability-Sameer/python_master/scenarios/scenario1/script_s1.sh"
-    remote_dest_filepath = "~/script_s1.sh"
+    local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability-Sameer/python_master/scenarios/scenario1/script_s1.sh"
+    remote_dest_filepath = "/home/admin_user/script_s1.sh"
 
     s1 = Scenario1Driver(hosts_inventory_dict,
                          local_source_filepath,

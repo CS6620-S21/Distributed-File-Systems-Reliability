@@ -1,3 +1,4 @@
 #!/bin/bash
-mkdir scenario_1 
-echo “Hello scenario1” >> /mnt/mfs/scenario1/scenario_1_file.txt 
+cd /mnt/mfs/
+touch s1_test_file.txt
+echo “Hello scenario1” >> s1_test_file.txt 
