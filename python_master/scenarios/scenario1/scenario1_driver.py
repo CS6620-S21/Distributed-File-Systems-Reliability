@@ -4,6 +4,8 @@ import paramiko
 import sys
 
 
+
+
 class AbstractScenarioDriver(ABC):
 
     def __init__(self) -> None:
@@ -57,9 +59,14 @@ class Scenario1Driver(AbstractScenarioDriver):
 
     def scenario_execution(self) -> bool:
         # Perform Script copying & then execution on client 1 to create dummy file on the mounted moosefs drive
-        run_result = self.script_copy_execute_remote_vm(self.local_source_filepath,
+        run_result = self.__script_copy_execute_remote_vm(self.local_source_filepath,
                                                         self.remote_dest_filepath,
-                                                        self.remote_primary_client_host_ip)
+                                                        self.remote_primary_client_host_ip,
+                                                        self.remote_host_username,
+                                                        self.ssh_key_filepath)
+        if run_result == False:
+            print("Unable to copy and execute script on primary client VM")
+            return False
 
         # A sample result dictionary
         # file_name_content_dict = {
@@ -79,6 +86,7 @@ class Scenario1Driver(AbstractScenarioDriver):
             primary_client_details['content'])
 
         # Perform hard shutdown of client 1 VM
+        # To-Do
 
         # fetch file and its content from secondary client vms
         for ip in self.remote_secondary_client_host_ips_list:
@@ -89,10 +97,9 @@ class Scenario1Driver(AbstractScenarioDriver):
                 secondary_client_details['content'])
 
         # Verify the file still exists across mounted drive from client 2 & client 3
+        return self.__verify_file_name_content(file_name_content_dict)
 
-        return False
-
-    def script_copy_execute_remote_vm(self,
+    def __script_copy_execute_remote_vm(self,
                                       source_filepath: str,
                                       dest_filepath: str,
                                       remote_host_ip: str,
@@ -102,8 +109,11 @@ class Scenario1Driver(AbstractScenarioDriver):
             self.__establish_ssh_connection_to_remote(remote_host_ip,
                                                       remote_host_username,
                                                       ssh_key_filepath)
+            print("Established SSH connection to remote VM")
             self.__verify_ssh_connection_established()
+            print("Verification of SSH connection complete")
             self.__sftp_file_transfer(source_filepath, dest_filepath)
+            print("SFTP file transfer to remote VM done")
             self.mfs_ssh_client.exec_command('sh ' + dest_filepath)
             print("Remote Script Execution Done")
             return True
@@ -111,9 +121,10 @@ class Scenario1Driver(AbstractScenarioDriver):
             print("Exception occurred while executing script on remote VM")
             return False
 
-    def __sftp_file_transfer(self, source_filepath, dest_filepath):
+    def __sftp_file_transfer(self, source_filepath, dest_filepath) -> None:
         sftp_client = self.mfs_ssh_client.open_sftp()
         sftp_client.put(source_filepath, dest_filepath)
+        return
 
     def __establish_ssh_connection_to_remote(self, remote_host_ip: str,
                                              remote_host_username: str, ssh_key_filepath: str) -> None:
@@ -123,13 +134,15 @@ class Scenario1Driver(AbstractScenarioDriver):
         self.mfs_ssh_client.connect(hostname=remote_host_ip,
                                     username=remote_host_username,
                                     key_filename=ssh_key_filepath)
+        return
 
-    def __verify_ssh_connection_established(self):
+    def __verify_ssh_connection_established(self) -> None:
         stdin, stdout, stderr = self.mfs_ssh_client.exec_command('pwd')
         outlines = stdout.readlines()
         stdin.close()
         resp = ''.join(outlines)
         print(resp)
+        return
 
     def __fetch_moosefs_drive_content(self, remote_host_ip: str) -> dict:
         # A sample result dictionary
@@ -187,3 +200,15 @@ class Scenario1Driver(AbstractScenarioDriver):
 
         print("Test Success")
         return True
+
+
+hosts_inventory_dict = {'master': {'CLUSTER_1617744534_MASTER_1': '10.0.0.186'},
+                        'metalogger': {'CLUSTER_1617744534_METALOGGER_1': '10.0.0.70'},
+                        'chunkserver': {'CLUSTER_1617744534_CHUNKSERVER_1': '10.0.0.126',
+                                        'CLUSTER_1617744534_CHUNKSERVER_2': '10.0.0.245',
+                                        },
+                        'client': {'CLUSTER_1617744534_CLIENT_1': '10.0.0.76',
+                                   'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
+                                   'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
+
+if __name__== "__main__":
