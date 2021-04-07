@@ -48,6 +48,7 @@ for key in hosts_inventory_dict['chunkserver'].keys():
     print("LOG")
     print(key)
     deleteResource(key)
+    break;
 
 
 # print(hosts_inventory_dict)
