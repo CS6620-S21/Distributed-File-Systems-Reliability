@@ -56,5 +56,10 @@ def getIPs():
     return hosts_inventory_dict
 
 
+def deleteClientInstance():
+    removeClientInstance()
+    init()
+    run()
+
 def deleteChunkServer():
     print("Chunk server Destroyed")

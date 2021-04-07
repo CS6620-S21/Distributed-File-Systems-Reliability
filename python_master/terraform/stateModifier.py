@@ -234,19 +234,65 @@ def addChunkServer():
 
     updateCurrentState(json_object)
 
+def removeClientInstance():
+    print()
+    json_object = fetchCurrentState()
+    print(json_object)
+    n = len(json_object["resource"])
+    index = -1
+    for i in range(0, n):
+        data = json.dumps(json_object["resource"][i])
+        if("CLIENT" in data):
+            index = i
+            break
+
+    if(index >= 0):
+        json_object["resource"].pop(index)
+
+
+    index = -1
+    for i in range(0, n):
+        data = json.dumps(json_object["output"][i])
+        if("CLIENT" in data):
+            index = i
+            break
+
+    if(index >= 0):
+        json_object["output"].pop(index)
+
+    # print()
+    # print(json_object)
+    # print()
+    updateCurrentState(json_object)
 
 def removeChunkServer():
 
-    a_file = open("./terraform/sample.tf.json", "r")
-    json_object = json.load(a_file)
-    a_file.close()
+
+    json_object = fetchCurrentState()
+    dummy_object = fetchCurrentState()
 
     # print(json_object["resource"][0])
-
+    index = 0
     n = len(json_object["resource"])
     for i in range(0, n):
-        if("openstack_compute_instance_v2" in json_object["resource"][i].keys()):
-            print(json_object["resource"][i]["openstack_compute_instance_v2"][0])
+
+        data = json.dumps(json_object["resource"][i])
+        if("CHUNKSERVER" in data):
+            print(json_object["resource"][i])
+            print(i)
+
+        # if("openstack_compute_instance_v2" in json_object["resource"][i].keys()):
+        #     for key in json_object["resource"][i]["openstack_compute_instance_v2"][0].keys():
+        #         if "CHUNKSERVER" in key:
+        #             index = i
+        #             print(i)
+        # dummy_object["resource"].pop(i)
+
+    json_object["resource"].pop(1)
+    print(len(json_object["resource"]))
+    # updateCurrentState(json_object)
+
+    # print(dummy_object)
 
 # A method that empties the json file representing state
 def resetState():
@@ -260,4 +306,7 @@ def resetState():
     a_file = open("./terraform/sample.tf.json", "w")
     json.dump(json_object, a_file)
     a_file.close()
+
+
+
 

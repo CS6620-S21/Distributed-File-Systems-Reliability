@@ -7,6 +7,10 @@ from ssh_scp.CopyFileToMFS import *
 from ssh_scp.CheckMFSFile import *
 from terraform.terraformDriver import *
 from ansible.ansible_driver import *
+from terraform.terraformShell import *
+from terraform.stateModifier import *
+
+
 
 import json
 import time
@@ -23,7 +27,9 @@ num_clientservers = data['mfs_num_client_servers']
 
 # Terraform VM Creation
 # Create infratructure
-# createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
+
+# print("STARTING TERRAFORM CREATION")
+createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
 
 
 # Fetch the dictionary of type
@@ -35,9 +41,10 @@ num_clientservers = data['mfs_num_client_servers']
 #                         'client': {'client1': '10.0.0.190',
 #                                    'client2': '10.0.0.223',
 #                                    'client3': '10.0.0.79'}}
-hosts_inventory_dict = getIPs()
 
-print(hosts_inventory_dict)
+# hosts_inventory_dict = getIPs()
+# print(hosts_inventory_dict)
+# print("TERRAFORM CREATION COMPLETE")
 
 # Wait for VMs to boot up
 # time.sleep(120)
@@ -52,20 +59,29 @@ print(hosts_inventory_dict)
 # ansible_conf.create_inventory(hosts_inventory_dict)
 # ansible_conf.execute_ansible_playbook()
 # print("ANSIBLE CONFIGURATION COMPLETE")
-#
+
 # time.sleep(120)
 
 # Testing framework execution using SSH_SCP
-print("EXECUTING A SANITY TEST")
-copyFile(hosts_inventory_dict)
-check(hosts_inventory_dict)
-print("SANITY TEST COMPLETE")
+# print("EXECUTING A SANITY TEST")
+# copyFile(hosts_inventory_dict)
+# check(hosts_inventory_dict)
+# print("SANITY TEST COMPLETE")
 
 
 
+
+
+deleteClientInstance()
+
+
+
+# removeChunkServer()
 
 # time.sleep(120)
 # Terraform Destroys
 # print("DESTROYING THE INFRASTRUCTURE")
 # destroyInfrastructure()
 # print("DESTRUCTION COMPLETE")
+
+
