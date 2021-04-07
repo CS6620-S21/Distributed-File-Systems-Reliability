@@ -241,37 +241,43 @@ def addChunkServer():
 def removeResource(resourceid):
     resource = []
     output = []
-
     json_object = fetchCurrentState()
 
-    print("LOGS")
+    print("LOGS INPUT")
     print(json_object)
-    print()
+    print(json_object["resource"])
 
     n = len(json_object["resource"])
 
     for i in range(0, n):
+        data_raw = json_object["resource"][i]
         data = json.dumps(json_object["resource"][i])
+
+        print("DATA")
+        print(data)
         if resourceid in data:
-            resource.append(i)
+            resource.append(data_raw)
+
+    print("LOOK UP")
+    print(resource)
 
     n = len(json_object["output"])
 
     for i in range(0, n):
         data = json.dumps(json_object["output"][i])
-        if resourceid in data or resourceid + "_VOLUME" in data:
-            output.append(i)
+        data_raw = json_object["output"][i]
+        if resourceid in data:
+            output.append(data_raw)
 
     for i in range(0, len(resource)):
-        json_object["resource"].pop(resource[i])
+        print("resource[i]")
+        print(resource[i])
+        json_object["resource"].remove(resource[i])
+        print("json_object")
+        print(json_object)
 
     for i in range(0, len(output)):
-        json_object["output"].pop(output[i])
-
-
-    print("LOGS")
-    print(json_object)
-    print()
+        json_object["output"].remove(output[i])
 
     updateCurrentState(json_object)
 
