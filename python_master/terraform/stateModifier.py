@@ -244,6 +244,10 @@ def removeResource(resourceid):
 
     json_object = fetchCurrentState()
 
+    print()
+    print(json_object)
+    print()
+    
     n = len(json_object["resource"])
 
     for i in range(0, n):
@@ -263,6 +267,11 @@ def removeResource(resourceid):
 
     for i in range(0, len(output)):
         json_object["output"].pop(output[i])
+
+
+    print()
+    print(json_object)
+    print()
 
     updateCurrentState(json_object)
 
