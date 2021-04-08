@@ -179,7 +179,7 @@ class AbstractScenarioDriver(ABC):
             count = ''.join(outlines)
             # count = int(count)
             result_list.append(count)
-            print('File contains' + count + ' Bs')
+            printf('File contains %s Bs', count)
 
             mfsClientVM.close()
             return result_list
@@ -191,7 +191,7 @@ class AbstractScenarioDriver(ABC):
 
     def verify_file_content(self, file_content_list: list) -> bool:
         for i in range(0, len(file_content_list) - 1):
-            if int(file_content_list[i]) != 0:
+            if int(file_content_list[i]) == 0:
                 print("Test Failure")
                 return False
 
