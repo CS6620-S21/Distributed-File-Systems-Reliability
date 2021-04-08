@@ -158,8 +158,6 @@ class AbstractScenarioDriver(ABC):
         # 'cotent': [file 1 content here', 'file 2 content here' ]
         # }
 
-        print("here")
-
         try:
             result_list = list()
 
@@ -168,7 +166,8 @@ class AbstractScenarioDriver(ABC):
             mfsClientVM.load_system_host_keys()
 
             mfsClientVM.connect(hostname=remote_host_ip,
-                                username=self.remote_host_username)
+                                username=self.remote_host_username
+                                key_filename='cs6620Key101.pem')
 
             print("Verifying file content on VM with IP: " + remote_host_ip)
 
