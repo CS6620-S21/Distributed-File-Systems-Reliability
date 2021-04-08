@@ -71,7 +71,8 @@ class AbstractScenarioDriver(ABC):
             paramiko.AutoAddPolicy())
         self.mfs_ssh_client.load_system_host_keys()
         self.mfs_ssh_client.connect(hostname=remote_host_ip,
-                                    username=remote_host_username)
+                                    username=remote_host_username,
+                                    key_filename='cs6620Key101.pem')
         return
 
     def __verify_ssh_connection_established(self) -> None:
