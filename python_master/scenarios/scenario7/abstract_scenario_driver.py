@@ -190,8 +190,8 @@ class AbstractScenarioDriver(ABC):
             return None
 
     def verify_file_content(self, file_content_list: list) -> bool:
-        for i in range(0, len(list_file_names) - 1):
-            if int(list_file_names[i]) != 0:
+        for i in range(0, len(file_content_list) - 1):
+            if int(file_content_list[i]) != 0:
                 print("Test Failure")
                 return False
 
