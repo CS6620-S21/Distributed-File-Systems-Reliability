@@ -7,8 +7,8 @@ import sys
 
 class Scenario7Driver(AbstractScenarioDriver):
 
-    def __init__(self, config_filepath: str, local_source_filepath: list, remote_dest_filepath: list) -> None:
-        super().__init__()
+    def __init__(self, config_filepath: str, local_source_filepath: str, remote_dest_filepath: str) -> None:
+        super().__init__(config_filepath)
         self.mfs_ssh_client = SSHClient()
         # self.hosts_inventory_dict = hosts_inventory_dict
         self.remote_primary_client_host_ip = list(hosts_inventory_dict['client'].values())[0]
