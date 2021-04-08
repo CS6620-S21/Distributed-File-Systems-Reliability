@@ -25,6 +25,7 @@ class AbstractScenarioDriver(ABC):
         pass
 
     def read_update_config(self, config_file_path: str) -> None:
+        print("Reading input config file from path: " + config_file_path)
         # Opening Input config JSON file
         with open(config_file_path) as json_file:
             data = json.load(json_file)
@@ -39,10 +40,13 @@ class AbstractScenarioDriver(ABC):
 
     def create_infrastructure(self, num_masterservers: int, num_chunkservers: int, num_metaloggers: int, num_clientservers: int) -> None:
         # Use Terraform method to create infrastructure
+        print("Creating Infrastrucute...")
         createInfrastructure(num_masterservers, num_chunkservers,
                              num_metaloggers, num_clientservers)
         # Wait for VMs to boot up
+        print("Waiting for systems to boot up...")
         time.sleep(180)
+        print("Infrastructure creation done")
         return
 
     def update_hosts_inventory(self) -> None:
@@ -78,7 +82,7 @@ class AbstractScenarioDriver(ABC):
                 if val == host_vm_ip:
                     print("Performing Force shutdown for VM: " + host_vm_ip)
                     deleteResource(key)
-                    print("Waiting for resource to be deleted")
+                    print("Waiting for resource to be deleted...")
                     time.sleep(120)
                     print("Resource deleted")
                     return
