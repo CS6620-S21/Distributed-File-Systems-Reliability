@@ -1,11 +1,15 @@
 from abc import ABC, abstractmethod
 from paramiko.client import AutoAddPolicy, SSHClient
+from terraform.terraformDriver import *
+from ansible.ansible_driver import *
 import paramiko
+import json
+import time
 
 
 class AbstractScenarioDriver(ABC):
 
-    def __init__(self) -> None:
+    def __init__(self, config_filepath: str) -> None:
         super().__init__()
         self.num_masterservers = 0
         self.num_metaloggers = 0
@@ -13,30 +17,68 @@ class AbstractScenarioDriver(ABC):
         self.num_clientservers = 0
         self.ansible_basepath = ''
         self.hosts_inventory_dict = dict()
+        self.config_filepath = config_filepath
 
-    # @abstractmethod
-    # def read_config_file(self, config_file_path: str) -> None:
-    #     pass
+    @abstractmethod
+    def scenario_execution(self) -> bool:
+        pass
 
-    # @abstractmethod
-    # def create_infrastructure(self, num_masterservers: int, num_chunkservers: int, num_metaloggers: int, num_clientservers: int) -> None:
-    #     pass
+    def read_update_config(self, config_file_path: str) -> None:
+        # Opening Input config JSON file
+        with open(config_file_path) as json_file:
+            data = json.load(json_file)
 
-    # @abstractmethod
-    # def get_cluster_ips(self) -> dict:
-    #     pass
+        self.num_masterservers = data['mfs_num_master_servers']
+        self.num_metaloggers = data['mfs_num_metalogger_servers']
+        self.num_chunkservers = data['mfs_num_chunk_servers']
+        self.num_clientservers = data['mfs_num_client_servers']
+        self.ansible_basepath = data['ansible_basepath']
 
-    # @abstractmethod
-    # def config_cluster_vms(self) -> None:
-    #     pass
+        return
 
-    # @abstractmethod
-    # def scenario_execution(self) -> bool:
-    #     pass
+    def create_infrastructure(self, num_masterservers: int, num_chunkservers: int, num_metaloggers: int, num_clientservers: int) -> None:
+        # Use Terraform method to create infrastructure
+        createInfrastructure(num_masterservers, num_chunkservers,
+                             num_metaloggers, num_clientservers)
+        # Wait for VMs to boot up
+        time.sleep(180)
 
-    # @abstractmethod
-    # def clear_infrastructure(self) -> None:
-    #     pass
+    def update_hosts_inventory(self) -> None:
+        # Use Terraform method to get IPs
+        self.hosts_inventory_dict = getIPs()
+
+    # Performs setup of configuration of the different vms that has been created by terraform.
+    # It creates a dynamic inventory hosts file to be used by ansible, which contains the server types
+    # and IP address details.
+    # It then executes the different ansible playbooks for Moose FS setup across different group of servers.
+    def config_cluster_vms(self) -> None:
+        try:
+            print("STARTING ANSIBLE CONFIGURATION")
+            ansible_conf = MFSAnsibleSetupVMs(self.ansible_basepath)
+            ansible_conf.create_inventory(self.hosts_inventory_dict)
+            ansible_conf.execute_ansible_playbook()
+            print("ANSIBLE CONFIGURATION COMPLETE")
+            return True
+        except Exception as e:
+            print("Error occurred on Ansible configuration: " + str(e))
+            return False
+
+    def clear_infrastructure(self) -> None:
+        print("Clearing Up the infrastructure Now....")
+        destroyInfrastructure()
+        print("Infrastructure destroyed")
+        return
+
+    def force_shutdown(self, host_vm_ip: str) -> None:
+        for vals in self.hosts_inventory_dict.values():
+            for key, val in vals.items():
+                if val == host_vm_ip:
+                    print("Performing Force shutdown for VM: " + host_vm_ip)
+                    deleteResource(key)
+                    print("Waiting for resource to be deleted")
+                    time.sleep(120)
+                    print("Resource deleted")
+                    return
 
     def script_copy_execute_remote_vm(self,
                                       source_filepath: str,

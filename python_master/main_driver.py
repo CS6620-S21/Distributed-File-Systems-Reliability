@@ -1,89 +1,48 @@
-
-# Read form Config / Default Values
-
-# /Users/aksha/OneDrive/Documents/projects/git/Distributed-File-Systems-Reliability
-
-from ssh_scp.CopyFileToMFS import *
-from ssh_scp.CheckMFSFile import *
-from terraform.terraformDriver import *
-from ansible.ansible_driver import *
-from terraform.terraformShell import *
-from terraform.stateModifier import *
+from abstract_scenario_driver import AbstractScenarioDriver
+from scenario1_driver import Scenario1Driver
 
 
+class main_driver:
+    def __init__(self) -> None:
+        self.scenario1_config_file_path = "config/s1_config.json"
+        pass
+
+    def common_setup_control_flow(self, ScenarioDriver: AbstractScenarioDriver, config_file_path: str) -> None:
+        ScenarioDriver.read_update_config(config_file_path)
+        ScenarioDriver.create_infrastructure(ScenarioDriver.num_masterservers,
+                                             ScenarioDriver.num_chunkservers,
+                                             ScenarioDriver.num_metaloggers,
+                                             ScenarioDriver.num_clientservers)
+        ScenarioDriver.update_hosts_inventory()
+        ScenarioDriver.__update_primary_secondary_client_hosts(
+            ScenarioDriver.hosts_inventory_dict)
+        ScenarioDriver.config_cluster_vms()
+
+    def execute_scenario1(self):
+        local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s1.sh"
+        remote_dest_filepath = "/home/admin_user/script_s1.sh"
+
+        try:
+            print("Performing Scenario 1 execution...")
+            scenario1 = Scenario1Driver(config_filepath=self.scenario1_config_file_path,
+                                        local_source_filepath=local_source_filepath,
+                                        remote_dest_filepath=remote_dest_filepath)
+
+            self.common_setup_control_flow(scenario1)
+            execution_result = scenario1.scenario_execution()
+
+            if execution_result:
+                print("Scenario execution successfully passed")
+            else:
+                print("Something went wrong. Scenario execution failed")
+
+            scenario1.clear_infrastructure()
+            print("Scenario 1 execution complete")
+
+        except Exception as e:
+            print("Error occurred in Scenario Execution: " + str(e))
 
 
-import json
-import time
-
-# Opening Input config JSON file
-with open('input_config.json') as json_file:
-    data = json.load(json_file)
-
-num_masterservers = data['mfs_num_master_servers']
-num_metaloggers = data['mfs_num_metalogger_servers']
-num_chunkservers = data['mfs_num_chunk_servers']
-num_clientservers = data['mfs_num_client_servers']
-
-
-# Terraform VM Creation
-# Create infratructure
-
-# print("STARTING TERRAFORM CREATION")
-createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
-
-
-# Fetch the dictionary of type
-# hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
-#                         'metalogger': {'mettalogger1': '10.0.0.154'},
-#                         'chunkserver': {'chunkserver1': '10.0.0.62',
-#                                         'chunkserver2': '10.0.0.107',
-#                                         'chunkserver3': '10.0.0.162'},
-#                         'client': {'client1': '10.0.0.190',
-#                                    'client2': '10.0.0.223',
-#                                    'client3': '10.0.0.79'}}
-
-hosts_inventory_dict = getIPs()
-for key in hosts_inventory_dict['chunkserver'].keys():
-    print("LOG")
-    print(key)
-    deleteResource(key)
-    break;
-
-
-# print(hosts_inventory_dict)
-# print("TERRAFORM CREATION COMPLETE")
-
-# Wait for VMs to boot up
-time.sleep(180)
-
-
-# Performs setup of configuration of the different vms that has been created by terraform.
-# It creates a dynamic inventory hosts file to be used by ansible, which contains the server types
-# and IP address details.
-# It then executes the different ansible playbooks for Moose FS setup across different group of servers.
-print("STARTING ANSIBLE CONFIGURATION")
-ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
-ansible_conf.create_inventory(hosts_inventory_dict)
-ansible_conf.execute_ansible_playbook()
-print("ANSIBLE CONFIGURATION COMPLETE")
-
-# time.sleep(120)
-
-# Testing framework execution using SSH_SCP
-# print("EXECUTING A SANITY TEST")
-# copyFile(hosts_inventory_dict)
-# check(hosts_inventory_dict)
-# print("SANITY TEST COMPLETE")
-
-
-
-# removeChunkServer()
-
-# time.sleep(120)
-# Terraform Destroys
-# print("DESTROYING THE INFRASTRUCTURE")
-# destroyInfrastructure()
-# print("DESTRUCTION COMPLETE")
-
-
+if __name__ == "__main__":
+    driver = main_driver()
+    driver.execute_scenario1()
