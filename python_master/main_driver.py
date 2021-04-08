@@ -1,7 +1,7 @@
 from abstract_scenario_driver import AbstractScenarioDriver
 from scenario1_driver import Scenario1Driver
 
-from python_master.scenario4_driver import Scenario4Driver
+from scenario4_driver import Scenario4Driver
 
 
 class main_driver:
