@@ -23,7 +23,7 @@ class Scenario7Driver(AbstractScenarioDriver):
                                                         self.remote_dest_filepath,
                                                         self.remote_primary_client_host_ip,
                                                         self.remote_host_username)
-        if run_result == false:
+        if run_result == False:
             print("Unable to copy and execute script on primary client VM")
             return False
 
