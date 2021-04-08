@@ -18,6 +18,7 @@ class AbstractScenarioDriver(ABC):
         self.ansible_basepath = ''
         self.hosts_inventory_dict = dict()
         self.config_filepath = config_filepath
+        self.remote_host_username = 'admin_user'
 
     @abstractmethod
     def scenario_execution(self) -> bool:

@@ -28,7 +28,8 @@ class main_driver:
                                         local_source_filepath=local_source_filepath,
                                         remote_dest_filepath=remote_dest_filepath)
 
-            self.common_setup_control_flow(scenario1)
+            self.common_setup_control_flow(
+                scenario1, self.scenario1_config_file_path)
             execution_result = scenario1.scenario_execution()
 
             if execution_result:

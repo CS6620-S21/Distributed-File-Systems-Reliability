@@ -12,7 +12,6 @@ class Scenario1Driver(AbstractScenarioDriver):
         self.mfs_ssh_client = SSHClient()
         self.remote_primary_client_host_ip = ''
         self.remote_secondary_client_host_ips_list = list()
-        self.remote_host_username = 'admin_user'
         self.local_source_filepath = local_source_filepath
         self.remote_dest_filepath = remote_dest_filepath
 
