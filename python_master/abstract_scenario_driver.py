@@ -73,9 +73,9 @@ class AbstractScenarioDriver(ABC):
     def clear_infrastructure(self) -> None:
         print("Clearing Up the infrastructure Now....")
         destroyInfrastructure()
-        known_host = open("~/.ssh/known_hosts", "r+")
-        known_host.truncate(0)
-        known_host.close()
+        # known_host = open("~/.ssh/known_hosts", "r+")
+        # known_host.truncate(0)
+        # known_host.close()
         print("Infrastructure destroyed")
         return
 
