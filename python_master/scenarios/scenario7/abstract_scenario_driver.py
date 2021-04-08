@@ -164,9 +164,10 @@ class AbstractScenarioDriver(ABC):
             mfsClientVM = SSHClient()
             mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             mfsClientVM.load_system_host_keys()
-
+            self.mfs_ssh_client.connect(hostname=remote_host_ip,
+                                    username=remote_host_username,
             mfsClientVM.connect(hostname=remote_host_ip,
-                                username=self.remote_host_username
+                                username=self.remote_host_username,
                                 key_filename='cs6620Key101.pem')
 
             print("Verifying file content on VM with IP: " + remote_host_ip)
