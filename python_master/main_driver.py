@@ -13,8 +13,6 @@ class main_driver:
                                              ScenarioDriver.num_metaloggers,
                                              ScenarioDriver.num_clientservers)
         ScenarioDriver.update_hosts_inventory()
-        ScenarioDriver.__update_primary_secondary_client_hosts(
-            ScenarioDriver.hosts_inventory_dict)
         ScenarioDriver.config_cluster_vms()
         return
 
@@ -30,6 +28,8 @@ class main_driver:
 
             self.common_setup_control_flow(
                 scenario1, self.scenario1_config_file_path)
+            scenario1.__update_primary_secondary_client_hosts(
+                scenario1.hosts_inventory_dict)
             execution_result = scenario1.scenario_execution()
 
             if execution_result:
