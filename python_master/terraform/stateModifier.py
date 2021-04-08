@@ -54,7 +54,7 @@ def addClientInstance():
                 clientInstanceID: [
                     {
                         "flavor_name": "m1.tiny",
-                        "image_name": "ubuntu_dummy_config_snap102",
+                        "image_name": "ubuntu_dummy_config_snap101",
                         "name": clientInstanceID,
                         "security_groups": [
                             "default"
