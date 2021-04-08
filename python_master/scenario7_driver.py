@@ -11,8 +11,8 @@ class Scenario7Driver(AbstractScenarioDriver):
         super().__init__(config_filepath)
         self.mfs_ssh_client = SSHClient()
         # self.hosts_inventory_dict = hosts_inventory_dict
-        self.remote_primary_client_host_ip = list(self.hosts_inventory_dict['client'].values())[0]
-        self.remote_secondary_client_host_ips_list = list(self.hosts_inventory_dict['client'].values())[1:]
+        self.remote_primary_client_host_ip = ''
+        self.remote_secondary_client_host_ips_list = list()
         # self.remote_host_username = 'admin_user'
         self.local_source_filepath = local_source_filepath
         self.remote_dest_filepath = remote_dest_filepath
@@ -48,7 +48,14 @@ class Scenario7Driver(AbstractScenarioDriver):
         # Verify the file still exists across mounted drive from client 2 & client 3
         return self.verify_file_content(file_content_list)
 
+    def update_primary_secondary_client_hosts(self) -> None:
+        self.remote_primary_client_host_ip = list(
+            self.hosts_inventory_dict['client'].values())[0]
 
+        self.remote_secondary_client_host_ips_list = list(
+            self.hosts_inventory_dict['client'].values())[1:]
+
+        return
 
     def main():
 
