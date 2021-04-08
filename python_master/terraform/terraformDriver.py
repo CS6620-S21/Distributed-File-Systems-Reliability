@@ -56,8 +56,8 @@ def getIPs():
     return hosts_inventory_dict
 
 
-def deleteClientInstance():
-    removeClientInstance()
+def deleteResource(resourceid):
+    removeResource(resourceid)
     init()
     run()
 
