@@ -51,7 +51,7 @@ class main_driver:
             print("Performing Scenario 7 execution...")
             scenario7 = Scenario7Driver(config_filepath=self.scenario7_config_file_path,
                                         local_source_filepath=local_source_filepath,
-                                        remote_dest_filepath=remote_dest_filepath))
+                                        remote_dest_filepath=remote_dest_filepath)
 
             self.common_setup_control_flow(
                 scenario7, self.scenario7_config_file_path)
@@ -64,7 +64,7 @@ class main_driver:
                 print("Something went wrong. Scenario execution failed")
 
             scenario1.clear_infrastructure()
-            print("Scenario 1 execution complete")
+            print("Scenario 7 execution complete")
 
         except Exception as e:
             print("Error occurred in Scenario Execution: " + str(e))
