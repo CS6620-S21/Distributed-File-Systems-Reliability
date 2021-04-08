@@ -11,7 +11,7 @@ class Scenario7Driver(AbstractScenarioDriver):
         super().__init__()
         self.mfs_ssh_client = SSHClient()
         self.hosts_inventory_dict = hosts_inventory_dict
-        self.remote_primary_client_host_ip = list(hosts_inventory_dict['client'].Values())[0]
+        self.remote_primary_client_host_ip = list(hosts_inventory_dict['client'].values())[0]
         self.remote_secondary_client_host_ips_list = list(hosts_inventory_dict['client'].values())[1:]
         self.remote_host_username = 'admin_user'
         self.local_source_filepath = local_source_filepath
