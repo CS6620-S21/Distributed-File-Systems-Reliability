@@ -170,7 +170,7 @@ class AbstractScenarioDriver(ABC):
                                 username=self.remote_host_username,
                                 key_filename='cs6620Key101.pem')
 
-            print("Verifying file content on VM with IP: " + remote_host_ip)
+            print('Verifying file content on VM with IP: ' + remote_host_ip)
 
             # Count Bs in file on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
