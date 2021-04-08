@@ -177,7 +177,7 @@ class AbstractScenarioDriver(ABC):
             outlines = stdout.readlines()
             stdin.close()
             count = ''.join(outlines)
-            count = int(count)
+            # count = int(count)
             result_list.append(count)
             print('File contains' + count + 'Bs')
 
