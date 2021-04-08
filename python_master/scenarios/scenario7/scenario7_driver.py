@@ -38,7 +38,7 @@ class Scenario7Driver(AbstractScenarioDriver):
         file_content_list.extend(primary_client_details)
 
         # Perform hard shutdown of client 1 VM
-        # To-Do
+        self.force_shutdown(self.remote_primary_client_host_ip)
 
         # fetch file and its content from secondary client vms
         for ip in self.remote_secondary_client_host_ips_list:

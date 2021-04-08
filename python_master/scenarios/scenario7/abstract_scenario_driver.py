@@ -5,7 +5,7 @@ import paramiko
 
 class AbstractScenarioDriver(ABC):
 
-    def __init__(self) -> None:
+    def __init__(self, config_filepath: str) -> None:
         super().__init__()
         self.num_masterservers = 0
         self.num_metaloggers = 0
@@ -13,30 +13,76 @@ class AbstractScenarioDriver(ABC):
         self.num_clientservers = 0
         self.ansible_basepath = ''
         self.hosts_inventory_dict = dict()
+        self.config_filepath = config_filepath
+        self.remote_host_username = 'admin_user'
 
-    # @abstractmethod
-    # def read_config_file(self, config_file_path: str) -> None:
-    #     pass
+    @abstractmethod
+    def scenario_execution(self) -> bool:
+        pass
 
-    # @abstractmethod
-    # def create_infrastructure(self, num_masterservers: int, num_chunkservers: int, num_metaloggers: int, num_clientservers: int) -> None:
-    #     pass
+    def read_update_config(self, config_file_path: str) -> None:
+        print("Reading input config file from path: " + config_file_path)
+        # Opening Input config JSON file
+        with open(config_file_path) as json_file:
+            data = json.load(json_file)
 
-    # @abstractmethod
-    # def get_cluster_ips(self) -> dict:
-    #     pass
+        self.num_masterservers = data['mfs_num_master_servers']
+        self.num_metaloggers = data['mfs_num_metalogger_servers']
+        self.num_chunkservers = data['mfs_num_chunk_servers']
+        self.num_clientservers = data['mfs_num_client_servers']
+        self.ansible_basepath = data['ansible_basepath']
 
-    # @abstractmethod
-    # def config_cluster_vms(self) -> None:
-    #     pass
+        return
 
-    # @abstractmethod
-    # def scenario_execution(self) -> bool:
-    #     pass
+    def create_infrastructure(self, num_masterservers: int, num_chunkservers: int, num_metaloggers: int, num_clientservers: int) -> None:
+        # Use Terraform method to create infrastructure
+        print("Creating Infrastrucute...")
+        createInfrastructure(num_masterservers, num_chunkservers,
+                             num_metaloggers, num_clientservers)
+        # Wait for VMs to boot up
+        print("Waiting for systems to boot up...")
+        time.sleep(180)
+        print("Infrastructure creation done")
+        return
 
-    # @abstractmethod
-    # def clear_infrastructure(self) -> None:
-    #     pass
+    def update_hosts_inventory(self) -> None:
+        # Use Terraform method to get IPs
+        self.hosts_inventory_dict = getIPs()
+        return
+
+    # Performs setup of configuration of the different vms that has been created by terraform.
+    # It creates a dynamic inventory hosts file to be used by ansible, which contains the server types
+    # and IP address details.
+    # It then executes the different ansible playbooks for Moose FS setup across different group of servers.
+    def config_cluster_vms(self) -> None:
+        try:
+            print("STARTING ANSIBLE CONFIGURATION")
+            ansible_conf = MFSAnsibleSetupVMs(self.ansible_basepath)
+            ansible_conf.create_inventory(self.hosts_inventory_dict)
+            ansible_conf.execute_ansible_playbook()
+            print("ANSIBLE CONFIGURATION COMPLETE")
+            return True
+        except Exception as e:
+            print("Error occurred on Ansible configuration: " + str(e))
+            return False
+
+    def clear_infrastructure(self) -> None:
+        print("Clearing Up the infrastructure Now....")
+        destroyInfrastructure()
+        print("Infrastructure destroyed")
+        return
+
+    def force_shutdown(self, host_vm_ip: str) -> None:
+        for vals in self.hosts_inventory_dict.values():
+            for key, val in vals.items():
+                if val == host_vm_ip:
+                    print("Performing Force shutdown for VM: " + host_vm_ip)
+                    deleteResource(key)
+                    print("Shutdown successful for VM: " + host_vm_ip)
+                    return
+
+        print("Could not find the specified VM IP for shutdown")
+        return
 
     def script_copy_execute_remote_vm(self,
                                       source_filepath: str,
@@ -71,8 +117,7 @@ class AbstractScenarioDriver(ABC):
             paramiko.AutoAddPolicy())
         self.mfs_ssh_client.load_system_host_keys()
         self.mfs_ssh_client.connect(hostname=remote_host_ip,
-                                    username=remote_host_username,
-                                    key_filename='cs6620Key101.pem')
+                                    username=remote_host_username)
         return
 
     def __verify_ssh_connection_established(self) -> None:
@@ -151,6 +196,7 @@ class AbstractScenarioDriver(ABC):
 
 
 
+
     def verify_moosefs_drive_content(self, remote_host_ip: str) -> list:
         # A sample result dictionary
         # result_dict = {
@@ -179,7 +225,7 @@ class AbstractScenarioDriver(ABC):
             count = ''.join(outlines)
             # count = int(count)
             result_list.append(count)
-            print('File contains' + count + ' Bs')
+            print('File contains ' + count + ' Bs')
 
             mfsClientVM.close()
             return result_list
