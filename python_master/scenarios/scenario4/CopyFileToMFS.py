@@ -5,6 +5,10 @@ mfsClientVM = SSHClient()
 
 list = []
 
+# combined three copyFiles in one method
+# scaniro1:  script_copy_execute_remote_vm
+#https://github.com/CS6620-S21/Distributed-File-Systems-Reliability/blob/scenario1/python_master/scenarios/abstract_scenario_driver.py
+#merge from main to scanrio4
 
 def copyFile1(dict):
     list.append(dict['client']['client1'])

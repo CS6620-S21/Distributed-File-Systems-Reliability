@@ -1,5 +1,10 @@
 from CheckMFSFile import *
 from CopyFileToMFS import *
+
+# combined three copyFiles in one method
+# scaniro1:  script_copy_execute_remote_vm
+#https://github.com/CS6620-S21/Distributed-File-Systems-Reliability/blob/scenario1/python_master/scenarios/abstract_scenario_driver.py
+
 # from python_master.terraform.driver import *
 #from python_master.ansible.ansible_driver import *
 
@@ -47,14 +52,41 @@ hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
 
 
 # Testing framework execution using SSH_SCP
-copyFile1(hosts_inventory_dict)
-copyFile2(hosts_inventory_dict)
-copyFile3(hosts_inventory_dict)
+
+# files:
+list = ['sample1.sh', 'sample2.sh', 'sample3.sh']
+
+listForClientsVM = []
+# copy file from managementVM to clients
+for key in hosts_inventory_dict['client']:
+    remote_host_ip = dict['client'][key]
+    listForClientsVM.append(remote_host_ip)
+    username = 'admin_user'
+    script_copy_execute_remote(list[0], '/home/admin_user/' + list[0], remote_host_ip, username)
+    list.remove(list[0])
+
+# destroy listForClientsVM[0] and listForClientsVM[1]
+
+
+# fetch file content on client3 vm
+resultDict = dict()
+resultDict = fetch_moosefs_drive_content(listForClientsVM[2])
+
+# verify file content and file name
+verify_file_name_content(resultDict)
+
+
+
+
+
+# copyFile1(hosts_inventory_dict)
+# copyFile2(hosts_inventory_dict)
+# copyFile3(hosts_inventory_dict)
 
 # destroy one client
 
 # check if file still there
-check(hosts_inventory_dict)
+#check(hosts_inventory_dict)
 
 # Terraform Destroys
 # destroyInfrastructure()
