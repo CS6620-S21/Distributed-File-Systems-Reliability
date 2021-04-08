@@ -179,7 +179,7 @@ class AbstractScenarioDriver(ABC):
             count = ''.join(outlines)
             # count = int(count)
             result_list.append(count)
-            printf('File contains %s Bs', count)
+            print('File contains' + count + ' Bs')
 
             mfsClientVM.close()
             return result_list
