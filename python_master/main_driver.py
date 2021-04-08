@@ -28,8 +28,7 @@ class main_driver:
 
             self.common_setup_control_flow(
                 scenario1, self.scenario1_config_file_path)
-            scenario1.__update_primary_secondary_client_hosts(
-                scenario1.hosts_inventory_dict)
+            scenario1.update_primary_secondary_client_hosts()
             execution_result = scenario1.scenario_execution()
 
             if execution_result:

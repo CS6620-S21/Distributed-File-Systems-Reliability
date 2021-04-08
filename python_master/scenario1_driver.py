@@ -45,7 +45,7 @@ class Scenario1Driver(AbstractScenarioDriver):
             primary_client_details['content'])
 
         # Perform hard shutdown of client 1 VM
-        super.force_shutdown(self.remote_primary_client_host_ip)
+        self.force_shutdown(self.remote_primary_client_host_ip)
 
         # fetch file and its content from secondary client vms
         for ip in self.remote_secondary_client_host_ips_list:
@@ -58,12 +58,12 @@ class Scenario1Driver(AbstractScenarioDriver):
         # Verify the file still exists across mounted drive from client 2 & client 3
         return self.verify_file_name_content(file_name_content_dict)
 
-    def __update_primary_secondary_client_hosts(self, hosts_inventory_dict: dict) -> None:
+    def update_primary_secondary_client_hosts(self) -> None:
         self.remote_primary_client_host_ip = list(
-            hosts_inventory_dict['client'].values())[0]
+            self.hosts_inventory_dict['client'].values())[0]
 
         self.remote_secondary_client_host_ips_list = list(
-            hosts_inventory_dict['client'].values())[1:]
+            self.hosts_inventory_dict['client'].values())[1:]
 
         return
 

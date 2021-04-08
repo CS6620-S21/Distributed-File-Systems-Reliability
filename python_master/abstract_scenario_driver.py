@@ -82,9 +82,7 @@ class AbstractScenarioDriver(ABC):
                 if val == host_vm_ip:
                     print("Performing Force shutdown for VM: " + host_vm_ip)
                     deleteResource(key)
-                    print("Waiting for resource to be deleted...")
-                    time.sleep(120)
-                    print("Resource deleted")
+                    print("Shutdown successful for VM: " + host_vm_ip)
                     return
 
         print("Could not find the specified VM IP for shutdown")
