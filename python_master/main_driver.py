@@ -5,6 +5,7 @@ from scenario1_driver import Scenario1Driver
 class main_driver:
     def __init__(self) -> None:
         self.scenario1_config_file_path = "config/s1_config.json"
+        self.scenario7_config_file_path = "config/s7_config.json"
 
     def common_setup_control_flow(self, ScenarioDriver: AbstractScenarioDriver, config_file_path: str) -> None:
         ScenarioDriver.read_update_config(config_file_path)
@@ -42,7 +43,35 @@ class main_driver:
         except Exception as e:
             print("Error occurred in Scenario Execution: " + str(e))
 
+    def execute_scenario7(self):
+        local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability-Xinyi/python_master/scripts/script_s7.sh"
+        remote_dest_filepath = "/home/admin_user/script_s7.sh"
+
+        try:
+            print("Performing Scenario 7 execution...")
+            scenario7 = Scenario7Driver(config_filepath=self.scenario7_config_file_path,
+                                        local_source_filepath=local_source_filepath,
+                                        remote_dest_filepath=remote_dest_filepath))
+
+            self.common_setup_control_flow(
+                scenario7, self.scenario7_config_file_path)
+            scenario7.update_primary_secondary_client_hosts()
+            execution_result = scenario7.scenario_execution()
+
+            if execution_result:
+                print("Scenario execution successfully passed")
+            else:
+                print("Something went wrong. Scenario execution failed")
+
+            scenario1.clear_infrastructure()
+            print("Scenario 1 execution complete")
+
+        except Exception as e:
+            print("Error occurred in Scenario Execution: " + str(e))
+
 
 if __name__ == "__main__":
     driver = main_driver()
-    driver.execute_scenario1()
+    # driver.execute_scenario1()
+    driver.execute_scenario7()
+

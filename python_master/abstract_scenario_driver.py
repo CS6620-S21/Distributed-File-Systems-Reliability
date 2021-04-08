@@ -197,3 +197,46 @@ class AbstractScenarioDriver(ABC):
 
         print("Test Success")
         return True
+
+
+
+    def verify_moosefs_drive_content(self, remote_host_ip: str) -> list:
+        try:
+            result_list = list()
+
+            mfsClientVM = SSHClient()
+            mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            mfsClientVM.load_system_host_keys()
+
+            mfsClientVM.connect(hostname=remote_host_ip,
+                                username=self.remote_host_username,
+                                key_filename='cs6620Key101.pem')
+
+            print("Verifying file content on VM with IP: " + remote_host_ip)
+
+            # Count Bs in file on client VM
+            stdin, stdout, stderr = mfsClientVM.exec_command(
+                'cd /mnt/mfs/test7; grep -c "B" testfile.txt')
+            outlines = stdout.readlines()
+            stdin.close()
+            count = ''.join(outlines)
+            # count = int(count)
+            result_list.append(count)
+            print('File contains ' + count + ' Bs')
+
+            mfsClientVM.close()
+            return result_list
+
+        except Exception as e:
+            print("Something went wrong while verifying the moosefs drive content")
+            print("Error Details: " + str(e))
+            return None
+
+    def verify_file_content(self, file_content_list: list) -> bool:
+        for i in range(0, len(file_content_list) - 1):
+            if int(file_content_list[i]) == 0:
+                print("Test Failure")
+                return False
+
+        print("Test Success")
+        return True
