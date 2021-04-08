@@ -27,6 +27,9 @@ class Scenario7Driver(AbstractScenarioDriver):
             print("Unable to copy and execute script on primary client VM")
             return False
 
+        # Perform hard shutdown of client 1 VM
+        self.force_shutdown(self.remote_primary_client_host_ip)
+
         # A sample file content list: 
         # file_content_list = [0, 0]
         file_content_list = list()
@@ -36,9 +39,6 @@ class Scenario7Driver(AbstractScenarioDriver):
             self.remote_primary_client_host_ip)
 
         file_content_list.extend(primary_client_details)
-
-        # Perform hard shutdown of client 1 VM
-        self.force_shutdown(self.remote_primary_client_host_ip)
 
         # fetch file and its content from secondary client vms
         for ip in self.remote_secondary_client_host_ips_list:
@@ -57,7 +57,7 @@ class Scenario7Driver(AbstractScenarioDriver):
 
         return
 
-    def main():
+    def main(self):
 
         # hosts_inventory_dict = {'master': {'CLUSTER_1617744534_MASTER_1': '10.0.0.186'},
         #                         'metalogger': {'CLUSTER_1617744534_METALOGGER_1': '10.0.0.70'},

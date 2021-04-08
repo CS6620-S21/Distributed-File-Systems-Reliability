@@ -63,7 +63,7 @@ class main_driver:
             else:
                 print("Something went wrong. Scenario execution failed")
 
-            scenario1.clear_infrastructure()
+            scenario7.clear_infrastructure()
             print("Scenario 7 execution complete")
 
         except Exception as e:
