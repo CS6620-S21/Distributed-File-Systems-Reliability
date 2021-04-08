@@ -43,7 +43,8 @@ def addClientInstance():
 
     numberOfClients += 1
 
-    clientInstanceID = "CLUSTER_" + str(timestamp) + "_CLIENT_" + str(numberOfClients)
+    clientInstanceID = "CLUSTER_" + \
+        str(timestamp) + "_CLIENT_" + str(numberOfClients)
 
     json_object = fetchCurrentState()
 
@@ -53,7 +54,7 @@ def addClientInstance():
                 clientInstanceID: [
                     {
                         "flavor_name": "m1.tiny",
-                        "image_name": "ubuntu_dummy_config_snap101",
+                        "image_name": "ubuntu_dummy_config_snap102",
                         "name": clientInstanceID,
                         "security_groups": [
                             "default"
@@ -85,7 +86,8 @@ def addMetalogger():
 
     numberOfMetaloggers += 1
 
-    metaloggerInstanceID = "CLUSTER_" + str(timestamp) + "_METALOGGER_" + str(numberOfMetaloggers)
+    metaloggerInstanceID = "CLUSTER_" + \
+        str(timestamp) + "_METALOGGER_" + str(numberOfMetaloggers)
 
     json_object = fetchCurrentState()
 
@@ -127,7 +129,8 @@ def addMasterServer():
 
     numberOfMasters += 1
 
-    masterInstanceID = "CLUSTER_" + str(timestamp) + "_MASTER_" + str(numberOfMasters)
+    masterInstanceID = "CLUSTER_" + \
+        str(timestamp) + "_MASTER_" + str(numberOfMasters)
 
     json_object = fetchCurrentState()
 
@@ -173,9 +176,12 @@ def addChunkServer():
     numberOfVolumes += 1
     numberOfVolumeAttach += 1
 
-    chunkServerInstanceID = "CLUSTER_" + str(timestamp) + "_CHUNKSERVER_" + str(numberOfChunkServers)
-    volumeInstanceID = chunkServerInstanceID + "_VOLUME_" + str(numberOfVolumes)
-    volumeAttachInstanceID = chunkServerInstanceID + "_VOLUMEATTACH_" + str(numberOfVolumeAttach)
+    chunkServerInstanceID = "CLUSTER_" + \
+        str(timestamp) + "_CHUNKSERVER_" + str(numberOfChunkServers)
+    volumeInstanceID = chunkServerInstanceID + \
+        "_VOLUME_" + str(numberOfVolumes)
+    volumeAttachInstanceID = chunkServerInstanceID + \
+        "_VOLUMEATTACH_" + str(numberOfVolumeAttach)
 
     json_object = fetchCurrentState()
 
@@ -252,7 +258,6 @@ def removeResource(resourceid):
         if resourceid in data:
             resource.append(data_raw)
 
-
     n = len(json_object["output"])
 
     for i in range(0, n):
@@ -263,7 +268,6 @@ def removeResource(resourceid):
 
     for i in range(0, len(resource)):
         json_object["resource"].remove(resource[i])
-
 
     for i in range(0, len(output)):
         json_object["output"].remove(output[i])
