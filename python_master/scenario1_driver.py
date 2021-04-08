@@ -67,6 +67,7 @@ class Scenario1Driver(AbstractScenarioDriver):
 
         return
 
+    # To be ignored. For Testing purpose only.
     def main():
         # hosts_inventory_dict = {'master': {'CLUSTER_1617744534_MASTER_1': '10.0.0.186'},
         #                         'metalogger': {'CLUSTER_1617744534_METALOGGER_1': '10.0.0.70'},
