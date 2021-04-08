@@ -34,11 +34,11 @@ class Scenario7Driver(AbstractScenarioDriver):
         # file_content_list = [0, 0]
         file_content_list = list()
 
-        # fetch file and its content from primary client vm
-        primary_client_details = self.verify_moosefs_drive_content(
-            self.remote_primary_client_host_ip)
-
-        file_content_list.extend(primary_client_details)
+        # # fetch file and its content from primary client vm
+        # primary_client_details = self.verify_moosefs_drive_content(
+        #     self.remote_primary_client_host_ip)
+        #
+        # file_content_list.extend(primary_client_details)
 
         # fetch file and its content from secondary client vms
         for ip in self.remote_secondary_client_host_ips_list:
