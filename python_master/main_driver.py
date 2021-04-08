@@ -54,7 +54,7 @@ class main_driver:
         remote_dest_filepath3 = "/home/admin_user/script4_3.sh"
 
         try:
-            print("Performing Scenario 1 execution...")
+            print("Performing Scenario4  execution...")
             scenario4 = Scenario4Driver(config_filepath=self.scenario4_config_file_path,
                                         local_source_filepath1=local_source_filepath1,
                                         remote_dest_filepath1=remote_dest_filepath1,
