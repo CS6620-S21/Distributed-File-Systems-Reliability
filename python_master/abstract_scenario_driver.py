@@ -42,10 +42,12 @@ class AbstractScenarioDriver(ABC):
                              num_metaloggers, num_clientservers)
         # Wait for VMs to boot up
         time.sleep(180)
+        return
 
     def update_hosts_inventory(self) -> None:
         # Use Terraform method to get IPs
         self.hosts_inventory_dict = getIPs()
+        return
 
     # Performs setup of configuration of the different vms that has been created by terraform.
     # It creates a dynamic inventory hosts file to be used by ansible, which contains the server types
@@ -79,6 +81,9 @@ class AbstractScenarioDriver(ABC):
                     time.sleep(120)
                     print("Resource deleted")
                     return
+
+        print("Could not find the specified VM IP for shutdown")
+        return
 
     def script_copy_execute_remote_vm(self,
                                       source_filepath: str,

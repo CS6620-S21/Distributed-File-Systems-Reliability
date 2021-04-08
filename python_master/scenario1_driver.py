@@ -103,3 +103,5 @@ class Scenario1Driver(AbstractScenarioDriver):
             print("Something went wrong. Scenario execution failed")
 
         s1.clear_infrastructure()
+
+        return

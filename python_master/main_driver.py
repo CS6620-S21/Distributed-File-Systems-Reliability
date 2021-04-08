@@ -5,7 +5,6 @@ from scenario1_driver import Scenario1Driver
 class main_driver:
     def __init__(self) -> None:
         self.scenario1_config_file_path = "config/s1_config.json"
-        pass
 
     def common_setup_control_flow(self, ScenarioDriver: AbstractScenarioDriver, config_file_path: str) -> None:
         ScenarioDriver.read_update_config(config_file_path)
@@ -17,6 +16,7 @@ class main_driver:
         ScenarioDriver.__update_primary_secondary_client_hosts(
             ScenarioDriver.hosts_inventory_dict)
         ScenarioDriver.config_cluster_vms()
+        return
 
     def execute_scenario1(self):
         local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s1.sh"
