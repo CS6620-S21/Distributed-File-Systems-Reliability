@@ -158,6 +158,8 @@ class AbstractScenarioDriver(ABC):
         # 'cotent': [file 1 content here', 'file 2 content here' ]
         # }
 
+        print("here")
+
         try:
             result_list = list()
 
