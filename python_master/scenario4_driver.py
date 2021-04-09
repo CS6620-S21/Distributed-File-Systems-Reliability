@@ -4,10 +4,7 @@ from paramiko.client import AutoAddPolicy, SSHClient
 import paramiko
 import sys
 
-run_result1 = AbstractScenarioDriver.script_copy_execute_remote_vm("/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_1.sh",
-                                                 "/home/admin_user/script4_1.sh",
-                                                 "10.0.0.250",
-                                                "admin_user")
+run_result1 = AbstractScenarioDriver.script_copy_execute_remote_vm("/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_1.sh","/home/admin_user/script4_1.sh","10.0.0.250","admin_user")
 # class Scenario4Driver(AbstractScenarioDriver):
 #
 #     def __init__(self, config_filepath: str,
