@@ -1,7 +1,0 @@
-{
-  "mfs_num_master_servers": 1,
-  "mfs_num_metalogger_servers": 1,
-  "mfs_num_chunk_servers": 2,
-  "mfs_num_client_servers": 3,
-  "ansible_basepath": "/home/admin_user/Distributed-File-Systems-Reliability-Shilin/ansible_master"
-}
