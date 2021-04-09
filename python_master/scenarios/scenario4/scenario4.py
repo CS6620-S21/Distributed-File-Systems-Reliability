@@ -1,99 +1,102 @@
-# from CheckMFSFile import *
-# from CopyFileToMFS import *
-from python_master.abstract_scenario_driver import *
-# combined three copyFiles in one method
-# scaniro1:  script_copy_execute_remote_vm
-#https://github.com/CS6620-S21/Distributed-File-Systems-Reliability/blob/scenario1/python_master/scenarios/abstract_scenario_driver.py
-
-# from python_master.terraform.driver import *
-#from python_master.ansible.ansible_driver import *
-
-import json
-import time
-
-# Opening Input config JSON file
-# with open('input_config.json') as json_file:
-#     data = json.load(json_file)
-#
-# num_masterservers = data['mfs_num_master_servers']
-# num_metaloggers = data['mfs_num_metalogger_servers']
-# num_chunkservers = data['mfs_num_chunk_servers']
-# num_clientservers = data['mfs_num_client_servers']
-
-# Terraform VM Creation
-# Create infratructure
-# createInfrastructure(num_masterservers, num_chunkservers,
-#                      num_metaloggers, num_clientservers)
+from abc import ABC, abstractmethod
+from abstract_scenario_driver import AbstractScenarioDriver
+from paramiko.client import AutoAddPolicy, SSHClient
+import paramiko
+import sys
 
 
-# Fetch the dictionary of type
-hosts_inventory_dict = {'master': {'master1': '10.0.0.200'},
-                        'metalogger': {'mettalogger1': '10.0.0.154'},
-                        'chunkserver': {'chunkserver1': '10.0.0.62',
-                                        'chunkserver2': '10.0.0.107',
-                                        'chunkserver3': '10.0.0.162'},
-                        'client': {'client1': '10.0.0.151',
-                                   'client2': '10.0.0.131',
-                                   'client3': '10.0.0.123'}}
-# hosts_inventory_dict = getIPs()
+class Scenario4Driver(AbstractScenarioDriver):
+
+    def __init__(self, config_filepath: str,
+                 local_source_filepath1: str, remote_dest_filepath1: str,
+                 local_source_filepath2: str, remote_dest_filepath2: str,
+                 local_source_filepath3: str, remote_dest_filepath3: str
+                 ) -> None:
+        super().__init__(config_filepath)
+        self.mfs_ssh_client = SSHClient()
+        #add 3 client host ip
+        self.remote_primary_client_host_ip1 = ''
+        self.remote_primary_client_host_ip2 = ''
+        self.remote_primary_client_host_ip3 = ''
+
+        # self.remote_secondary_client_host_ips_list = list()
+        self.local_source_filepath1 = local_source_filepath1
+        self.remote_dest_filepath1 = remote_dest_filepath1
+        self.local_source_filepath2 = local_source_filepath2
+        self.remote_dest_filepath2 = remote_dest_filepath2
+        self.local_source_filepath3 = local_source_filepath3
+        self.remote_dest_filepath3 = remote_dest_filepath3
+
+
+    def scenario_execution(self) -> bool:
+        # Perform Script copying & then execution on client 1 to create dummy file on the mounted moosefs drive
+        run_result1 = self.script_copy_execute_remote_vm(self.local_source_filepath1,
+                                                         self.remote_dest_filepath1,
+                                                         self.remote_primary_client_host_ip1,
+                                                         self.remote_host_username)
+        run_result2 = self.script_copy_execute_remote_vm(self.local_source_filepath2,
+                                                         self.remote_dest_filepath2,
+                                                         self.remote_primary_client_host_ip2,
+                                                         self.remote_host_username)
+        run_result3 = self.script_copy_execute_remote_vm(self.local_source_filepath3,
+                                                         self.remote_dest_filepath3,
+                                                         self.remote_primary_client_host_ip3,
+                                                         self.remote_host_username)
+        if run_result1 == False:
+            print("Unable to copy and execute script on primary client VM")
+            return False
+        #
+        # """
+        # A sample result dictionary:
+        # file_name_content_dict = {
+        #                   'files': ['temp_file101', 'temp_file102'],
+        #                   'cotent': [file 1 content here', 'file 2 content here' ]
+        # }
+        # """
+        # file_name_content_dict = dict()
+        # file_name_content_dict['files'] = list()
+        # file_name_content_dict['content'] = list()
+        #
+        # # fetch file and its content from primary client vm
+        # primary_client_details = self.fetch_moosefs_drive_content(
+        #     self.remote_primary_client_host_ip)
+        #
+        # file_name_content_dict['files'].extend(primary_client_details['files'])
+        # file_name_content_dict['content'].extend(
+        #     primary_client_details['content'])
+        #
+        # # Perform hard shutdown of client 1 VM
+        # self.force_shutdown(self.remote_primary_client_host_ip)
+
+        # fetch file and its content from secondary client vms
+        # for ip in self.remote_secondary_client_host_ips_list:
+        #     secondary_client_details = self.fetch_moosefs_drive_content(ip)
+        #     file_name_content_dict['files'].extend(
+        #         secondary_client_details['files'])
+        #     file_name_content_dict['content'].extend(
+        #         secondary_client_details['content'])
+
+        # Verify the file still exists across mounted drive from client 3
+        # return self.verify_file_name_content(file_name_content_dict)
+        return True
+
+    def update_primary_secondary_client_hosts(self) -> None:
+        self.remote_primary_client_host_ip1 = list(
+            self.hosts_inventory_dict['client'].values())[0]
+
+        self.remote_primary_client_host_ip2 = list(
+            self.hosts_inventory_dict['client'].values())[1]
+
+        self.remote_primary_client_host_ip3 = list(
+            self.hosts_inventory_dict['client'].values())[2]
+
+        return
 
 
 
-# Wait for VMs to boot up
-# time.sleep(120)
-
-# Performs setup of configuration of the different vms that has been created by terraform.
-# It creates a dynamic inventory hosts file to be used by ansible, which contains the server types
-# and IP address details.
-# It then executes the different ansible playbooks for Moose FS setup across different group of servers.
-# ansible_conf = MFSAnsibleSetupVMs(data['ansible_basepath'])
-# ansible_conf.create_inventory(hosts_inventory_dict)
-# ansible_conf.execute_ansible_playbook()
-
-
-# Testing framework execution using SSH_SCP
-
-# files:
-
-listForClientsVM = []
-def copyFiles():
-    list = ['sample1.sh', 'sample2.sh', 'sample3.sh']
-
-    for key in hosts_inventory_dict['client']:
-        remote_host_ip = dict['client'][key]
-        listForClientsVM.append(remote_host_ip)
-        username = 'admin_user'
-        script_copy_execute_remote(list[0], '/home/admin_user/' + list[0], remote_host_ip, username)
-        list.remove(list[0])
-
-# destroy listForClientsVM[0] and listForClientsVM[1]
-# main_driver.py
-def shutdownVM():
-    force_shutdown(listForClientsVM[0])
-    force_shutdown(listForClientsVM[1])
-
-
-def compareFiles():
-
-    # fetch file content on client3 vm
-    resultDict = dict()
-    resultDict = fetch_moosefs_drive_content(listForClientsVM[2])
-
-    # verify file content and file name
-    verify_file_name_content(resultDict)
 
 
 
 
 
-# copyFile1(hosts_inventory_dict)
-# copyFile2(hosts_inventory_dict)
-# copyFile3(hosts_inventory_dict)
 
-# destroy one client
-
-# check if file still there
-#check(hosts_inventory_dict)
-
-# Terraform Destroys
-# destroyInfrastructure()
