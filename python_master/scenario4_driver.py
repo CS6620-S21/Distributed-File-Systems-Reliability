@@ -61,14 +61,14 @@ run_result1 = AbstractScenarioDriver.script_copy_execute_remote_vm("/home/admin_
         #     print("Unable to copy and execute script on primary client3 VM")
         #     return False
 
-
-        """
-        A sample result dictionary: 
-        file_name_content_dict = {
-                          'files': ['temp_file101', 'temp_file102'],
-                          'cotent': [file 1 content here', 'file 2 content here' ]
-        }
-        """
+        #
+        # """
+        # A sample result dictionary:
+        # file_name_content_dict = {
+        #                   'files': ['temp_file101', 'temp_file102'],
+        #                   'cotent': [file 1 content here', 'file 2 content here' ]
+        # }
+        # """
         #
         # list = ['s4_test_file1.txt', 's4_test_file2.txt']
         #
