@@ -20,9 +20,9 @@ class AbstractScenarioDriver(ABC):
         self.config_filepath = config_filepath
         self.remote_host_username = 'admin_user'
 
-    @abstractmethod
-    def scenario_execution(self) -> bool:
-        pass
+    # @abstractmethod
+    # def scenario_execution(self) -> bool:
+    #     pass
 
     def read_update_config(self, config_file_path: str) -> None:
         print("Reading input config file from path: " + config_file_path)
