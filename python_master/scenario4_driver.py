@@ -47,7 +47,7 @@ class Scenario4Driver(AbstractScenarioDriver):
         if run_result2 == False:
             print("Unable to copy and execute script on primary client2 VM")
             return False
-        if run_result1 == False:
+        if run_result3 == False:
             print("Unable to copy and execute script on primary client3 VM")
             return False
 
