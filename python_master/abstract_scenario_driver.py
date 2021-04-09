@@ -11,7 +11,6 @@ class AbstractScenarioDriver(ABC):
 
     def __init__(self, config_filepath: str) -> None:
         super().__init__()
-        self.mfs_ssh_client = SSHClient()
         self.num_masterservers = 0
         self.num_metaloggers = 0
         self.num_chunkservers = 0
@@ -21,9 +20,9 @@ class AbstractScenarioDriver(ABC):
         self.config_filepath = config_filepath
         self.remote_host_username = 'admin_user'
 
-    # @abstractmethod
-    # def scenario_execution(self) -> bool:
-    #     pass
+    @abstractmethod
+    def scenario_execution(self) -> bool:
+        pass
 
     def read_update_config(self, config_file_path: str) -> None:
         print("Reading input config file from path: " + config_file_path)
@@ -180,57 +179,6 @@ class AbstractScenarioDriver(ABC):
             print("Something went wrong while fetching the moosefs drive content")
             print("Error Details: " + str(e))
             return None
-
-
-    #add for scenario4
-    def fetch_moosefs_drive_title_s4(self, remote_host_ip: str) -> str:
-        try:
-            result_content = ""
-            mfsClientVM = SSHClient()
-            mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            mfsClientVM.load_system_host_keys()
-
-            mfsClientVM.connect(hostname=remote_host_ip,
-                                username=self.remote_host_username)
-            print("Fetching file and its content on VM with IP: " + remote_host_ip)
-            stdin, stdout, stderr = mfsClientVM.exec_command(
-                'cd /mnt/mfs/; ls')
-            outlines = stdout.readlines()
-            stdin.close()
-            file_name = ''.join(outlines)
-            file_name = str(file_name).rstrip('\n')
-            print('File name is: ' + file_name)
-            return file_name
-        except Exception as e:
-            print("Something went wrong while fetching the moosefs drive title")
-            print("Error Details: " + str(e))
-            return None
-
-    #add for scenario4
-    def fetch_moosefs_drive_content_s4(self, remote_host_ip: str, file_name: str) -> str:
-        try:
-            result_content = ""
-            mfsClientVM = SSHClient()
-            mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            mfsClientVM.load_system_host_keys()
-
-            mfsClientVM.connect(hostname=remote_host_ip,
-                                username=self.remote_host_username)
-            print("Fetching file and its content on VM with IP: " + remote_host_ip)
-            stdin, stdout, stderr = mfsClientVM.exec_command(
-                'cd /mnt/mfs/; cat ' + file_name)
-            outlines = stdout.readlines()
-            stdin.close()
-            content = ''.join(outlines)
-            content = str(file_name).rstrip('\n')
-            print('File content is: ' + content)
-            return content
-        except Exception as e:
-            print("Something went wrong while fetching the moosefs drive title")
-            print("Error Details: " + str(e))
-            return None
-
-
 
     def verify_file_name_content(seld, file_name_content_dict: dict) -> bool:
         # A sample result dictionary

@@ -19,31 +19,31 @@ class main_driver:
         ScenarioDriver.config_cluster_vms()
         return
 
-    # def execute_scenario1(self):
-    #     local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s1.sh"
-    #     remote_dest_filepath = "/home/admin_user/script_s1.sh"
-    #
-    #     try:
-    #         print("Performing Scenario 1 execution...")
-    #         scenario1 = Scenario1Driver(config_filepath=self.scenario1_config_file_path,
-    #                                     local_source_filepath=local_source_filepath,
-    #                                     remote_dest_filepath=remote_dest_filepath)
-    #
-    #         self.common_setup_control_flow(
-    #             scenario1, self.scenario1_config_file_path)
-    #         scenario1.update_primary_secondary_client_hosts()
-    #         execution_result = scenario1.scenario_execution()
-    #
-    #         if execution_result:
-    #             print("Scenario execution successfully passed")
-    #         else:
-    #             print("Something went wrong. Scenario execution failed")
-    #
-    #         scenario1.clear_infrastructure()
-    #         print("Scenario 1 execution complete")
-    #
-    #     except Exception as e:
-    #         print("Error occurred in Scenario Execution: " + str(e))
+    def execute_scenario1(self):
+        local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s1.sh"
+        remote_dest_filepath = "/home/admin_user/script_s1.sh"
+
+        try:
+            print("Performing Scenario 1 execution...")
+            scenario1 = Scenario1Driver(config_filepath=self.scenario1_config_file_path,
+                                        local_source_filepath=local_source_filepath,
+                                        remote_dest_filepath=remote_dest_filepath)
+
+            self.common_setup_control_flow(
+                scenario1, self.scenario1_config_file_path)
+            scenario1.update_primary_secondary_client_hosts()
+            execution_result = scenario1.scenario_execution()
+
+            if execution_result:
+                print("Scenario execution successfully passed")
+            else:
+                print("Something went wrong. Scenario execution failed")
+
+            scenario1.clear_infrastructure()
+            print("Scenario 1 execution complete")
+
+        except Exception as e:
+            print("Error occurred in Scenario Execution: " + str(e))
 
     def execute_scenario4(self):
         local_source_filepath1 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_1.sh"
@@ -66,7 +66,7 @@ class main_driver:
 
             self.common_setup_control_flow(
                 scenario4, self.scenario4_config_file_path)
-            #scenario1.update_primary_secondary_client_hosts()
+            scenario4.update_primary_secondary_client_hosts()
             execution_result = scenario4.scenario_execution()
 
             if execution_result:
