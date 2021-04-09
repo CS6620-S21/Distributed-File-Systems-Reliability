@@ -11,6 +11,7 @@ class AbstractScenarioDriver(ABC):
 
     def __init__(self, config_filepath: str) -> None:
         super().__init__()
+        self.mfs_ssh_client = SSHClient()
         self.num_masterservers = 0
         self.num_metaloggers = 0
         self.num_chunkservers = 0
