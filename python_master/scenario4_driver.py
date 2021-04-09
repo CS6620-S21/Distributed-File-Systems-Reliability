@@ -4,8 +4,6 @@ from paramiko.client import AutoAddPolicy, SSHClient
 import paramiko
 import sys
 
-ab = AbstractScenarioDriver("abc")
-run_result1 = ab.script_copy_execute_remote_vm("/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_1.sh","/home/admin_user/script4_1.sh","10.0.0.250","admin_user")
 # class Scenario4Driver(AbstractScenarioDriver):
 #
 #     def __init__(self, config_filepath: str,
@@ -133,7 +131,7 @@ class Scenario4Driver(AbstractScenarioDriver):
         self.remote_primary_client_host_ip2 = ''
         self.remote_primary_client_host_ip3 = ''
 
-        self.remote_secondary_client_host_ips_list = list()
+        # self.remote_secondary_client_host_ips_list = list()
         self.local_source_filepath1 = local_source_filepath1
         self.remote_dest_filepath1 = remote_dest_filepath1
         self.local_source_filepath2 = local_source_filepath2
