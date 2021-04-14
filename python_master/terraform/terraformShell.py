@@ -6,15 +6,15 @@ import os
 import subprocess
 
 def init():
-    subprocess.call(['sh', './terraform/terraform.starter.sh'], cwd="./terraform")
+    subprocess.call(['sh', './terraform/terraform.starter.sh'], cwd="")
 
 def run():
-    subprocess.call(['sh', './terraform/terraform.runner1.sh'], cwd="./terraform")
+    subprocess.call(['sh', './terraform/terraform.runner1.sh'], cwd="")
 
 
 def destroy():
-    subprocess.call(['sh', './terraform/terraform.destroy1.sh'], cwd="./terraform")
+    subprocess.call(['sh', './terraform/terraform.destroy1.sh'], cwd="")
 
 def output():
-    subprocess.call(['sh', './terraform/terraform.output.sh'], cwd="./terraform")
+    subprocess.call(['sh', './terraform/terraform.output.sh'], cwd="")
 
