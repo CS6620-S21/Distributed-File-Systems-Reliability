@@ -3,8 +3,8 @@
 
 # /Users/aksha/OneDrive/Documents/projects/git/Distributed-File-Systems-Reliability
 
-from ssh_scp.CopyFileToMFS import *
-from ssh_scp.CheckMFSFile import *
+# from ssh_scp.CopyFileToMFS import *
+# from ssh_scp.CheckMFSFile import *
 from terraform.terraformDriver import *
 from ansible.ansible_driver import *
 from terraform.terraformShell import *
