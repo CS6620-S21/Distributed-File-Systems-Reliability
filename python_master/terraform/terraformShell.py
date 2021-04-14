@@ -5,24 +5,18 @@
 import os
 import subprocess
 
-terraform_basepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/terraform"
-
 
 def init():
-    subprocess.call(['sh', './terraform/terraform.starter.sh'],
-                    cwd=terraform_basepath)
+    subprocess.call(['sh', './terraform/terraform.starter.sh'])
 
 
 def run():
-    subprocess.call(['sh', './terraform/terraform.runner1.sh'],
-                    cwd=terraform_basepath)
+    subprocess.call(['sh', './terraform/terraform.runner1.sh'])
 
 
 def destroy():
-    subprocess.call(['sh', './terraform/terraform.destroy1.sh'],
-                    cwd=terraform_basepath)
+    subprocess.call(['sh', './terraform/terraform.destroy1.sh'])
 
 
 def output():
-    subprocess.call(['sh', './terraform/terraform.output.sh'],
-                    cwd=terraform_basepath)
+    subprocess.call(['sh', './terraform/terraform.output.sh'])
