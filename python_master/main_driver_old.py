@@ -23,7 +23,9 @@ import time
 # Create infratructure
 
 # print("STARTING TERRAFORM CREATION")
-createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
+# createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_clientservers)
+
+createInfrastructure(1, 2, 2, 2)
 
 
 # Fetch the dictionary of type
@@ -37,10 +39,10 @@ createInfrastructure(num_masterservers, num_chunkservers,num_metaloggers, num_cl
 #                                    'client3': '10.0.0.79'}}
 
 hosts_inventory_dict = getIPs()
-
+print(hosts_inventory_dict)
 
 # print(hosts_inventory_dict)
-# print("TERRAFORM CREATION COMPLETE")
+print("TERRAFORM CREATION COMPLETE")
 
 
 
@@ -61,8 +63,8 @@ hosts_inventory_dict = getIPs()
 
 # time.sleep(120)
 # Terraform Destroys
-# print("DESTROYING THE INFRASTRUCTURE")
-# destroyInfrastructure()
-# print("DESTRUCTION COMPLETE")
+print("DESTROYING THE INFRASTRUCTURE")
+destroyInfrastructure()
+print("DESTRUCTION COMPLETE")
 
 
