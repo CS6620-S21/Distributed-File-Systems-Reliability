@@ -154,7 +154,7 @@ class AbstractScenarioDriver(ABC):
 
             print("Fetching file and its content on VM with IP: " + remote_host_ip)
 
-            # Fetch file name on client VM
+            Fetch file name on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
                 'cd /mnt/mfs/scenario2_test_2; ls')
             outlines = stdout.readlines()
@@ -166,7 +166,7 @@ class AbstractScenarioDriver(ABC):
 
             # Fetch file content on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
-                'cd /mnt/mfs/scenario2_test_2; cat ' + file_name)
+                'ls -lh /mnt/mfs/scenario2_test_2')
             outlines = stdout.readlines()
             stdin.close()
             file_content = ''.join(outlines)

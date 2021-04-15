@@ -46,7 +46,7 @@ class Scenario2Driver(AbstractScenarioDriver):
             primary_client_details['content'])
 
         # Perform hard shutdown of chunkserver 1 VM
-        print("TOTALALLL ---------->>>>>", self.hosts_inventory_dict)
+        # print("TOTALALLL ---------->>>>>", self.hosts_inventory_dict)
         self.force_shutdown(self.remote_primary_chunk_server_ip)
 
         # fetch file and its content from secondary client vms
