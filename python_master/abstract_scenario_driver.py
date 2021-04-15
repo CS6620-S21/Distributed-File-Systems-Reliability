@@ -45,7 +45,7 @@ class AbstractScenarioDriver(ABC):
                              num_metaloggers, num_clientservers)
         # Wait for VMs to boot up
         print("Waiting for systems to boot up...")
-        time.sleep(180)
+        time.sleep(240)
         print("Infrastructure creation done")
         return
 

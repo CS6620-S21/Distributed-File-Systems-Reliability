@@ -103,4 +103,3 @@ if __name__ == "__main__":
     # driver.execute_scenario1()
     driver.execute_scenario7()
     # driver.execute_scenario2()
-s
