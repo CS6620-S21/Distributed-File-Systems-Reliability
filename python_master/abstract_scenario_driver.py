@@ -73,9 +73,6 @@ class AbstractScenarioDriver(ABC):
     def clear_infrastructure(self) -> None:
         print("Clearing Up the infrastructure Now....")
         destroyInfrastructure()
-        # known_host = open("~/.ssh/known_hosts", "r+")
-        # known_host.truncate(0)
-        # known_host.close()
         print("Infrastructure destroyed")
         return
 
@@ -228,7 +225,8 @@ class AbstractScenarioDriver(ABC):
             count = ''.join(outlines)
             # count = int(count)
             result_list.append(count)
-            print('File contains ' + count + ' Bs')
+            s = 'File contains ' + count + ' Bs'
+            print(s)
 
             mfsClientVM.close()
             return result_list
