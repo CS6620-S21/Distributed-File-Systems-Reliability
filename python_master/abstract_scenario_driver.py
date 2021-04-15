@@ -143,7 +143,6 @@ class AbstractScenarioDriver(ABC):
         try:
             result_dict = dict()
             result_dict['files'] = list()
-            result_dict['size'] = list()
             result_dict['content'] = list()
 
             mfsClientVM = SSHClient()
@@ -157,7 +156,7 @@ class AbstractScenarioDriver(ABC):
 
             # Fetch file name on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
-                'cd /mnt/mfs/scenario2_test_2; ls')
+                'cd /mnt/mfs/; ls')
             outlines = stdout.readlines()
             stdin.close()
             file_name = ''.join(outlines)
@@ -167,7 +166,7 @@ class AbstractScenarioDriver(ABC):
 
             # Fetch file content on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
-                'cd /mnt/mfs/scenario2_test_2; cat ' + file_name)
+                'cd /mnt/mfs/; cat ' + file_name)
             outlines = stdout.readlines()
             stdin.close()
             file_content = ''.join(outlines)
@@ -175,21 +174,13 @@ class AbstractScenarioDriver(ABC):
             result_dict['content'].append(file_content)
             print('File Content is: ' + file_content)
 
-            stdin, stdout, stderr = mfsClientVM.exec_command(
-                'ls -lh /mnt/mfs/scenario2_test_2')
-            outlines = stdout.readlines()
-            stdin.close()
-            file_content = ''.join(outlines)
-            file_content = str(file_content).rstrip('\n')
-            result_dict['size'].append(file_content)
-            print('File size is: ' + file_content)
-
             mfsClientVM.close()
             return result_dict
         except Exception as e:
             print("Something went wrong while fetching the moosefs drive content")
             print("Error Details: " + str(e))
             return None
+
 
     def verify_file_name_content(seld, file_name_content_dict: dict) -> bool:
         # A sample result dictionary
