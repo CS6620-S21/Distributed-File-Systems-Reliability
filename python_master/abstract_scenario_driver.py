@@ -163,7 +163,7 @@ class AbstractScenarioDriver(ABC):
             file_name = ''.join(outlines)
             file_name = str(file_name).rstrip('\n')
             result_dict['files'].append(file_name)
-            print('File name is: ' + file_name)
+            # print('File name is: ' + file_name)
 
             # Fetch file content on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
@@ -173,7 +173,7 @@ class AbstractScenarioDriver(ABC):
             file_content = ''.join(outlines)
             file_content = str(file_content).rstrip('\n')
             result_dict['content'].append(file_content)
-            print('File Content is: ' + file_content)
+            # print('File Content is: ' + file_content)
 
             stdin, stdout, stderr = mfsClientVM.exec_command(
                 'ls -lh /mnt/mfs/scenario2_test_2')
