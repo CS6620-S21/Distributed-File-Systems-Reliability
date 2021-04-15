@@ -1,6 +1,6 @@
 from abstract_scenario_driver import AbstractScenarioDriver
 from scenario1_driver import Scenario1Driver
-from scenario2_driver import Scenario2Driver
+# from scenario2_driver import Scenario2Driver
 
 
 class main_driver:
@@ -26,7 +26,8 @@ class main_driver:
             print("Performing Scenario 1 execution...")
             scenario1 = Scenario1Driver(config_filepath=self.scenario1_config_file_path,
                                         local_source_filepath=local_source_filepath,
-                                        remote_dest_filepath=remote_dest_filepath)
+                                        remote_dest_filepath=remote_dest_filepath,
+                                        server_kill_type='client')
 
             self.common_setup_control_flow(
                 scenario1, self.scenario1_config_file_path)
@@ -50,9 +51,10 @@ class main_driver:
 
         try:
             print("Performing Scenario 2 execution...")
-            scenario2 = Scenario2Driver(config_filepath=self.scenario2_config_file_path,
+            scenario2 = Scenario1Driver(config_filepath=self.scenario2_config_file_path,
                                         local_source_filepath=local_source_filepath,
-                                        remote_dest_filepath=remote_dest_filepath)
+                                        remote_dest_filepath=remote_dest_filepath,
+                                        server_kill_type='chunkserver')
 
             self.common_setup_control_flow(
                 scenario2, self.scenario2_config_file_path)
@@ -64,7 +66,7 @@ class main_driver:
             else:
                 print("Something went wrong. Scenario execution failed")
 
-            # scenario2.clear_infrastructure()
+            scenario2.clear_infrastructure()
             print("Scenario 2 execution complete")
 
         except Exception as e:
@@ -73,5 +75,5 @@ class main_driver:
 
 if __name__ == "__main__":
     driver = main_driver()
-    # driver.execute_scenario1()
-    driver.execute_scenario2()
+    driver.execute_scenario1()
+    # driver.execute_scenario2()
