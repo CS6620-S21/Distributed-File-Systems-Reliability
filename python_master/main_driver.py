@@ -69,7 +69,7 @@ class main_driver:
             print("Scenario 7 execution complete")
 
         except Exception as e:
-        print("Error occurred in Scenario Execution: " + str(e))
+            print("Error occurred in Scenario Execution: " + str(e))
 
     def execute_scenario2(self):
         local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s2.sh"
