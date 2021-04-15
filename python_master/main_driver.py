@@ -44,7 +44,7 @@ class main_driver:
             print("Error occurred in Scenario Execution: " + str(e))
 
     def execute_scenario7(self):
-        local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability-Xinyi/python_master/scripts/script_s7.sh"
+        local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s7.sh"
         remote_dest_filepath = "/home/admin_user/script_s7.sh"
 
         try:
