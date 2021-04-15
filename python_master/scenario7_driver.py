@@ -68,7 +68,7 @@ class Scenario7Driver(AbstractScenarioDriver):
         #                                 'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
         #                                 'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
         
-        local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability-Xinyi/python_master/scenarios/scenario7/test7_1.sh"
+        local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scenarios/scenario7/test7_1.sh"
         remote_dest_filepath = "/home/admin_user/script_s7.sh"
 
         s1 = Scenario7Driver(hosts_inventory_dict,
