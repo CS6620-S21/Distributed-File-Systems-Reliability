@@ -1,6 +1,5 @@
 from abstract_scenario_driver import AbstractScenarioDriver
 from scenario1_driver import Scenario1Driver
-# from scenario2_driver import Scenario2Driver
 
 
 class main_driver:
@@ -75,5 +74,5 @@ class main_driver:
 
 if __name__ == "__main__":
     driver = main_driver()
-    # driver.execute_scenario1()
+    driver.execute_scenario1()
     driver.execute_scenario2()

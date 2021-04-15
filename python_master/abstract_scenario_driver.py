@@ -77,7 +77,6 @@ class AbstractScenarioDriver(ABC):
         return
 
     def force_shutdown(self, host_vm_ip: str) -> None:
-        print("SHUTTING DOWN --------------->>>>>>   " + host_vm_ip)
         for vals in self.hosts_inventory_dict.values():
             for key, val in vals.items():
                 if val == host_vm_ip:
@@ -143,7 +142,6 @@ class AbstractScenarioDriver(ABC):
         try:
             result_dict = dict()
             result_dict['files'] = list()
-            result_dict['size'] = list()
             result_dict['content'] = list()
 
             mfsClientVM = SSHClient()
@@ -157,32 +155,23 @@ class AbstractScenarioDriver(ABC):
 
             # Fetch file name on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
-                'cd /mnt/mfs/scenario2_test_2; ls')
+                'cd /mnt/mfs/; ls')
             outlines = stdout.readlines()
             stdin.close()
             file_name = ''.join(outlines)
             file_name = str(file_name).rstrip('\n')
             result_dict['files'].append(file_name)
-            # print('File name is: ' + file_name)
+            print('File name is: ' + file_name)
 
             # Fetch file content on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
-                'cd /mnt/mfs/scenario2_test_2; cat ' + file_name)
+                'cd /mnt/mfs/; cat ' + file_name)
             outlines = stdout.readlines()
             stdin.close()
             file_content = ''.join(outlines)
             file_content = str(file_content).rstrip('\n')
             result_dict['content'].append(file_content)
-            # print('File Content is: ' + file_content)
-
-            stdin, stdout, stderr = mfsClientVM.exec_command(
-                'ls -lh /mnt/mfs/scenario2_test_2')
-            outlines = stdout.readlines()
-            stdin.close()
-            file_content = ''.join(outlines)
-            file_content = str(file_content).rstrip('\n')
-            result_dict['size'].append(file_content)
-            print('File size is: ' + file_content)
+            print('File Content is: ' + file_content)
 
             mfsClientVM.close()
             return result_dict
