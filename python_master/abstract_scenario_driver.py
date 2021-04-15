@@ -77,7 +77,6 @@ class AbstractScenarioDriver(ABC):
         return
 
     def force_shutdown(self, host_vm_ip: str) -> None:
-        print("SHUTTING DOWN --------------->>>>>>   " + host_vm_ip)
         for vals in self.hosts_inventory_dict.values():
             for key, val in vals.items():
                 if val == host_vm_ip:
@@ -180,7 +179,6 @@ class AbstractScenarioDriver(ABC):
             print("Something went wrong while fetching the moosefs drive content")
             print("Error Details: " + str(e))
             return None
-
 
     def verify_file_name_content(seld, file_name_content_dict: dict) -> bool:
         # A sample result dictionary
