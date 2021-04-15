@@ -155,7 +155,7 @@ class AbstractScenarioDriver(ABC):
 
             # Fetch file name on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
-                'cd /mnt/mfs/; ls')
+                'cd /mnt/mfs/scenario2_test_2; ls')
             outlines = stdout.readlines()
             stdin.close()
             file_name = ''.join(outlines)
@@ -165,7 +165,7 @@ class AbstractScenarioDriver(ABC):
 
             # Fetch file content on client VM
             stdin, stdout, stderr = mfsClientVM.exec_command(
-                'cd /mnt/mfs/; cat ' + file_name)
+                'cd /mnt/mfs/scenario2_test_2; cat ' + file_name)
             outlines = stdout.readlines()
             stdin.close()
             file_content = ''.join(outlines)
