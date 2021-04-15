@@ -46,7 +46,7 @@ class Scenario2Driver(AbstractScenarioDriver):
             primary_client_details['content'])
 
         # Perform hard shutdown of chunkserver 1 VM
-        print("TOTALALLL ---------->>>>>" , self.hosts_inventory_dict)
+        print("TOTALALLL ---------->>>>>", self.hosts_inventory_dict)
         self.force_shutdown(self.remote_primary_chunk_server_ip)
 
         # fetch file and its content from secondary client vms
@@ -64,7 +64,7 @@ class Scenario2Driver(AbstractScenarioDriver):
         self.remote_primary_client_host_ip = list(
             self.hosts_inventory_dict['client'].values())[0]
 
-        self.remote_primary_chunk_server_ip = list(self.hosts_inventory_dict["chunkserver"])[0]
+        self.remote_primary_chunk_server_ip = list(self.hosts_inventory_dict['chunkserver'].values())[0]
 
         self.remote_secondary_client_host_ips_list = list(
             self.hosts_inventory_dict['client'].values())
@@ -72,20 +72,18 @@ class Scenario2Driver(AbstractScenarioDriver):
         return
 
     # To be ignored. For Testing purpose only.
-    # CLUSTER_1618450223_CHUNKSERVER_1 = "10.0.0.156"
-    # CLUSTER_1618450223_CHUNKSERVER_2 = "10.0.0.30"
-    # CLUSTER_1618450223_CLIENT_1 = "10.0.0.215"
-    # CLUSTER_1618450223_MASTER_1 = "10.0.0.17"
-    # CLUSTER_1618450223_METALOGGER_1 = "10.0.0.113"
+    # CLUSTER_1618450614_CHUNKSERVER_1 = "10.0.0.141"
+    # CLUSTER_1618450614_CHUNKSERVER_2 = "10.0.0.50"
+    # CLUSTER_1618450614_CLIENT_1 = "10.0.0.226"
+    # CLUSTER_1618450614_MASTER_1 = "10.0.0.161"
+    # CLUSTER_1618450614_METALOGGER_1 = "10.0.0.194"
     def main():
-        # hosts_inventory_dict = {'master': {'CLUSTER_1617744534_MASTER_1': '10.0.0.186'},
-        #                         'metalogger': {'CLUSTER_1617744534_METALOGGER_1': '10.0.0.70'},
-        #                         'chunkserver': {'CLUSTER_1617744534_CHUNKSERVER_1': '10.0.0.126',
-        #                                         'CLUSTER_1617744534_CHUNKSERVER_2': '10.0.0.245',
+        # hosts_inventory_dict = {'master': {'CLUSTER_1618450614_MASTER_1': '10.0.0.161'},
+        #                         'metalogger': {'CLUSTER_1618450614_METALOGGER_1': '10.0.0.194'},
+        #                         'chunkserver': {'CLUSTER_1618450614_CHUNKSERVER_1': '10.0.0.141',
+        #                                         'CLUSTER_1618450614_CHUNKSERVER_2': '10.0.0.50',
         #                                         },
-        #                         'client': {'CLUSTER_1617744534_CLIENT_1': '10.0.0.76',
-        #                                    'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
-        #                                    'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
+        #                         'client': {'CLUSTER_1618450614_CLIENT_1': '10.0.0.226'}}
 
         local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s2.sh"
         remote_dest_filepath = "/home/admin_user/script_s2.sh"
