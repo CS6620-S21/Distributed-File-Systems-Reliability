@@ -77,6 +77,7 @@ class AbstractScenarioDriver(ABC):
         return
 
     def force_shutdown(self, host_vm_ip: str) -> None:
+        print("SHUTTING DOWN --------------->>>>>>   " + host_vm_ip)
         for vals in self.hosts_inventory_dict.values():
             for key, val in vals.items():
                 if val == host_vm_ip:

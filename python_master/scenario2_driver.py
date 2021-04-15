@@ -63,7 +63,7 @@ class Scenario2Driver(AbstractScenarioDriver):
         self.remote_primary_client_host_ip = list(
             self.hosts_inventory_dict['client'].values())[0]
 
-        self.remote_primary_chunk_server_ip = list(self.hosts_inventory_dict['chunkserver'])[0]
+        self.remote_primary_chunk_server_ip = list(self.hosts_inventory_dict["chunkserver"])[0]
 
         self.remote_secondary_client_host_ips_list = list(
             self.hosts_inventory_dict['client'].values())
