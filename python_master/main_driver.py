@@ -64,7 +64,7 @@ class main_driver:
             else:
                 print("Something went wrong. Scenario execution failed")
 
-            scenario2.clear_infrastructure()
+            # scenario2.clear_infrastructure()
             print("Scenario 2 execution complete")
 
         except Exception as e:
