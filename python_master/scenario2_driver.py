@@ -47,7 +47,7 @@ class Scenario2Driver(AbstractScenarioDriver):
 
         # Perform hard shutdown of chunkserver 1 VM
         # print("TOTALALLL ---------->>>>>", self.hosts_inventory_dict)
-        self.force_shutdown(self.remote_primary_chunk_server_ip)
+        self.force_shutdown('10.0.0.80')
 
         # fetch file and its content from secondary client vms
         for ip in self.remote_secondary_client_host_ips_list:
@@ -123,6 +123,6 @@ class Scenario2Driver(AbstractScenarioDriver):
 #         # s1.clear_infrastructure()
 #
 #         return
-# if __name__ == '__main__':
-#     Scenario2Driver.main()
+if __name__ == '__main__':
+    Scenario2Driver.main()
 
