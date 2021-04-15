@@ -46,6 +46,7 @@ class Scenario2Driver(AbstractScenarioDriver):
             primary_client_details['content'])
 
         # Perform hard shutdown of chunkserver 1 VM
+        print("TOTALALLL ---------->>>>>" , self.hosts_inventory_dict)
         self.force_shutdown(self.remote_primary_chunk_server_ip)
 
         # fetch file and its content from secondary client vms
@@ -71,40 +72,45 @@ class Scenario2Driver(AbstractScenarioDriver):
         return
 
     # To be ignored. For Testing purpose only.
-    # def main():
-    #     # hosts_inventory_dict = {'master': {'CLUSTER_1617744534_MASTER_1': '10.0.0.186'},
-    #     #                         'metalogger': {'CLUSTER_1617744534_METALOGGER_1': '10.0.0.70'},
-    #     #                         'chunkserver': {'CLUSTER_1617744534_CHUNKSERVER_1': '10.0.0.126',
-    #     #                                         'CLUSTER_1617744534_CHUNKSERVER_2': '10.0.0.245',
-    #     #                                         },
-    #     #                         'client': {'CLUSTER_1617744534_CLIENT_1': '10.0.0.76',
-    #     #                                    'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
-    #     #                                    'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
-    # 
-    #     local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s1.sh"
-    #     remote_dest_filepath = "/home/admin_user/script_s1.sh"
-    #     config_file_path = "config/s1_config.json"
-    # 
-    #     s1 = Scenario1Driver(config_file_path,
-    #                          local_source_filepath,
-    #                          remote_dest_filepath)
-    # 
-    #     s1.read_update_config(config_file_path)
-    #     s1.create_infrastructure(s1.num_masterservers,
-    #                              s1.num_chunkservers,
-    #                              s1.num_metaloggers,
-    #                              s1.num_clientservers)
-    #     s1.update_hosts_inventory()
-    #     s1.__update_primary_secondary_client_hosts(s1.hosts_inventory_dict)
-    #     s1.config_cluster_vms()
-    # 
-    #     result = s1.scenario_execution()
-    # 
-    #     if result:
-    #         print("Scenario execution successfully passed")
-    #     else:
-    #         print("Something went wrong. Scenario execution failed")
-    # 
-    #     s1.clear_infrastructure()
-    # 
-    #     return
+    # CLUSTER_1618450223_CHUNKSERVER_1 = "10.0.0.156"
+    # CLUSTER_1618450223_CHUNKSERVER_2 = "10.0.0.30"
+    # CLUSTER_1618450223_CLIENT_1 = "10.0.0.215"
+    # CLUSTER_1618450223_MASTER_1 = "10.0.0.17"
+    # CLUSTER_1618450223_METALOGGER_1 = "10.0.0.113"
+    def main():
+        # hosts_inventory_dict = {'master': {'CLUSTER_1617744534_MASTER_1': '10.0.0.186'},
+        #                         'metalogger': {'CLUSTER_1617744534_METALOGGER_1': '10.0.0.70'},
+        #                         'chunkserver': {'CLUSTER_1617744534_CHUNKSERVER_1': '10.0.0.126',
+        #                                         'CLUSTER_1617744534_CHUNKSERVER_2': '10.0.0.245',
+        #                                         },
+        #                         'client': {'CLUSTER_1617744534_CLIENT_1': '10.0.0.76',
+        #                                    'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
+        #                                    'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
+
+        local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s2.sh"
+        remote_dest_filepath = "/home/admin_user/script_s2.sh"
+        config_file_path = "config/s2_config.json"
+
+        s2 = Scenario2Driver(config_file_path,
+                             local_source_filepath,
+                             remote_dest_filepath)
+
+        s2.read_update_config(config_file_path)
+        s2.create_infrastructure(s2.num_masterservers,
+                                 s2.num_chunkservers,
+                                 s2.num_metaloggers,
+                                 s2.num_clientservers)
+        s2.update_hosts_inventory()
+        s2.update_primary_secondary_client_hosts()
+        s2.config_cluster_vms()
+
+        result = s2.scenario_execution()
+
+        if result:
+            print("Scenario execution successfully passed")
+        else:
+            print("Something went wrong. Scenario execution failed")
+
+        # s1.clear_infrastructure()
+
+        return
