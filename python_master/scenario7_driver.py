@@ -12,9 +12,11 @@ class Scenario7Driver(AbstractScenarioDriver):
         self.mfs_ssh_client = SSHClient()
         # self.hosts_inventory_dict = hosts_inventory_dict
         self.remote_primary_client_host_ip = ''
+        # self.remote_primary_kill_server_ip = ''
         self.remote_secondary_client_host_ips_list = list()
         # self.remote_host_username = 'admin_user'
         self.local_source_filepath = local_source_filepath
+        # self.server_kill_type = server_kill_type
         self.remote_dest_filepath = remote_dest_filepath
 
     def scenario_execution(self) -> bool:
@@ -57,7 +59,7 @@ class Scenario7Driver(AbstractScenarioDriver):
 
         return
 
-    def main(self):
+    # def main(self):
 
         # hosts_inventory_dict = {'master': {'CLUSTER_1617744534_MASTER_1': '10.0.0.186'},
         #                         'metalogger': {'CLUSTER_1617744534_METALOGGER_1': '10.0.0.70'},
@@ -68,15 +70,15 @@ class Scenario7Driver(AbstractScenarioDriver):
         #                                 'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
         #                                 'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
 
-        local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scenarios/scenario7/test7_1.sh"
-        remote_dest_filepath = "/home/admin_user/script_s7.sh"
-
-        s1 = Scenario7Driver(hosts_inventory_dict,
-                             local_source_filepath,
-                             remote_dest_filepath)
-        result = s1.scenario_execution()
-
-        if result:
-            print("Scenario execution successfully passed")
-        else:
-            print("Something went wrong. Scenario execution failed")
+        # local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scenarios/scenario7/test7_1.sh"
+        # remote_dest_filepath = "/home/admin_user/script_s7.sh"
+        #
+        # s1 = Scenario7Driver(hosts_inventory_dict,
+        #                      local_source_filepath,
+        #                      remote_dest_filepath)
+        # result = s1.scenario_execution()
+        #
+        # if result:
+        #     print("Scenario execution successfully passed")
+        # else:
+        #     print("Something went wrong. Scenario execution failed")
