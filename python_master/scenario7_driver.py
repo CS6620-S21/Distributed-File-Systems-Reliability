@@ -23,7 +23,7 @@ class Scenario7Driver(AbstractScenarioDriver):
                                                         self.remote_dest_filepath,
                                                         self.remote_primary_client_host_ip,
                                                         self.remote_host_username)
-        if run_result == False:
+        if not run_result:
             print("Unable to copy and execute script on primary client VM")
             return False
 
@@ -67,13 +67,13 @@ class Scenario7Driver(AbstractScenarioDriver):
         #                         'client': {'CLUSTER_1617744534_CLIENT_1': '10.0.0.76',
         #                                 'CLUSTER_1617744534_CLIENT_2': '10.0.0.227',
         #                                 'CLUSTER_1617744534_CLIENT_3': '10.0.0.185'}}
-        
+
         local_source_filepath = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scenarios/scenario7/test7_1.sh"
         remote_dest_filepath = "/home/admin_user/script_s7.sh"
 
         s1 = Scenario7Driver(hosts_inventory_dict,
-                            local_source_filepath,
-                            remote_dest_filepath)
+                             local_source_filepath,
+                             remote_dest_filepath)
         result = s1.scenario_execution()
 
         if result:
