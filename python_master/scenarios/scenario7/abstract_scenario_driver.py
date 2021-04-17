@@ -1,10 +1,6 @@
 from abc import ABC, abstractmethod
 from paramiko.client import AutoAddPolicy, SSHClient
-from terraform.terraformDriver import *
-from ansible.ansible_driver import *
 import paramiko
-import json
-import time
 
 
 class AbstractScenarioDriver(ABC):
@@ -45,7 +41,7 @@ class AbstractScenarioDriver(ABC):
                              num_metaloggers, num_clientservers)
         # Wait for VMs to boot up
         print("Waiting for systems to boot up...")
-        time.sleep(240)
+        time.sleep(180)
         print("Infrastructure creation done")
         return
 
@@ -73,9 +69,6 @@ class AbstractScenarioDriver(ABC):
     def clear_infrastructure(self) -> None:
         print("Clearing Up the infrastructure Now....")
         destroyInfrastructure()
-        # known_host = open("~/.ssh/known_hosts", "r+")
-        # known_host.truncate(0)
-        # known_host.close()
         print("Infrastructure destroyed")
         return
 
@@ -203,7 +196,14 @@ class AbstractScenarioDriver(ABC):
 
 
 
+
     def verify_moosefs_drive_content(self, remote_host_ip: str) -> list:
+        # A sample result dictionary
+        # result_dict = {
+        # 'files': ['temp_file101', 'temp_file102'],
+        # 'cotent': [file 1 content here', 'file 2 content here' ]
+        # }
+
         try:
             result_list = list()
 

@@ -16,7 +16,6 @@ def check(dict):
     for client in clients:
         mfsClientVM = SSHClient()
 
-
         hostname=client
 
         mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -24,27 +23,34 @@ def check(dict):
 
         #.ssh/cs6620Key101.pem
         # mfsClientVM.connect(hostname=hostname, username='ubuntu', key_filename='/home/centos/cs6620Key101.pem')
-        mfsClientVM.connect(hostname=hostname, username='admin_user', key_filename='./ssh_scp/real_key.pem')
+        mfsClientVM.connect(hostname=hostname, username='admin_user', key_filename='cs6620Key101.pem')
         # if client == '10.0.0.241':
         #     print("The client ip/name is: cl2")
         # else:
         #     print("The client ip/name is: ", client)
-        print("File name is:")
-        stdin, stdout, stderr = mfsClientVM.exec_command('cd ..; cd ..; cd mnt; cd mfs; ls')
+        print("Test result:")
+        stdin, stdout, stderr = mfsClientVM.exec_command('cd /mnt/mfs/test7; grep -c "B" testfile.txt')
         outlines = stdout.readlines()
         stdin.close()
         resp = ''.join(outlines)
+        resp = int(resp)
         print(resp)
-        resultList.append(resp)
+        # resultList.append(resp)
 
-    for i in range(1,len(resultList)):
-        if resultList[i-1] != resultList[i]:
+    # for i in range(0,len(resultList) - 1):
+        if resp != 0:
             print("Test failure")
             return
 
-    print("Test success")
+    print("Test7 passed")
     return
 
 
 # if __name__ == '__main__':
 #     check()
+
+
+
+
+
+
