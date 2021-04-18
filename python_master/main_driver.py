@@ -110,7 +110,7 @@ class main_driver:
 
         try:
             print("Performing Scenario4  execution...")
-            scenario4 = Scenario4Driver(config_filepath=self.scenario4_config_file_path,
+            scenario4 = Scenario4Driver(config_filepath=self.scenario1_config_file_path,
                                         local_source_filepath1=local_source_filepath1,
                                         remote_dest_filepath1=remote_dest_filepath1,
                                         local_source_filepath2=local_source_filepath2,
