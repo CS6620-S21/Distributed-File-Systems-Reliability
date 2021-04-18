@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-import paramiko
 from abstract_scenario_driver import AbstractScenarioDriver
 from paramiko.client import AutoAddPolicy, SSHClient
+import paramiko
 import sys
 
 
