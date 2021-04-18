@@ -101,12 +101,12 @@ class main_driver:
 
 
     def execute_scenario4(self):
-        local_source_filepath1 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_1.sh"
-        remote_dest_filepath1 = "/home/admin_user/script4_1.sh"
-        local_source_filepath2 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_2.sh"
-        remote_dest_filepath2 = "/home/admin_user/script4_2.sh"
-        local_source_filepath3 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_3.sh"
-        remote_dest_filepath3 = "/home/admin_user/script4_3.sh"
+        local_source_filepath1 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s4_1.sh"
+        remote_dest_filepath1 = "/home/admin_user/script_s4_1.sh"
+        local_source_filepath2 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s4_2.sh"
+        remote_dest_filepath2 = "/home/admin_user/script_s4_2.sh"
+        local_source_filepath3 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s4_3.sh"
+        remote_dest_filepath3 = "/home/admin_user/script_s4_3.sh"
 
         try:
             print("Performing Scenario4  execution...")
@@ -140,3 +140,4 @@ if __name__ == "__main__":
     # driver.execute_scenario1()
     # driver.execute_scenario7()
     # driver.execute_scenario2()
+    driver.execute_scenario4()
