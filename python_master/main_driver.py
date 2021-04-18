@@ -1,6 +1,7 @@
 from abstract_scenario_driver import AbstractScenarioDriver
 from scenario1_driver import Scenario1Driver
 from scenario7_driver import Scenario7Driver
+from scenario4_driver import Scenario4Driver
 
 class main_driver:
     def __init__(self) -> None:
@@ -98,8 +99,44 @@ class main_driver:
         except Exception as e:
             print("Error occurred in Scenario Execution: " + str(e))
 
+
+    def execute_scenario4(self):
+        local_source_filepath1 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_1.sh"
+        remote_dest_filepath1 = "/home/admin_user/script4_1.sh"
+        local_source_filepath2 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_2.sh"
+        remote_dest_filepath2 = "/home/admin_user/script4_2.sh"
+        local_source_filepath3 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script4_3.sh"
+        remote_dest_filepath3 = "/home/admin_user/script4_3.sh"
+
+        try:
+            print("Performing Scenario4  execution...")
+            scenario4 = Scenario4Driver(config_filepath=self.scenario4_config_file_path,
+                                        local_source_filepath1=local_source_filepath1,
+                                        remote_dest_filepath1=remote_dest_filepath1,
+                                        local_source_filepath2=local_source_filepath2,
+                                        remote_dest_filepath2=remote_dest_filepath2,
+                                        local_source_filepath3=local_source_filepath3,
+                                        remote_dest_filepath3=remote_dest_filepath3
+                                        )
+
+            self.common_setup_control_flow(
+                scenario4, self.scenario1_config_file_path)
+            scenario4.update_primary_secondary_client_hosts_s4()
+            execution_result = scenario4.scenario_execution()
+
+            if execution_result:
+                print("Scenario execution successfully passed")
+            else:
+                print("Something went wrong. Scenario execution failed")
+
+            # scenario4.clear_infrastructure()
+            # print("Scenario 4 execution complete")
+
+        except Exception as e:
+            print("Error occurred in Scenario Execution: " + str(e))
+
 if __name__ == "__main__":
     driver = main_driver()
     # driver.execute_scenario1()
     # driver.execute_scenario7()
-    driver.execute_scenario2()
+    # driver.execute_scenario2()

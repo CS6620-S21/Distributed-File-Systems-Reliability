@@ -246,3 +246,48 @@ class AbstractScenarioDriver(ABC):
 
         print("Test Success")
         return True
+
+
+# s4 methods here
+
+    def content_in_client(self, remote_host_ip: str, file_name: str):
+        mfsClientVM = SSHClient()
+        mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        mfsClientVM.load_system_host_keys()
+
+        mfsClientVM.connect(hostname=remote_host_ip,
+                            username=self.remote_host_username)
+
+        print("Fetching file and its content on VM with IP: " + remote_host_ip)
+
+
+        stdin, stdout, stderr = mfsClientVM.exec_command(
+            'cd /mnt/mfs/; cat ' + file_name)
+        outlines = stdout.readlines()
+        stdin.close()
+        file_content = ''.join(outlines)
+        # file_content = str(file_content).rstrip('\n')
+        # result_dict['content'].append(file_content)
+        print('File Content is: ' + file_content)
+
+        return file_content
+
+    def file_name_compare_s4(self, remote_host_ip: str):
+
+        mfsClientVM = SSHClient()
+        mfsClientVM.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        mfsClientVM.load_system_host_keys()
+
+        mfsClientVM.connect(hostname=remote_host_ip,
+                            username=self.remote_host_username)
+
+        print("Fetching file and its content on VM with IP: " + remote_host_ip)
+
+        stdin, stdout, stderr = mfsClientVM.exec_command(
+            'cd /mnt/mfs/; ls')
+        outlines = stdout.readlines()
+        stdin.close()
+        file_name = ''.join(outlines)
+        mfsClientVM.close()
+        return file_name
+
