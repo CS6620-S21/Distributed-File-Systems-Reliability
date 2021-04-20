@@ -1,5 +1,6 @@
 from abstract_scenario_driver import AbstractScenarioDriver
 from scenario1_driver import Scenario1Driver
+from scenario4_driver import Scenario4Driver
 from scenario7_driver import Scenario7Driver
 
 class main_driver:
@@ -7,6 +8,7 @@ class main_driver:
         self.scenario1_config_file_path = "config/s1_config.json"
         self.scenario2_config_file_path = "config/s2_config.json"
         self.scenario7_config_file_path = "config/s7_config.json"
+        self.scenario4_config_file_path = "config/s4_config.json"
 
     def common_setup_control_flow(self, ScenarioDriver: AbstractScenarioDriver, config_file_path: str) -> None:
         ScenarioDriver.read_update_config(config_file_path)
@@ -98,8 +100,54 @@ class main_driver:
         except Exception as e:
             print("Error occurred in Scenario Execution: " + str(e))
 
+    def execute_scenario4(self):
+        local_path1 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s4_1.sh"
+        local_path2 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s4_2.sh"
+        local_path3 = "/home/admin_user/Distributed-File-Systems-Reliability/python_master/scripts/script_s4_3.sh"
+
+        remote_path1 = "/home/admin_user/script_s4_1.sh"
+        remote_path2 = "/home/admin_user/script_s4_2.sh"
+        remote_path3 = "/home/admin_user/script_s4_3.sh"
+
+        local_source_filepath = {
+            'client1': local_path1,
+            'client2': local_path2,
+            'client3': local_path3,
+        }
+
+        remote_dest_filepath = {
+            'client1': remote_path1,
+            'client2': remote_path2,
+            'client3': remote_path3,
+        }
+
+        try:
+            print("Performing Scenario 4 execution...")
+            scenario4 = Scenario4Driver(config_filepath=self.scenario4_config_file_path,
+                                        local_source_filepath=local_source_filepath,
+                                        remote_dest_filepath=remote_dest_filepath)
+
+            self.common_setup_control_flow(
+                scenario4, self.scenario4_config_file_path)
+            scenario4.update_client_hosts()
+            execution_result = scenario4.scenario_execution()
+
+            if execution_result:
+                print("Scenario execution successfully passed")
+            else:
+                print("Something went wrong. Scenario execution failed")
+
+            scenario4.clear_infrastructure()
+            print("Scenario 4 execution complete")
+
+        except Exception as e:
+            print("Error occurred in Scenario Execution: " + str(e))
+
+
 if __name__ == "__main__":
     driver = main_driver()
     driver.execute_scenario1()
-    driver.execute_scenario7()
+    driver.execute_scenario4()
     driver.execute_scenario2()
+    driver.execute_scenario7()
+
