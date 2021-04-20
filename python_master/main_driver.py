@@ -1,7 +1,7 @@
 from abstract_scenario_driver import AbstractScenarioDriver
 from scenario1_driver import Scenario1Driver
-from scenario7_driver import Scenario7Driver
 from scenario4_driver import Scenario4Driver
+from scenario7_driver import Scenario7Driver
 
 class main_driver:
     def __init__(self) -> None:
@@ -120,7 +120,6 @@ class main_driver:
             'client2': remote_path2,
             'client3': remote_path3,
         }
-        # remote_dest_filepath = "/home/admin_user/script_s4_1.sh"
 
         try:
             print("Performing Scenario 4 execution...")
@@ -139,14 +138,16 @@ class main_driver:
                 print("Something went wrong. Scenario execution failed")
 
             scenario4.clear_infrastructure()
-            print("Scenario 2 execution complete")
+            print("Scenario 4 execution complete")
 
         except Exception as e:
             print("Error occurred in Scenario Execution: " + str(e))
 
+
 if __name__ == "__main__":
     driver = main_driver()
-    # driver.execute_scenario1()
-    # driver.execute_scenario7()
-    # driver.execute_scenario2()
+    driver.execute_scenario1()
     driver.execute_scenario4()
+    driver.execute_scenario2()
+    driver.execute_scenario7()
+
