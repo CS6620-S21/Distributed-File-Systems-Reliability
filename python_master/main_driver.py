@@ -129,7 +129,7 @@ class main_driver:
                                         remote_dest_filepath=remote_dest_filepath)
 
             self.common_setup_control_flow(
-                scenario4, self.scenario2_config_file_path)
+                scenario4, self.scenario4_config_file_path)
             scenario4.update_client_hosts()
             execution_result = scenario4.scenario_execution()
 
