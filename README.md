@@ -53,13 +53,25 @@ The user connect to the management VM and use it as the workflow engine, drive t
 - (8)SSH to the client VM to check the status/content of the testing files.
 - (9)Destroy all the VMs through Terraform.
 
-#### Configuration of Terraform, Ansible on Management VM
+#### Workflow API Architecture
+- Management VM
+    - Driver of various tests
+    - Workflow Engine
+- MooseFS Server VM
+    - Master Server VM
+    - Chunk Server VM
+    - Metalogger Server VM
+- MooseFS Client VM
+
+#### Environment Configuration on Management VM
 - Terraform
     - Terraform plays the part of creating and maintaining the infrastructure 
     - Successfully connected to the OpenStack platform and programmatically provision VMs using terraform
     - A Python layer over Terraform, which interacts with the Terraform to create the required infrastructure
 - Ansible
 ![10231618956435_ pic_hd](https://user-images.githubusercontent.com/52186552/115470503-0acd7680-a1fc-11eb-89bb-ba07b4c5d2a8.jpg)
+    - Implemented Ansible Playbook for setting up different MooseFS servers.
+    - Automated the setup of Master Server, Metalogger, Chunkserver, and Client server.
 
 #### Design different failure scenarios for testing. 
  
