@@ -59,7 +59,7 @@ of these interfaces.
         - Successfully connected to the OpenStack platform and programmatically provision VMs using terraform
         - A Python layer over Terraform, which interacts with the Terraform to create the required infrastructure
     - Ansible
-    - ![10231618956435_ pic_hd](https://user-images.githubusercontent.com/52186552/115470503-0acd7680-a1fc-11eb-89bb-ba07b4c5d2a8.jpg)
+![10231618956435_ pic_hd](https://user-images.githubusercontent.com/52186552/115470503-0acd7680-a1fc-11eb-89bb-ba07b4c5d2a8.jpg)
 - Design different failure scenarios for testing. 
  
 ## 5. Acceptance criteria
