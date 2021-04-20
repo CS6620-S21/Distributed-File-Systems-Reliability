@@ -45,20 +45,20 @@ interfaces, and thus testing different file systems would require developing dif
 of these interfaces.
 #### Architecture Overview
 ![arch diagram](https://user-images.githubusercontent.com/52186552/112475253-990a2600-8d3e-11eb-8964-f4080c9e27eb.jpg)
-    The user connect to the management VM and use it as the workflow engine, drive the testing routine through Python:
-    - (1-2)Utilize Terraform to create and start VMs on openStack.
-    - (3-4)Utilize Ansible Playbook to configure environment and install MooseFS servers(Master, Metalogger, Chunkserver, Client) on corresponding VM. Start the servers after creation.
-    - (5-6)Use SSH/SCP/SFTP to connect to the client VM(s) and run the testing scripts to create some file with contents on Client server.
-    - (7)Through Terraform, Reboot/destroy MooseFS server(s).
-    - (8)SSH to the client VM to check the status/content of the testing files.
-    - (9)Destroy all the VMs through Terraform.
+The user connect to the management VM and use it as the workflow engine, drive the testing routine through Python:
+- (1-2)Utilize Terraform to create and start VMs on openStack.
+- (3-4)Utilize Ansible Playbook to configure environment and install MooseFS servers(Master, Metalogger, Chunkserver, Client) on corresponding VM. Start the servers after creation.
+- (5-6)Use SSH/SCP/SFTP to connect to the client VM(s) and run the testing scripts to create some file with contents on Client server.
+- (7)Through Terraform, Reboot/destroy MooseFS server(s).
+- (8)SSH to the client VM to check the status/content of the testing files.
+- (9)Destroy all the VMs through Terraform.
 
 #### Configuration of Terraform, Ansible on Management VM
-    - Terraform
-        - Terraform plays the part of creating and maintaining the infrastructure 
-        - Successfully connected to the OpenStack platform and programmatically provision VMs using terraform
-        - A Python layer over Terraform, which interacts with the Terraform to create the required infrastructure
-    - Ansible
+- Terraform
+    - Terraform plays the part of creating and maintaining the infrastructure 
+    - Successfully connected to the OpenStack platform and programmatically provision VMs using terraform
+    - A Python layer over Terraform, which interacts with the Terraform to create the required infrastructure
+- Ansible
 ![10231618956435_ pic_hd](https://user-images.githubusercontent.com/52186552/115470503-0acd7680-a1fc-11eb-89bb-ba07b4c5d2a8.jpg)
 
 #### Design different failure scenarios for testing. 
