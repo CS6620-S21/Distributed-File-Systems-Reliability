@@ -40,7 +40,7 @@ Stretch goals, if time allows, include:
     - Performance testing specific to distributed filesystems.
 
 ## 4. Solution Concept
-- Since their are many different types of distributed file system the idea here is to hide the steps taken behind clean 
+Note: Since their are many different types of distributed file system the idea here is to hide the steps taken behind clean 
 interfaces, and thus testing different file systems would require developing different ansible playbooks which are an 
 of these interfaces.
 #### Architecture Overview
@@ -53,7 +53,8 @@ The user connect to the management VM and use it as the workflow engine, drive t
 - (8)SSH to the client VM to check the status/content of the testing files.
 - (9)Destroy all the VMs through Terraform.
 
-#### Workflow API Architecture
+#### Workflow API 
+##### Architecture
 - Management VM
     - Driver of various tests
     - Workflow Engine
@@ -62,8 +63,15 @@ The user connect to the management VM and use it as the workflow engine, drive t
     - Chunk Server VM
     - Metalogger Server VM
 - MooseFS Client VM
+    - Runs workflow commands to interact with MooseFS Master and Chunk Server VMs
+    - Checks for file corruption
+![10251618967832_ pic_hd](https://user-images.githubusercontent.com/52186552/115482930-66582e00-a215-11eb-8809-3ef7ad2e3d02.jpg)
+
+##### Driver Program Class Diagram
+![10311618973062_ pic_hd](https://user-images.githubusercontent.com/52186552/115489354-b210d480-a221-11eb-8fb6-2113b386ffab.jpg)
 
 #### Environment Configuration on Management VM
+![10261618968000_ pic](https://user-images.githubusercontent.com/52186552/115483193-ef6f6500-a215-11eb-94c4-3a0bd9d95114.jpg)
 - Terraform
     - Terraform plays the part of creating and maintaining the infrastructure 
     - Successfully connected to the OpenStack platform and programmatically provision VMs using terraform
@@ -73,7 +81,11 @@ The user connect to the management VM and use it as the workflow engine, drive t
     - Implemented Ansible Playbook for setting up different MooseFS servers.
     - Automated the setup of Master Server, Metalogger, Chunkserver, and Client server.
 
-#### Design different failure scenarios for testing. 
+#### Five different failure scenarios
+![10271618972754_ pic_hd](https://user-images.githubusercontent.com/52186552/115488955-fa7bc280-a220-11eb-8a52-d440ea7309a3.jpg)
+![10281618972765_ pic_hd](https://user-images.githubusercontent.com/52186552/115488975-049dc100-a221-11eb-9094-f655b1a85910.jpg)
+![10291618972775_ pic_hd](https://user-images.githubusercontent.com/52186552/115489006-12ebdd00-a221-11eb-855a-5390b2a440ae.jpg)
+![10301618972789_ pic_hd](https://user-images.githubusercontent.com/52186552/115489038-1e3f0880-a221-11eb-9219-4e9411fac807.jpg)
  
 ## 5. Acceptance criteria
 - Teraform Scripts should be able to create VMs on demand in MOC.
@@ -104,6 +116,26 @@ a guideline or a general approach to be taken to test any Distributed File Syste
 #### Sprint 3 (15 Mar 2021 to 27 Mar 2021)
 - Enhance Terraform, Ansible, and SSH in Python Driver Program
 - Design failure scenarios
+
+#### Sprint 4 (29 Mar 2021 to 10 Apr 2021)
+- Developed 4 end to end test scenarios for testing the MooseFS file system.
+- Integrated the test scenarios with python main driver to create a test-harness
+
+#### Retrospective
+- Sprints Running really well
+    - Achieved the sprint goal and overall project deliverables.
+    - Useful having full team + mentor on MS Teams
+    - Team willing to adjust schedule ad-hoc incredibly helpful
+
+- Major Hiccups
+    - Installation of  MooseFS on CentOS 
+    - Switching from Java to Python after the 2nd Sprint.
+    - Less features available on Terraform provider for Openstack as compared to AWS or Azure.
+
+#### Stretch Goals
+- Implement additional end to end test scenarios.
+- Abstract the code to support multiple providers like AWS, Azure etc.
+- Provide Web APIs.
 
 The further releases of application are not fixed yet for a particular date and are dependent on evaluation results 
 from experiments being conducted for the project.
